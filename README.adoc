@@ -42,9 +42,6 @@ TIP: Pensez à mettre à jour les infos dans ce fichier pour que les badges poin
 
 WARNING: Ce dépôt présente le projet à développer dans le cadre de la SAÉ 3.01 du BUT1 Informatique de l'IUT de Blagnac.
 
-Ce fichier `README.adoc` (dont vous lisez sûrement le rendu HTML automatiquement effectué par GitHUb), fait partie du dépôt initial cloné à partir du lien GitHub classroom qui vous a été donné en cours (https://classroom.github.com/a/OUF7gxEa).
-Vous trouverez le dépôt "template" qui a servi de base ici : https://github.com/IUT-Blagnac/sae3-01-template. En complément du cours Moodle de la SAE 3.01 (cf. <<liensUtiles>>), ce dépôt template vous permet d'accéder à des exemples d'https://github.com/IUT-Blagnac/sae3-01-template/issues[issues], de https://github.com/IUT-Blagnac/sae3-01-template/releases[releases], ou d'autres artefacts à venir.
-
 toc::[]
 
 == Equipe
@@ -57,11 +54,18 @@ Projet est réalisé par::
 - https://github.com/L-Yvelin[Louis Yvelin]
 ...
 
-Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:isabelle.clavel@univ-tlse2.fr[IC]
 
 == Contexte général
 
-TIP: Cette partie de votre `README.adoc` peut être supprimée ou mise ailleurs.
+Nous allons produire un site internet pour la société _Commerce de la rue_ .
+Cette entreprise est spécialisée dans la vente de composants informatiques.
+Suite à la crise sanitaire son chiffre d'affaire a drastiquement baissé et est actuellement stagnante.
+Afin de relancer son activité _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif, 
+elle souhaite se démarquer de ses concurrents leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
+Leur site s'adresse néamoins uniquement aux usagers présent sur le territoire Français pour des raisons de facilité.
+
+
 
 === Dépôt initial
 
@@ -86,18 +90,16 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 - Le dépôt https://github.com/IUT-Blagnac/sae3-01-template[template] qui sert de base à tous les dépôts étudiants.
 - Le lien https://classroom.github.com/a/OUF7gxEa[classroom] si besoin.
 
-TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
-
 == Réalisations 
 
 TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
 
-== Gestion de projet & Qualité
+== Rendus hebdomadaire de Gestion de projet & Qualité
 
-Chaque sprint (semaine) vous devrez livrer une nouvelle version de votre application (release).
-Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+Après chaque sprint (semaine) une nouvelle version de notre application (release) sera disponible.
+Nous utiliseront pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
 
-De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
+Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 
 - Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
 - Lien vers la doc technique
