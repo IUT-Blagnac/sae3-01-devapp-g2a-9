@@ -52,19 +52,24 @@ Projet est réalisé par::
 - https://github.com/BSCT-Tormod[Thomas Demeyere]
 - https://github.com/OryannMcCloud[Oryann Prochaska]
 - https://github.com/L-Yvelin[Louis Yvelin]
-...
 
 Tuteur/tutrice enseignant(e) de l'équipe:: mailto:isabelle.clavel@univ-tlse2.fr[IC]
 
 == Contexte général
 
-Nous allons produire un site internet pour la société _Commerce de la rue_ .
+Nous allons produire un site internet pour la société _Commerce de la rue_.
 Cette entreprise est spécialisée dans la vente de composants informatiques.
 Suite à la crise sanitaire son chiffre d'affaire a drastiquement baissé et est actuellement stagnante.
 Afin de relancer son activité _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif, 
 elle souhaite se démarquer de ses concurrents leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
 Leur site s'adresse néamoins uniquement aux usagers présent sur le territoire Français pour des raisons de facilité.
 
+=== Affectation des rôles 
+
+Thomas Demeyere : SCRUM Master
+Oryann Prochaska : MOA
+Anton Xu : Développeur 
+Louis Yvelin : Développeur
 
 
 === Dépôt initial
