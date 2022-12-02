@@ -59,15 +59,15 @@ Tuteur/tutrice enseignant(e) de l'équipe:: mailto:isabelle.clavel@univ-tlse2.fr
 
 Nous allons produire un site internet pour la société _Commerce de la rue_.
 Cette entreprise est spécialisée dans la vente de composants informatiques.
-Suite à la crise sanitaire son chiffre d'affaire a drastiquement baissé et est actuellement stagnante.
-Afin de relancer son activité _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif, 
-elle souhaite se démarquer de ses concurrents leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
-Leur site s'adresse néamoins uniquement aux usagers présent sur le territoire Français pour des raisons de facilité.
+Suite à la crise sanitaire son chiffre d'affaires a drastiquement baissé et est actuellement stagnante.
+Afin de relancer son activité, _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif.
+Elle souhaite se démarquer de ses concurrents, leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
+Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoire français pour des raisons de facilité.
 
 === Affectation des rôles 
 
 Thomas Demeyere : SCRUM Master
-Oryann Prochaska : MOA
+Oryann Prochaska : Product Owner
 Anton Xu : Développeur 
 Louis Yvelin : Développeur
 
@@ -102,7 +102,7 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 == Rendus hebdomadaire de Gestion de projet & Qualité
 
 Après chaque sprint (semaine) une nouvelle version de notre application (release) sera disponible.
-Nous utiliseront pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
 
 Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 
