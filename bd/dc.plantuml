@@ -36,9 +36,9 @@ class Adresse{
     idAdresse
     surnomAdresse
     adresse
+    complement
     ville
     codePostal
-    complement
 }
 class CarteBancaire{
     idCB
