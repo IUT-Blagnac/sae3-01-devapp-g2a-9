@@ -91,11 +91,21 @@ img {
     margin-left: 200px;
 }
 footer {
+    display: flex;
+    justify-content: space-around;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: black;
+    color: white;
+    text-align: center;
+}
+.flex-child{
+    width: auto;
+    height: auto;
+    padding: 5px;
+    background-color: grey;
     color: white;
     text-align: center;
 }
