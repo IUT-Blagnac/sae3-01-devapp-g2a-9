@@ -34,9 +34,10 @@ class Client{
 }
 class Adresse{
     idAdresse
+    surnomAdresse
+    adresse
     ville
     codePostal
-    libelle
     complement
 }
 class CarteBancaire{
