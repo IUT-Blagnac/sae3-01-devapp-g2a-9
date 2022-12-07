@@ -6,6 +6,7 @@ class Produit{
     prixProduit
     imageProduit
     stockProduit
+    reduction
 }
 class Categorie{
     idCat
