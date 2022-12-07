@@ -18,7 +18,7 @@ class SousCategorie{
     descSousCat
 }
 class DetailCommande{
-quantite    
+    quantite    
 }
 class Commande{
     idCommande
