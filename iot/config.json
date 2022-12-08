@@ -1,0 +1,4 @@
+{
+    "filename": "data.json",
+    "data": ["co2", "temperature", "humidity"]
+}
