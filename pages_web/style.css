@@ -70,10 +70,11 @@ img {
     border-radius: 20px;
 }
 .page {
-    height: 75%;
-    width: 250%;
+    height: auto;
+    width: max-content;
     overflow:hidden;
-    display:inline;
+    display:flex;
+    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     transform: translate(-50%, -50%);
@@ -85,6 +86,7 @@ img {
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 10px 35px; /* espacement dans la div */
     color: #ffffff;
+    margin: 500px;
 }
 footer {
     display: flex;
