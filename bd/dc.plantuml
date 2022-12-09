@@ -52,27 +52,23 @@ class CarteBancaire{
     cryptoCB
 }
 class Panier {
-    idPanier
-}
-class DetailPanier {
     quantite
 }
 
 Produit "0..*" - "1" SousCategorie : Appartenir
 SousCategorie "0..*" - "1" Categorie : Faire partie de
-Commande "0..*" -- "1..*" Produit
+Produit "1..*" -- "0..*" Commande
 (Commande, Produit) .. DetailCommande
 
-Commande "0..*" -- "1" User : Passer
-Commande "0..*" -- "1" CarteBancaire : Payer
-Commande "0..*" -- "1" Adresse : Livrer
+User "1" - "0..*" Commande : Passer
+Adresse "1" - "0..*" Commande : Livrer
+CarteBancaire "1" -- "0..*" Commande : Payer
 
 User "1" -- "0..*" Adresse : Posséder
-User "1" -- "0..*" CarteBancaire  : Enregistrer
+User "1" - "0..*" CarteBancaire  : Enregistrer
 
-User "1" -- "0..1" Panier
-Panier "0..*" -- "0..*" Produit
-(Panier, Produit) .. DetailPanier
+Produit "0..*" -- "0..*" User
+(User, Produit) .. Panier
 
 
 
