@@ -4,9 +4,10 @@ class Produit{
     nomProduit
     descProduit
     prixProduit
-    imageProduit
+    dateProduit
     stockProduit
     reduction
+    imageProduit
 }
 class Categorie{
     idCat
