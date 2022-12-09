@@ -71,6 +71,7 @@ User "1" -- "0..*" Adresse : Posséder
 User "1" -- "0..*" CarteBancaire  : Enregistrer
 
 User "1" -- "0..1" Panier
+Panier "0..*" -- "0..*" Produit
 (Panier, Produit) .. DetailPanier
 
 
