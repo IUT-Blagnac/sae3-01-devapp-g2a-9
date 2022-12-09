@@ -26,12 +26,16 @@ class Commande{
     montant
     tauxTVA
 }
-class Client{
-    idClient
-    nomClient
-    prenomClient
-    emailClient
-    telClient
+class User{
+    idUser
+    emailUser
+    mdpUser
+    adminUser
+    nomUser
+    prenomUser
+    telUser
+}
+class User {
 }
 class Adresse{
     idAdresse
@@ -48,16 +52,30 @@ class CarteBancaire{
     dateCB
     cryptoCB
 }
+class Panier {
+    idPanier
+}
+class DetailPanier {
+    quantite
+}
 
 Produit "0..*" - "1" SousCategorie : Appartenir
 SousCategorie "0..*" - "1" Categorie : Faire partie de
 Commande "0..*" -- "1..*" Produit
 (Commande, Produit) .. DetailCommande
-Commande "0..*" -- "1" Client : Passer
-Client "1" - "0..*" Adresse : Posséder
-CarteBancaire "0..*" - "1" Client : Enregistrer
+
+Commande "0..*" -- "1" User : Passer
 Commande "0..*" -- "1" CarteBancaire : Payer
-Commande "0..*" - "1" Adresse : Livrer
+Commande "0..*" -- "1" Adresse : Livrer
+
+User "1" -- "0..*" Adresse : Posséder
+User "1" -- "0..*" CarteBancaire  : Enregistrer
+
+User -- Panier
+(Panier, Produit) .. DetailPanier
+
+
+
 
 hide empty methods
 hide circle
