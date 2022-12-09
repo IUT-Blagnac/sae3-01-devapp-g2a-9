@@ -70,7 +70,7 @@ Commande "0..*" -- "1" Adresse : Livrer
 User "1" -- "0..*" Adresse : Posséder
 User "1" -- "0..*" CarteBancaire  : Enregistrer
 
-User -- Panier
+User "1" -- "0..1" Panier
 (Panier, Produit) .. DetailPanier
 
 
