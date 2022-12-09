@@ -35,8 +35,6 @@ class User{
     prenomUser
     telUser
 }
-class User {
-}
 class Adresse{
     idAdresse
     surnomAdresse
