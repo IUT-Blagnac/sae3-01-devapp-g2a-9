@@ -24,6 +24,7 @@ class DetailCommande{
 }
 class Commande{
     idCommande
+    troisFois
     montant
     tauxTVA
 }
