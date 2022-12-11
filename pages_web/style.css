@@ -10,9 +10,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 .background {
-    width: 430px;
-    height: 520px;
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    margin: auto;
     /*transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;*/
@@ -20,20 +21,104 @@ body {
 .background .shape {
     height: 200px;
     width: 200px;
-    position: absolute;
     border-radius: 50%;
 }
 .shape:first-child {
     background-color: #ff9a8b;
     background-image: linear-gradient(90deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%);
-    right: -80px;
-    bottom: -100px;
+    left: 40px; /*  MODIFIER CES VALEURS POUR BOUGER LE ROND SUR LA PAGE */
+    top: 300px; /*                   <-------------                      */ 
+    position: fixed;
 }
 /*.shape:second-child {
     background-color: #ff9a8b;
     background-image: linear-gradient(90deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%);
     left: 80px;
     top: 100px;
+}*/
+
+/* MENU BARRE =========================================================================================================================*/
+
+.oui {
+    display: flex;
+	margin: 0px auto 0;
+	position: fixed;
+	width: 100%;
+	height: 100px;
+	background-color: #34495e;
+	border-radius: 8px;
+	font-size: 0;
+    justify-content: space-between;
+}
+.oui a {
+    width: 20%;
+	line-height: 90px;
+	height: 100%;
+	font-size: 13px;
+    font-family: "Poppins", sans-serif;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+.oui .animation {
+    position: inherit;
+    left: 20%;
+	height: 100px;
+	top: 0;
+	z-index: 0;
+	transition: all .5s ease 0s;
+	border-radius: 8px;
+}
+a:nth-child(1) {
+	width: 20%;
+}
+a:nth-child(2) {
+	width: 20%;
+}
+a:nth-child(3) {
+	width: 20%;
+}
+a:nth-child(4) {
+	width: 20%;
+}
+a:nth-child(5) {
+	width: 20%;
+}
+.oui .start-image, a:nth-child(1):hover~.animation {
+	width: 20%;
+	left: 20%;
+	background-color: #34495e;
+}
+.oui .start-accueil, a:nth-child(2):hover~.animation {
+	width: 20%;
+	left: 20%;
+	background-color: #fcba03;
+}
+.oui .start-categories, a:nth-child(3):hover~.animation {
+	width: 20%;
+	left: 40%;
+	background-color: #00ffdd;
+}
+.oui .start-rechercher, a:nth-child(4):hover~.animation {
+	width: 20%;
+	left: 60%;
+	background-color: #a200ff;
+}
+.oui .start-compte, a:nth-child(5):hover~.animation {
+	width: 20%;
+	left: 80%;
+	background-color: #b3ff00;
+}
+body {
+	background: #2c3e50;
+}
+/*span {
+    color: #2BD6B4;
 }*/
 
 
@@ -61,36 +146,54 @@ li a:hover {
     background-color: #111;
 }
 img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100px;
-    width: 130px;
+    height: auto;
+    width: 100%;
     border: 2px solid;
     border-radius: 20px;
 }
+header {
+    height: 100px;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    
+}
+.header_child{
+    width: 20%;
+    height: 100px;
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.header_child_text {
+    padding-top: 30px;
+}
 .page {
-    height: 75%;
-    width: 250%;
+    height: auto;
+    width: 100%;
     overflow:hidden;
-    display:inline;
+    display:flex;
+    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.13);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 400;
-    left: 700;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 10px 35px; /* espacement dans la div */
     color: #ffffff;
-}
-.spacing{
-    float:left;
-    margin-left: 200px;
+    margin-top: -50px;
 }
 footer {
+    display: flex;
+    justify-content: space-around;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -98,6 +201,33 @@ footer {
     background-color: black;
     color: white;
     text-align: center;
+}
+.flex-child{
+    width: auto;
+    height: auto;
+    padding: 5px;
+    background-color: grey;
+    color: white;
+    text-align: center;
+}
+.pane_categories{
+    display: flex;
+    justify-content: space-around;
+}
+.categorie{
+    width: 17%;
+    height: auto;
+    text-align: center;
+}
+.nouveaute{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.nouveaute_child{
+    margin: 5px;
+    width: auto;
+    height: auto;
 }
 
 
@@ -164,6 +294,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.2s ease-out;
+    border: none;
 }
 button:hover {
     transform: scale(1.02);

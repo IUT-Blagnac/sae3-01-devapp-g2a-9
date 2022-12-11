@@ -35,5 +35,5 @@ build/
 /bin1/
 java/build/**
 
-# Out
 data.json
+out/
