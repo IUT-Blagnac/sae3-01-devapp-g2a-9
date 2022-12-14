@@ -66,10 +66,10 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 
 === Affectation des rôles 
 
-* Thomas Demeyere : SCRUM Master +
-* Oryann Prochaska : Product Owner +
-* Anton Xu : Développeur +
-* Louis Yvelin : Développeur +
+- Thomas Demeyere : SCRUM Master 
+- Oryann Prochaska : Product Owner 
+- Anton Xu : Développeur 
+- Louis Yvelin : Développeur 
 
 === Dépôt initial
 
@@ -97,12 +97,13 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 == Réalisations 
 
 Nous avons trié les compétences par dossier : 
-* Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
-* Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
-* Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
-* Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
+- Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
+- Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
+- Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
 
-TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
+=== Installation
+
 
 == Rendus hebdomadaire de Gestion de projet & Qualité
 
