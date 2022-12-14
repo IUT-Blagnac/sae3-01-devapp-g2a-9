@@ -66,10 +66,10 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 
 === Affectation des rôles 
 
-* Thomas Demeyere : SCRUM Master
-* Oryann Prochaska : Product Owner
-* Anton Xu : Développeur 
-* Louis Yvelin : Développeur
+* Thomas Demeyere : SCRUM Master +
+* Oryann Prochaska : Product Owner +
+* Anton Xu : Développeur +
+* Louis Yvelin : Développeur +
 
 === Dépôt initial
 
