@@ -65,6 +65,16 @@ body {
 	color: white;
 	cursor: pointer;
 }
+.oui img {
+    height: 100%;
+    width: auto;
+    border: 2px solid;
+    border-radius: 20px;
+}
+.oui div_image{
+    width: 100%;
+    height: 100%;
+}
 .oui .animation {
     position: inherit;
     left: 20%;
