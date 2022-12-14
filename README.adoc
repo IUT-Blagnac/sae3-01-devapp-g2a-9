@@ -97,6 +97,7 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 == Réalisations 
 
 Nous avons trié les compétences par dossier : 
+
 - Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
 - Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
 - Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
