@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <html lang="fr">
     <head>
         <meta charset="utf-8"/>
@@ -7,22 +10,40 @@
     </head>
 
     <body>
-        <div class="background">
+        <div class="background"> 
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
-        <form>
+        <form action="trait_co.php" method="post">
             <h3>Connexion Utilisateur</h3>
-            <label for="usename">Nom d'utilisateur</label>
-            <input type="text" placeholder="Sushi18" id="username"/>
+            <label for="email">Email</label>
+            <input type="text" placeholder="Sushi18@pouet.com" id="email"/>
             <label for="password">Mot de passe</label>
             <input type="password" placeholder="***********" id="password"/>
-            <button>Connexion</button>
+            <button type="submit" id="valider">Connexion</button>
             <div class="social">
                 <div class ="alternate">Mot de passe oublié</div>
                 <div class ="alternate">Inscription</div>
             </div>
 
         </form>
+
+<?php 
+    $login = $_POST["email"];
+    $mdp = $_POST['password;
+    $valider = $_POST["valider"];
+    $erreur = "";
+
+    if (issset($valider)) {
+        if ($login=="user" && $pass="123") { //ne pas oublier de hash le mdp
+            $_SESSION["autoriser"] ="oui";
+            header("location:index.php")
+        } else {
+            $erreur = "mauvais login ou mdp";
+        }
+    }
+ 
+?>
+
     </body>
     </html>

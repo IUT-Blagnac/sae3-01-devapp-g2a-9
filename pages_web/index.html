@@ -8,6 +8,10 @@
 
     <body>
         <header>
+            <?php 	
+            require_once("connect.inc.php");
+            error_reporting(0);
+            ?>
             <div class="oui">
                 <div class="header_child"><img src="https://cdn.discordapp.com/attachments/1044202675266392126/1050045978461351956/1670420861061.png" alt="le logo"></div>
                 <a href="#">Accueil</a>
@@ -17,6 +21,7 @@
                 <div class="animation start-accueil"></div>
             </div>
         </header>
+        <?php $req1 = "SELECT * FROM categories"; ?> <!-- affichage des catégories en haut -->
         <div class="background">
                 <div class="shape"></div>
                 <div class="shape"></div>
