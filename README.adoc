@@ -103,8 +103,10 @@ Nous avons trié les compétences par dossier :
 - Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
 - Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
 
-=== Installation
+== Organisation et mode de fonctionnement
 
+Chaque début de semaine nous allons tous faire un _git clone_ sur nos PC de la branche principale (master). Nous avons une branche pour chacune des compétences et chacun devra push son travail sur la branche avec la compétence il a travaillé tout au long de la semaine.
+A la fin de la semaine au moment des rendus nous regardons les conflits entre la branche _master_ et les autres branches. Suite à ça nous faisons une merge request puis nous assemblons le tout afin de créer la release de la semaine. 
 
 == Rendus hebdomadaire de Gestion de projet & Qualité
 
