@@ -102,6 +102,7 @@ Nous avons trié les compétences par dossier :
 - Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
 - Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
 - Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
 
 == Organisation et mode de fonctionnement
 
