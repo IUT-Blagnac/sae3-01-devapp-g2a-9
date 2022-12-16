@@ -27,6 +27,7 @@
                     </label>
 
                     <button type="submit" name="valider">Connexion</button>
+                    <?php if (isset($erreur)) echo $erreur;?>
                     <div class="social">
                         <div class="alternate">Inscription</div>
                     </div>
