@@ -107,7 +107,7 @@ nav .start-image, a:nth-child(1):hover~.animation {
 	left: 0%;
 	background-color: #34495e;
 }
-nav .start-accueil, a:nth-child(2):hover~.animation {
+nav .start-index, a:nth-child(2):hover~.animation {
 	width: 20%;
 	left: 20%;
 	background-color: #fcba03;
@@ -117,12 +117,12 @@ nav .start-categories, a:nth-child(3):hover~.animation {
 	left: 40%;
 	background-color: #00ffdd;
 }
-nav .start-rechercher, a:nth-child(4):hover~.animation {
+nav .start-recherche, a:nth-child(4):hover~.animation {
 	width: 20%;
 	left: 60%;
 	background-color: #a200ff;
 }
-nav .start-compte, a:nth-child(5):hover~.animation {
+nav .start-connexion, a:nth-child(5):hover~.animation {
 	width: 20%;
 	left: 80%;
 	background-color: #b3ff00;

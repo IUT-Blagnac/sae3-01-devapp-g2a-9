@@ -2,12 +2,12 @@
     <head>
         <title>Commerce de la rue</title>
         <link rel="stylesheet" href="style.css"/>
-        <link rel="icon" type="image/x-icon" href="logo.ico">
+        <link rel="icon" type="image/x-icon" href="img/logo.png">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
     <body>
         <div class="content">
-            <?php include("header.html"); ?>
+            <?php include("include/header.html"); ?>
             <main>
                 <div class="main-card">
                     <h2>Ventilateurs</h2>
@@ -185,7 +185,7 @@
                         </div>
                     </div>
             </main>
-            <?php include("footer.html"); ?>
+            <?php include("include/footer.html"); ?>
         </div>
         <div class="background">    
             <div class="shape"></div>  

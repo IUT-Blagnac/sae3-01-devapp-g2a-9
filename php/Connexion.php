@@ -6,12 +6,12 @@
         <meta charset="utf-8"/>
         <title>Commerce de la rue</title>
         <link rel="stylesheet" href="style.css"/>
-        <link rel="icon" type="image/x-icon" href="logo.ico">
+        <link rel="icon" type="image/x-icon" href="img/logo.png">
     </head>
 
     <body>
         <div class="content">
-            <?php include("header.html"); ?>
+            <?php include("include/header.html"); ?>
             <main>
                 <form method="post">
                     <h3>Connexion Utilisateur</h3>
@@ -32,7 +32,7 @@
                     </div>
                 </form>
             </main>
-            <?php include("footer.html"); ?>
+            <?php include("include/footer.html"); ?>
         </div>
         <div class="background">
             <div class="shape"></div>
