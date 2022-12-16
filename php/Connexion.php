@@ -19,7 +19,7 @@
                     <input type="email" name="email" placeholder="sushi18@pouet.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
                     <label for="password">Mot de passe</label>
                     <input type="password" name="password" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
-                    <a id="mdp_oublie">Mot de passe oublié</a>
+                    <a id="mdp_oublie" href="reset_mdp.php">Mot de passe oublié</a>
                     
                     <label class="checkbox-label" for="souvenir">
                         <input type="checkbox" name="souvenir" id="souvenir">
@@ -34,10 +34,7 @@
             </main>
             <?php include("include/footer.html"); ?>
         </div>
-        <div class="background">
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
+        <?php include("include/background.html"); ?>
         
     </body>
 </html>

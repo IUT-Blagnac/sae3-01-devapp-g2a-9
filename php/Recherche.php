@@ -187,8 +187,6 @@
             </main>
             <?php include("include/footer.html"); ?>
         </div>
-        <div class="background">    
-            <div class="shape"></div>  
-        </div>
+        <?php include("include/background.html"); ?>
     </body>
 </html>
