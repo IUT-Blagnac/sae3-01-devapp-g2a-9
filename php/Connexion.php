@@ -50,7 +50,7 @@ if (isset($valider)) {
 
                     <button type="submit" name="valider">Connexion</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email sont incorrects</p>" : '';?>
+                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email est incorrect</p>" : '';?>
 
                     <div class="social">
                         <div class="alternate">Inscription</div>
