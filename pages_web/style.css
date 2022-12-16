@@ -265,6 +265,13 @@ input {
 ::placeholder {
     color: #e5e5e5;
 }
+.checkbox-label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
 button {
     width: 100%;
     margin: 30px auto;
