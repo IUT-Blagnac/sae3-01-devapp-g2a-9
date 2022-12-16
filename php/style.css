@@ -339,3 +339,6 @@ button:hover {
 .alternate {
     margin: 15px auto;
 }
+#erreur_connexion{
+    color: red;
+}
