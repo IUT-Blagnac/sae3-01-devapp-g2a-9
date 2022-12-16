@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="content">
-            <?php include("include/header.php"); ?>
+            <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
                 <div class="main-card">
                     <h2>Ventilateurs</h2>

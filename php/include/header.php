@@ -5,6 +5,6 @@
         <a href="Categories.php">Catégories</a>
         <a href="Recherche.php">Rechercher</a>
         <a href="Connexion.php">Mon compte</a>
-        <div class="animation start-<?php echo strtolower(basename(__FILE__, '.php')); ?>"></div>
+        <div class="animation start-<?php echo $page?>"></div>
     </nav>
 </header>
