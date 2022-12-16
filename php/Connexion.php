@@ -42,8 +42,16 @@
 <?php 
 extract($_POST);
 if (isset($valider)) {
-    if ($email == "user@a.com" && $pass == "123") { //ne pas oublier de hash le mdp
-        setcookie('email', $email, time() + 60*60*24*30);
+    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
+    // bind $email
+    // $res = stat->exec
+    // if (empty($res)) erreur = email non connu
+    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
+    // else :
+    if ($email == "user@a.com" && $pass == "123") {
+        if (isset($souvenir)) {
+            setcookie('email', $email, time() + 60*60*24*30); // un mois
+        }
         $_SESSION["autoriser"] = "oui";
         header("Location: index.php");
     } else {
