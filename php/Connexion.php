@@ -1,6 +1,28 @@
+<!-- partie traitement -->
 <?php 
-    session_start();
+session_start();
+extract($_POST);
+if (isset($valider)) {
+    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
+    // bind $email
+    // $res = stat->exec
+    // if (empty($res)) erreur = email non connu
+    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
+    // else :
+    if ($email == "user@a.com" && $password == "123") {
+        if (isset($souvenir)) {
+            setcookie('email', $email, time() + 60*60*24*30); // un mois
+        }
+        $_SESSION["autoriser"] = "oui";
+        header("Location: index.php");
+    } else {
+        $erreur = "mauvais login ou mdp";
+    }
+}
 ?>
+
+<!-- partie html -->
+
 <html lang="fr">
     <head>
         <meta charset="utf-8"/>
@@ -27,7 +49,9 @@
                     </label>
 
                     <button type="submit" name="valider">Connexion</button>
-                    <?php if (isset($erreur)) echo $erreur;?>
+
+                    <?php echo isset($erreur) ? $erreur : '';?>
+
                     <div class="social">
                         <div class="alternate">Inscription</div>
                     </div>
@@ -39,24 +63,3 @@
         
     </body>
 </html>
-<!-- partie traitement -->
-<?php 
-extract($_POST);
-if (isset($valider)) {
-    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
-    // bind $email
-    // $res = stat->exec
-    // if (empty($res)) erreur = email non connu
-    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
-    // else :
-    if ($email == "user@a.com" && $password == "123") {
-        if (isset($souvenir)) {
-            setcookie('email', $email, time() + 60*60*24*30); // un mois
-        }
-        $_SESSION["autoriser"] = "oui";
-        header("Location: index.php");
-    } else {
-        $erreur = "mauvais login ou mdp";
-    }
-}
-?>
