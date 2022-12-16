@@ -9,15 +9,10 @@
         <div class="content">
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
+                <!-- select $nomCat FROM Categorie WHERE idCat = $_GET['cat']-->
                 <div class="main-card">
                     <h2>Ventilateurs</h2>
                     <div class="main-card-content">
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>                            
-                            <div><button>Acheter</button></div>
-                        </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
