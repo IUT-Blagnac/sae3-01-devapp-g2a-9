@@ -273,6 +273,9 @@ input {
     vertical-align: middle;
     word-wrap: break-word;
 }
+.checkbox-label input {
+    width: auto;
+}
 #souvenir {
     height: 1em;
 }
