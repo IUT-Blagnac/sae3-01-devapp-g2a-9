@@ -8,7 +8,7 @@
 
     <body>
         <div class="content">
-            <?php include("include/header.html"); ?>
+            <?php include("include/header.php"); ?>
             <main>
                 <div class="main-card">
                     <h2>Catégories</h2>

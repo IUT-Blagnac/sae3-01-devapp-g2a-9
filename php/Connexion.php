@@ -11,7 +11,7 @@
 
     <body>
         <div class="content">
-            <?php include("include/header.html"); ?>
+            <?php include("include/header.php"); ?>
             <main>
                 <form method="post">
                     <h3>Connexion Utilisateur</h3>
