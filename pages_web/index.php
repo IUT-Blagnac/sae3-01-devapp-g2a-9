@@ -3,7 +3,7 @@
         <meta charset="utf-8"/>
         <title>Commerce de la rue</title>
         <link rel="stylesheet" href="style.css"/>
-        <link rel="icon" type="image/x-icon" href="logo.ico">
+        <link rel="icon" type="image/x-icon" href="resources/images/logo.png">
     </head>
 
     <body>
