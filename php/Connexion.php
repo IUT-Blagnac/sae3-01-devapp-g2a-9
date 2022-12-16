@@ -42,7 +42,7 @@
 <?php 
 extract($_POST);
 if (isset($valider)) {
-    if ($login == "user@a.com" && $pass == "123") { //ne pas oublier de hash le mdp
+    if ($email == "user@a.com" && $pass == "123") { //ne pas oublier de hash le mdp
         setcookie('email', $email, time() + 60*60*24*30);
         $_SESSION["autoriser"] = "oui";
         header("Location: index.php");
