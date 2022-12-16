@@ -13,11 +13,11 @@
                 <div class="main-card">
                     <h2>Catégories</h2>
                     <div class="main-card-content">
-                        <div class="categorie"><button>Processeurs</button></div>
-                        <div class="categorie"><button>Disques durs</button></div>
-                        <div class="categorie"><button>Cartes graphiques</button></div>
-                        <div class="categorie"><button>Cartes mères</button></div>
-                        <div class="categorie"><button>Ventilateurs</button></div>
+                        <a href="Categories.php?cat=cpu" class="categorie"><button>Processeurs</button></a>
+                        <a href="Categories.php?cat=hdd" class="categorie"><button>Disques durs</button></a>
+                        <a href="Categories.php?cat=gpu" class="categorie"><button>Cartes graphiques</button></a>
+                        <a href="Categories.php?cat=mb" class="categorie"><button>Cartes mères</button></a>
+                        <a href="Categories.php?cat=ventirad" class="categorie"><button>Ventilateurs</button></a>
                     </div>
                 </div>
                 <div class="main-card">
