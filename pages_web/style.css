@@ -265,6 +265,20 @@ input {
 ::placeholder {
     color: #e5e5e5;
 }
+.checkbox-label {
+    height: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+.checkbox-label input {
+    width: auto;
+}
+#souvenir {
+    height: 1em;
+}
 button {
     width: 100%;
     margin: 30px auto;
