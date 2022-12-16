@@ -48,7 +48,7 @@ if (isset($valider)) {
     // if (empty($res)) erreur = email non connu
     // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
     // else :
-    if ($email == "user@a.com" && $pass == "123") {
+    if ($email == "user@a.com" && $password == "123") {
         if (isset($souvenir)) {
             setcookie('email', $email, time() + 60*60*24*30); // un mois
         }
