@@ -273,6 +273,9 @@ input {
     vertical-align: middle;
     word-wrap: break-word;
 }
+#souvenir {
+    height: 1em;
+}
 button {
     width: 100%;
     margin: 30px auto;
