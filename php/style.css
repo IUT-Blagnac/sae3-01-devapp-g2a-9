@@ -201,7 +201,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: lightblue;
+    background-color: rgba(28, 33, 48, .5);
     color: white;
     text-align: center;
 }
@@ -209,8 +209,11 @@ footer div{
     width: auto;
     height: auto;
     padding: 5px;
-    color: white;
     text-align: center;
+}
+footer div a{
+    text-decoration: none;
+    color: white
 }
 
 
