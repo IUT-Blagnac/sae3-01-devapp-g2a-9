@@ -16,7 +16,7 @@
                 <form method="post">
                     <h3>Connexion Utilisateur</h3>
                     <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="sushi18@gmail.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
+                    <input type="email" name="email" placeholder="sushi18@pouet.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
                     <label for="password">Mot de passe</label>
                     <input type="password" name="password" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
                     
