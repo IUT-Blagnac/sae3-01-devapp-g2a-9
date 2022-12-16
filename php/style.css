@@ -266,6 +266,9 @@ input {
     font-size: 18px;
     font-weight: 300;
 }
+#mdp_oublie{
+    text-decoration: underline;
+}
 ::placeholder {
     color: #e5e5e5;
 }
