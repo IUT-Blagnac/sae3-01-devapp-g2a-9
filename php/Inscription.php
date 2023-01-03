@@ -50,7 +50,7 @@ if (isset($valider)) {
                     <input type="text" name="nom" placeholder="Orris" id="nom"/>
 
                     <label for="numtel">Numéro de téléphone</label>
-                    <input type="text" name="numtel" placeholder="0612345678" id="numtel"/>
+                    <input type="tel" name="numtel" placeholder="0612345678" id="numtel"/>
                     <label class="checkbox-label" for="entreprise">
                         <input type="checkbox" name="entreprise" id="entreprise">
                         Compte entreprise
