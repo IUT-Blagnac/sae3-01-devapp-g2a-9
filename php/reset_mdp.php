@@ -11,9 +11,9 @@
             <?php include("include/header.php"); ?>
             <main>
             
-                <div class="body" style="text-align:center;display:flex;align-content:center;flex-direction:column;justify-content:center;font-size:3em;color:white;font-family:'Comic Sans MS';user-select:none;">
+                <div class="body" style="cursor:not-allowed;text-align:center;display:flex;align-content:center;flex-direction:column;justify-content:center;font-size:3em;color:white;font-family:'Comic Sans MS';user-select:none;">
                     <p>Fallait pas l'oublier !</p>
-                    <img src="img/motdepasseoublie.gif" alt="alt" style="width:60vmin;height:auto;">
+                    <img src="img/motdepasseoublie.gif" alt="alt" style="width:60vmin;height:auto;border-radius:0.5vmin;">
                 </div>
             </main>
             <?php include("include/footer.html"); ?>
