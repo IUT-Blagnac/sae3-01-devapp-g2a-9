@@ -39,16 +39,29 @@ if (isset($valider)) {
                     <h3>Inscription Utilisateur</h3>
                     <label for="email">Email</label>
                     <input type="email" name="email" placeholder="sushi18@pouet.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
+                   
                     <label for="password">Mot de passe</label>
                     <input type="password" name="password" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
+
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" placeholder="Clint" id="prenom"/>
+
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" placeholder="Orris" id="nom"/>
+
+                    <label for="numtel">Numéro de téléphone</label>
+                    <input type="text" name="numtel" placeholder="0612345678" id="numtel"/>
+                    <label class="checkbox-label" for="entreprise">
+                        <input type="checkbox" name="entreprise" id="entreprise">
+                        Compte entreprise
+                    </label>
                     
                     <button type="submit" name="valider">Inscription</button>
 
                     <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Adresse email déjà utilisée</p>" : '';?>
 
-                    <a class="social" href="Connexion.php">
-                        <div class="alternate">Connexion</div>
-                    </a>
+                    <a class="alternate social" href="Connexion.php">Connexion</a>
+                        
                 </form>
             </main>
             <?php include("include/footer.html"); ?>

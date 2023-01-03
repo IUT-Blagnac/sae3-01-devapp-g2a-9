@@ -52,9 +52,7 @@ if (isset($valider)) {
 
                     <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email est incorrect</p>" : '';?>
 
-                    <a class="social" href="Inscription.php">
-                        <div class="alternate">Inscription</div>
-                    </a>
+                    <a class="alternate social" href="Inscription.php">Inscription</a>
                 </form>
             </main>
             <?php include("include/footer.html"); ?>

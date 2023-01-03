@@ -129,7 +129,7 @@ nav .start-recherche, a:nth-child(4):hover~.animation {
 	left: calc(100%/6 * 3);
 	background-color: #a200ff;
 }
-nav .start-connexion, a:nth-child(5):hover~.animation {
+nav .start-connexion, nav .start-inscription, a:nth-child(5):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 4);
 	background-color: #ffc5d1;
@@ -246,7 +246,6 @@ footer div a:hover{
 form {
     display: flex;
     flex-direction: column;
-    height: 560px;
     width: 420px;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
@@ -256,24 +255,24 @@ form {
     padding: 10px 35px;
 }
 form * {
+    user-select: none;
+    -webkit-user-select: none;
     font-family: "Poppins", sans-serif;
-    
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
 form h3 {
-    font-size: 35px;
+    font-size: 4.5vmin;
     color: #fff;
     font-weight: 600;
-    line-height: 42px;
     text-align: center;
 }
 label {
     display: block;
-    margin-top: 30px;
-    font-size: 19px;
+    margin-top: 1.5vmin;
+    font-size: 2.5vmin;
     font-weight: 500;
 }
 input {
@@ -325,12 +324,12 @@ button:hover {
     transform: scale(1.02);
 }
 .social{
-    display: felx;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
-.social div {
+.social {
     width: 150px;
     border-radius: 3px;
     padding: 10px;
@@ -340,7 +339,7 @@ button:hover {
     font-size: 18px;
     font-weight: 500;
 }
-.social div:hover {
+.social:hover {
     background-color: rgba(255, 255, 255, 0.47);
     cursor: pointer;
     transition: 0.2s ease-out;
