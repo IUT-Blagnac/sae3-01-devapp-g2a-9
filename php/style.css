@@ -66,6 +66,7 @@ header {
     z-index: 1;
 }
 nav {
+    font-weight: bold;
     z-index: 200;
     display: flex;
 	margin: 0px auto 0;
@@ -323,10 +324,16 @@ button {
 button:hover {
     transform: scale(1.02);
 }
+.social{
+    display: felx;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
 .social div {
     width: 150px;
     border-radius: 3px;
-    padding: 5px 10px 10px 5px;
+    padding: 10px;
     background-color: rgba(255, 255, 255, 0.27);
     color: #eaf0fb;
     text-align: center;
