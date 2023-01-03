@@ -81,8 +81,8 @@ nav a {
     width: 20%;
 	line-height: 90px;
 	height: 100%;
-	font-size: 13px;
-	display: inline-block;
+	font-size: 2.5vmin;
+	display: flex;
 	position: relative;
 	z-index: 1;
 	text-decoration: none;
@@ -90,6 +90,8 @@ nav a {
 	text-align: center;
 	color: white;
 	cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 nav img {
     height: 100%;
@@ -139,7 +141,7 @@ nav .start-panier, a:nth-child(6):hover~.animation {
 }
 #shopping_cart {
     filter: invert(1);
-    height: 75%;
+    height: 60%;
 }
 .center {
     display: flex;

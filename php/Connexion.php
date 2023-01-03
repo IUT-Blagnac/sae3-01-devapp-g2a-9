@@ -1,4 +1,4 @@
-<!-- partie traitement -->
+<?php error_reporting(E_ERROR | E_PARSE); ?>
 <?php 
 session_start();
 extract($_POST);

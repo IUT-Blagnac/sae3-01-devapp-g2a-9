@@ -1,3 +1,4 @@
+<?php error_reporting(E_ERROR | E_PARSE); ?>
 <html lang="fr">
     <head>
         <meta charset="utf-8"/>
@@ -11,9 +12,9 @@
             <?php include("include/header.php"); ?>
             <main>
             
-                <div class="body" style="cursor:not-allowed;text-align:center;display:flex;align-content:center;flex-direction:column;justify-content:center;font-size:3em;color:white;font-family:'Comic Sans MS';user-select:none;">
+                <div class="body" style="user-select:none;-webkit-user-select:none;cursor:not-allowed;text-align:center;display:flex;align-content:center;flex-direction:column;justify-content:center;font-size:3em;color:white;font-family:'Comic Sans MS';">
                     <p>Fallait pas l'oublier !</p>
-                    <img src="img/motdepasseoublie.gif" alt="alt" style="width:60vmin;height:auto;border-radius:0.5vmin;">
+                    <img src="img/motdepasseoublie.gif" alt="alt" draggable="false" style="width:60vmin;height:auto;border-radius:0.5vmin;">
                 </div>
             </main>
             <?php include("include/footer.html"); ?>
