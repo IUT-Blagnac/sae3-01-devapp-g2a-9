@@ -20,9 +20,7 @@
                     <h3>Réinitialisation du mot de passe</h3>
                     <label for="email">Email</label>
                     <input type="email" name="email" placeholder="sushi18@pouet.com" id="email"/>
-                    <a class="social" href="Connexion.php">
-                        <div class="alternate">Valider</div>
-                    </a>
+                    <a class="alternate social" href="Connexion.php">Valider</a>
                 </form>
             </main>
             <?php include("include/footer.html"); ?>
