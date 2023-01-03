@@ -16,6 +16,14 @@
                     <p>Fallait pas l'oublier !</p>
                     <img src="img/motdepasseoublie.gif" alt="alt" draggable="false" style="width:60vmin;height:auto;border-radius:0.5vmin;">
                 </div>
+                <form action="Connexion.php" method="post">
+                    <h3>Réinitialisation du mot de passe</h3>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="sushi18@pouet.com" id="email"/>
+                    <a class="social" href="Connexion.php">
+                        <div class="alternate">Valider</div>
+                    </a>
+                </form>
             </main>
             <?php include("include/footer.html"); ?>
         </div>
