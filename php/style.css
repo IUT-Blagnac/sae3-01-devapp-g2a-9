@@ -350,3 +350,6 @@ button:hover {
 #erreur_connexion{
     color: red;
 }
+.apropos p{
+    font-size: 1.3em;
+}
