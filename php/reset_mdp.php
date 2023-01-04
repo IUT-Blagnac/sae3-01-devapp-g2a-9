@@ -9,7 +9,7 @@
 
     <div class="body">
         <div class="content">
-            <?php include("include/header.php"); ?>
+            <?php $page = strtolower(basename(__FILE__, '.php'));include("include/header.php"); ?>
             <p style="color: transparent;   ">Il est né sur un Élan lent avec un nez long l'an un.</p>
             <main>
                 <div class="body" style="user-select:none;-webkit-user-select:none;cursor:not-allowed;text-align:center;display:flex;align-content:center;flex-direction:column;justify-content:center;font-size:3em;color:white;font-family:'Comic Sans MS';">

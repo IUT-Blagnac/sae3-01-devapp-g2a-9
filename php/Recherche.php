@@ -9,6 +9,9 @@
         <div class="content">
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
+                <div class="barre-de-recherche">
+                    </s>
+                </div>
                 <div class="main-card">
                     <h2>Ventilateurs</h2>
                     <div class="main-card-content">

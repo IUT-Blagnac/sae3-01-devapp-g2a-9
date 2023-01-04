@@ -55,6 +55,8 @@ body {
 
 /* MENU BARRE =========================================================================================================================*/
 header {
+    -webkit-user-select: none;
+    user-select: none;
     display: flex;
     justify-content: space-between;
     left: 0;
@@ -62,7 +64,7 @@ header {
     width: 100%;
     background-color: #34495e;
     color: white;
-    text-align: center; 
+    text-align: center;
     z-index: 1;
 }
 nav {
@@ -128,13 +130,13 @@ nav .start-recherche, a:nth-child(4):hover~.animation {
 	left: calc(100%/6 * 3);
 	background-color: #a200ff;
 }
-nav .start-connexion, nav .start-inscription, a:nth-child(5):hover~.animation {
+nav .start-connexion, nav .start-inscription, nav .start-reset_mdp, a:nth-child(5):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 4);
 	background-color: #ffc5d1;
 }
 
-nav .start-panier, a:nth-child(6):hover~.animation {
+nav .start-panier, nav .start-achat, a:nth-child(6):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 5);
 	background-color: #ffd480;
@@ -250,7 +252,6 @@ footer div a:hover{
     color: white
 }
 
-
 /* PARTIE CONNEXION UTILISATEUR ===================================================================================================== */
 form {
     display: flex;
@@ -284,7 +285,7 @@ label {
     font-size: 2.5vmin;
     font-weight: 500;
 }
-input {
+input, select {
     display: block;
     height: 50px;
     width: 100%;
@@ -293,6 +294,14 @@ input {
     padding: 0 10px;
     font-size: 18px;
     font-weight: 300;
+}
+.custom-select option{
+    background-color: rgba(28, 33, 48, .5);
+}
+.carte-bancaire{
+    border: 2px solid grey;
+    padding: 1vmin;
+    border-radius: 10px;
 }
 #mdp_oublie{
     text-decoration: underline;
@@ -331,6 +340,9 @@ button {
 }
 button:hover {
     transform: scale(1.02);
+}
+.bouton-adresse{
+    text-decoration: underline;
 }
 .social{
     display: flex;
