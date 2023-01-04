@@ -237,6 +237,16 @@ main {
     width: auto;
     height: auto;
 } */
+.gallerie{
+    display: flex;
+    align-items: center;
+}
+.doigt{
+    font-size: 500%;
+}
+.img_produit{
+    max-width: 50%;
+}
 
 /* FOOTER ========================================== */
 
