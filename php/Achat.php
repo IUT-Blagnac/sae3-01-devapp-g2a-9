@@ -46,10 +46,10 @@ extract($_POST);
                     </div>
                     
                     <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" placeholder="Clint" id="prenom"/>
+                    <input type="text" name="prenom" placeholder="Nicolas" id="prenom"/>
 
                     <label for="nom">Nom</label>
-                    <input type="text" name="nom" placeholder="Orris" id="nom"/>
+                    <input type="text" name="nom" placeholder="Vion" id="nom"/>
 
                     <label for="numtel">Numéro de téléphone</label>
                     <input type="tel" name="numtel" placeholder="0612345678" id="numtel"/>
