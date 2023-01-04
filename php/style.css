@@ -237,16 +237,6 @@ main {
     width: auto;
     height: auto;
 } */
-.gallerie{
-    display: flex;
-    align-items: center;
-}
-.doigt{
-    font-size: 500%;
-}
-.img_produit{
-    max-width: 50%;
-}
 
 /* FOOTER ========================================== */
 
@@ -429,4 +419,34 @@ button:hover {
     padding: 10px 35px; /* espacement dans la div */
     color: #ffffff;
     font-size: 10rem;
+}
+
+/*Produit =======================*/
+
+.main-card-produit {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 2rem;
+    flex-wrap: nowrap;
+}
+.gallerie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.doigt{
+    font-size: 500%;
+    margin: 0 2%;
+}
+.img_produit{
+    max-width: 50%;
+}
+.description_produit{
+    justify-content: left;
+    width: 100%;
+}
+.bouton_acheter{
+    width: 50%;
 }
