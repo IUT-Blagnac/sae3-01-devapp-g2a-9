@@ -406,14 +406,15 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around
+    justify-content: space-around;
+    gap: 2em;
 }
 #image-utilisateur{
     height: auto;
     width: 20vw;
 }
 .bulle{
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     display:flex;
     flex-direction: column;
@@ -426,7 +427,15 @@ button:hover {
     padding: 10px 35px; /* espacement dans la div */
     color: #ffffff;
 }
-
+.bulle *{
+    border: 0;
+    color: white;
+}
+.label-value{}
+.align-left{
+    display: flex;
+    width: 100%;
+}
 /* PANIER =========== */
 
 .main-card-panier {
