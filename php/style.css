@@ -49,15 +49,15 @@ body {
     height: 100px;
     width: 100px;
     background-image: linear-gradient(90deg, #8bffb7 0%, #6aff8a 55%, #99ffa7 100%);
-    right: 30%;
-    top: 60%;
+    right: 15%;
+    top: 75%;
 }
 .shape:nth-child(4) {
     display: inline-block;
     height : 0;
     width : 0;
     border-right : 87px solid transparent;
-    border-bottom : 150px solid rgb(250, 250, 164);
+    border-bottom : 150px solid rgb(215, 215, 83);
     border-radius: 0;
     border-left : 87px solid transparent;
     right: 40%;
@@ -69,11 +69,11 @@ body {
     height : 0;
     width : 0;
     border-right : 87px solid transparent;
-    border-bottom : 150px solid rgb(65, 166, 120);
+    border-bottom : 150px solid rgb(166, 65, 134);
     border-radius: 0;
     border-left : 87px solid transparent;
     right: 65%;
-    top: 60%;
+    top: 65%;
     transform : rotate(70deg);
 }
 
@@ -397,6 +397,34 @@ button:hover {
 }
 .apropos p {
     font-size: 1.3em;
+}
+
+/* COMPTE =========== */
+
+.zone-utilisateur{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around
+}
+#image-utilisateur{
+    height: auto;
+    width: 20vw;
+}
+.bulle{
+    justify-content: space-around;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 10px 35px; /* espacement dans la div */
+    color: #ffffff;
 }
 
 /* PANIER =========== */
