@@ -22,27 +22,28 @@ extract($_POST);
                     <!-- SELECT FROM Panier WHERE jsp-->
                     <div class="main-card-panier">
                         <div class="produit">
-                            <div>IMAGE</div>
+                            <img src="img/test-gpu.png" alt="image">
                             <div class="produit-info">
                                 <div>Nom produit</div>
-                                <div>Qte</div>
+                                <div>6</div>
                                 <div>Prix</div>
                             </div>
                             <div><button>Supprimer</button></div>
                         </div>
                         <div class="produit">
-                            <div>IMAGE</div>
+                            <img src="img/test-gpu.png" alt="image">
                             <div class="produit-info">
                                 <div>Nom produit</div>
-                                <div>Qte</div>
-                                <div>Prix</div>
+                                <div>2</div>
+                                <div>150,99 €</div>
                             </div>
                             <div><button>Supprimer</button></div>
                         </div>
                     </div>
                 </div>
-                <div class="main-card-acheter">
-                    <a href="Achat.php">Passer la commande</a>
+                <div class="main-card acheter">
+                    <h2>Sous-total: 500,00 €</p>
+                    <a href="Achat.php"><button>Passer la commande</button></a>
                 </div>
             </main>
             <?php include("include/footer.html"); ?>

@@ -53,16 +53,10 @@ extract($_POST);
 
                     <label for="numtel">Numéro de téléphone</label>
                     <input type="tel" name="numtel" placeholder="0612345678" id="numtel"/>
-                    <label class="checkbox-label" for="entreprise">
-                        <input type="checkbox" name="entreprise" id="entreprise">
-                        Compte entreprise
-                    </label>
                     
-                    <button type="submit" name="valider">Inscription</button>
+                    <button type="submit" name="commander">Passer la commande</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Adresse email déjà utilisée</p>" : '';?>
-
-                    <a class="alternate social" href="Connexion.php">Connexion</a>
+                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Veuillez confirmer que les informations sont correctes </p>" : '';?>
                         
                 </form>
             </main>
