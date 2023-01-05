@@ -5,6 +5,15 @@
     margin: 0;
     box-sizing: border-box;
 }
+:root {
+    --rgb-color: red;
+  }
+::selection{
+    background : var(--rgb-color);
+}
+::-moz-selection{
+    background : var(--rgb-color);
+}
 body {
     background-color: #1c2130;
     font-family: "Poppins", sans-serif;

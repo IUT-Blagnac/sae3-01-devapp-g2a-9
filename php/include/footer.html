@@ -5,3 +5,32 @@
     <div><a href="./Contact.php">Nous contacter</a></div>
     <div><a href="./About.php">Notre entreprise</a></div>
  </footer>
+
+<script>
+var red = 255;
+var blue = 0;
+var green = 0;
+
+function autoHue(){
+    if(red == 255 && green < 255 && blue == 0){
+        green += 17;
+    } else if(red > 0 && green >= 255 && blue == 0){
+        red -= 17;
+    } else if(red == 0 && green == 255 && blue < 255){
+        blue += 17;
+    } else if(red == 0 && green > 0 && blue == 255){
+        green -= 17;
+    } else if(red < 255 && green == 0 && blue == 255){
+        red += 17;
+    } else if (red == 255 && green == 0 && blue > 0){
+        blue -= 17;
+    }
+    return "rgb("+red+','+green+','+blue+")";
+}
+
+window.i = 0;
+setInterval(() => {
+    window.i += 1;
+    document.querySelector(".content").style.setProperty("--rgb-color", autoHue());
+}, 20);
+ </script>
