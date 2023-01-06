@@ -12,7 +12,7 @@ if (isset($valider)) {
           )" ;
     $connect = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
-    // si la connexion a échoué, on affiche le message d'erreur
+    // Affichage d'erreur si la connexion échoue
     if (!$connect) {
         $e = oci_error();
         trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
