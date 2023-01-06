@@ -9,15 +9,21 @@ if (isset($valider)) {
     // if (empty($res)) erreur = email non connu
     // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
     // else :
-    if ($email == "user@a.com" && $password == "123") {
-        if (isset($souvenir)) {
-            setcookie('email', $email, time() + 60*60*24*30); // un mois
-        }
-        $_SESSION["autoriser"] = "oui";
-        if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
-        else header("Location: index.php");
+    if (empty($res["emailUser"])) {
+        $erreur = "Adresse Email inconnue";
     } else {
-        $erreur = "mauvais login ou mdp";
+        if (password_verify($password, $res['mdpUser'])){
+            if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
+
+            $_SESSION["autoriser"] = "oui"; // Valider la session
+
+            // Rediriger vers la page d'origine ou l'index
+            if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
+            else header("Location: index.php");
+        }
+        else{
+            $erreur = "Mot de passe invalide";
+        }
     }
 }
 ?>
