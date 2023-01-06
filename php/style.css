@@ -5,15 +5,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-:root {
-    --rgb-color: red;
-  }
-::selection{
-    background : var(--rgb-color);
-}
-::-moz-selection{
-    background : var(--rgb-color);
-}
 body {
     background-color: #1c2130;
     font-family: "Poppins", sans-serif;
@@ -168,7 +159,6 @@ nav .start-connexion, nav .start-inscription, nav .start-reset_mdp, a:nth-child(
 	left: calc(100%/6 * 4);
 	background-color: #ffc5d1;
 }
-
 nav .start-panier, nav .start-achat, a:nth-child(6):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 5);
@@ -213,13 +203,12 @@ main {
     gap: 1rem;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 10px 35px; /* espacement dans la div */
     color: #ffffff;
 }
-
 .main-card-content{
     display: flex;
     justify-content: space-around;
@@ -274,7 +263,17 @@ footer div a:hover{
     text-decoration: underline;
     color: white
 }
-
+:root {
+    --rgb-color: red;
+}
+::selection{
+    color: var(--rgb-color);
+    color: invert(1);
+    background : var(--rgb-color);
+}
+::-moz-selection{
+    background : var(--rgb-color);
+}
 /* PARTIE CONNEXION UTILISATEUR ===================================================================================================== */
 form {
     display: flex;
@@ -282,7 +281,7 @@ form {
     width: 95vmin;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 10px 35px;
@@ -513,4 +512,20 @@ button:hover {
 }
 .bouton_acheter{
     width: 50%;
+}
+/*RECHERCHE===============*/
+.barre-de-recherche{
+    color: white;
+    width: 90vw;
+}
+.barre-de-recherche input{
+    color: white;
+    border: 0;
+}
+.barre-de-recherche input:focus{
+    outline: none;
+}
+.barre-de-recherche label{
+    text-decoration: underline;
+    padding-bottom: .3em;
 }

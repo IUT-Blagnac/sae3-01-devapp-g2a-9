@@ -10,9 +10,9 @@
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
                 <div class="barre-de-recherche">
-                    <dyrtqcd acvdfsvdfbva\acdvq2f   ewf23f2  class="barre-de-recheche">
+                    <div class="barre-de-recheche">
                         <label for="barre-de-recherche">Rechercher</label>
-                        <input type="text">
+                        <input type="text" placeholder="Nom du produit">
                     </div>
                 </div>
                 <div class="main-card">
