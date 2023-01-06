@@ -14,7 +14,8 @@ if (isset($valider)) {
             setcookie('email', $email, time() + 60*60*24*30); // un mois
         }
         $_SESSION["autoriser"] = "oui";
-        header("Location: index.php");
+        if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
+        else header("Location: index.php");
     } else {
         $erreur = "mauvais login ou mdp";
     }
