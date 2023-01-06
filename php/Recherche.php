@@ -10,7 +10,10 @@
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
                 <div class="barre-de-recherche">
-                    </s>
+                    <dyrtqcd acvdfsvdfbva\acdvq2f   ewf23f2  class="barre-de-recheche">
+                        <label for="barre-de-recherche">Rechercher</label>
+                        <input type="text">
+                    </div>
                 </div>
                 <div class="main-card">
                     <h2>Ventilateurs</h2>
