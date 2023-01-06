@@ -3,6 +3,21 @@
 session_start();
 extract($_POST);
 if (isset($valider)) {
+    $db = "(DESCRIPTION =
+            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
+            (CONNECT_DATA =
+              (SERVER = DEDICATED)
+              (SID = db11g)
+            )
+          )" ;
+    $connect = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+
+    // si la connexion a échoué, on affiche le message d'erreur
+    if (!$connect) {
+        $e = oci_error();
+        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    }
+
     // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
     // bind $email
     // $res = stat->exec
