@@ -28,25 +28,25 @@
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                     </div>
                 </div>
@@ -58,37 +58,37 @@
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                         <div class="produit">
                             <div><a>Nom produit</a></div>
                             <div><a>Image</a></div>
                             <div><a>Prix</a></div>
-                            <div><button>Acheter</button></div>
+                            <div><a href="produit.php"><button>Acheter</button></a></div>
                         </div>
                     </div>
                 </div>

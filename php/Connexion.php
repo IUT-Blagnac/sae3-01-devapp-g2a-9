@@ -1,22 +1,44 @@
-<!-- partie traitement -->
+<?php error_reporting(E_ERROR | E_PARSE); ?>
 <?php 
 session_start();
 extract($_POST);
 if (isset($valider)) {
+    $db = "(DESCRIPTION =
+            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
+            (CONNECT_DATA =
+              (SERVER = DEDICATED)
+              (SID = db11g)
+            )
+          )" ;
+    $connect = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+
+    // Affichage d'erreur si la connexion échoue
+    if (!$connect) {
+        $e = oci_error();
+        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    }
+
     // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
     // bind $email
     // $res = stat->exec
     // if (empty($res)) erreur = email non connu
     // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
     // else :
-    if ($email == "user@a.com" && $password == "123") {
-        if (isset($souvenir)) {
-            setcookie('email', $email, time() + 60*60*24*30); // un mois
-        }
-        $_SESSION["autoriser"] = "oui";
-        header("Location: index.php");
+    if (empty($res["emailUser"])) {
+        $erreur = "Adresse Email inconnue";
     } else {
-        $erreur = "mauvais login ou mdp";
+        if (password_verify($password, $res['mdpUser'])){
+            if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
+
+            $_SESSION["autoriser"] = "oui"; // Valider la session
+
+            // Rediriger vers la page d'origine ou l'index
+            if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
+            else header("Location: index.php");
+        }
+        else{
+            $erreur = "Mot de passe invalide";
+        }
     }
 }
 ?>
@@ -52,9 +74,7 @@ if (isset($valider)) {
 
                     <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email est incorrect</p>" : '';?>
 
-                    <div class="social">
-                        <div class="alternate">Inscription</div>
-                    </div>
+                    <a class="alternate social" href="Inscription.php">Inscription</a>
                 </form>
             </main>
             <?php include("include/footer.html"); ?>
