@@ -42,24 +42,34 @@ TIP: Pensez à mettre à jour les infos dans ce fichier pour que les badges poin
 
 WARNING: Ce dépôt présente le projet à développer dans le cadre de la SAÉ 3.01 du BUT1 Informatique de l'IUT de Blagnac.
 
-Ce fichier `README.adoc` (dont vous lisez sûrement le rendu HTML automatiquement effectué par GitHUb), fait partie du dépôt initial cloné à partir du lien GitHub classroom qui vous a été donné en cours (https://classroom.github.com/a/OUF7gxEa).
-Vous trouverez le dépôt "template" qui a servi de base ici : https://github.com/IUT-Blagnac/sae3-01-template. En complément du cours Moodle de la SAE 3.01 (cf. <<liensUtiles>>), ce dépôt template vous permet d'accéder à des exemples d'https://github.com/IUT-Blagnac/sae3-01-template/issues[issues], de https://github.com/IUT-Blagnac/sae3-01-template/releases[releases], ou d'autres artefacts à venir.
-
 toc::[]
 
 == Equipe
 
 Projet est réalisé par::
 
-- https://github.com/janeDoe[Jane Doe]
-- https://github.com/johnSmith[John Smith]
-...
+- https://github.com/Anxton[Anton XU]
+- https://github.com/BSCT-Tormod[Thomas Demeyere]
+- https://github.com/OryannMcCloud[Oryann Prochaska]
+- https://github.com/L-Yvelin[Louis Yvelin]
 
-Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:isabelle.clavel@univ-tlse2.fr[IC]
 
 == Contexte général
 
-TIP: Cette partie de votre `README.adoc` peut être supprimée ou mise ailleurs.
+Nous allons produire un site internet pour la société _Commerce de la rue_.
+Cette entreprise est spécialisée dans la vente de composants informatiques.
+Suite à la crise sanitaire son chiffre d'affaires a drastiquement baissé et est actuellement stagnante.
+Afin de relancer son activité, _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif.
+Elle souhaite se démarquer de ses concurrents, leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
+Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoire français pour des raisons de facilité.
+
+=== Affectation des rôles 
+
+- Thomas Demeyere : SCRUM Master 
+- Oryann Prochaska : Product Owner 
+- Anton Xu : Développeur 
+- Louis Yvelin : Développeur 
 
 === Dépôt initial
 
@@ -84,20 +94,29 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 - Le dépôt https://github.com/IUT-Blagnac/sae3-01-template[template] qui sert de base à tous les dépôts étudiants.
 - Le lien https://classroom.github.com/a/OUF7gxEa[classroom] si besoin.
 
-TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
-
 == Réalisations 
 
-TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
+Nous avons trié les compétences par dossier : 
 
-== Gestion de projet & Qualité
+- Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
+- Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
+- Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
+- Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
 
-Chaque sprint (semaine) vous devrez livrer une nouvelle version de votre application (release).
-Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+== Organisation et mode de fonctionnement
 
-De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
+Chaque début de semaine nous allons tous faire un _git clone_ sur nos PC de la branche principale (master). Nous avons une branche pour chacune des compétences et chacun devra push son travail sur la branche avec la compétence il a travaillé tout au long de la semaine.
+A la fin de la semaine au moment des rendus nous regardons les conflits entre la branche _master_ et les autres branches. Suite à ça nous faisons une merge request puis nous assemblons le tout afin de créer la release de la semaine. 
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
+== Rendus hebdomadaire de Gestion de projet & Qualité
+
+Après chaque sprint (semaine) une nouvelle version de notre application (release) sera disponible.
+Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+
+Nous mettrons à jour le `README.adoc` avec les informations suivantes :
+
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v4
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
