@@ -431,6 +431,7 @@ button:hover {
 }
 
 .align-left{
+    gap: 1em;
     display: flex;
     width: 100%;
 }

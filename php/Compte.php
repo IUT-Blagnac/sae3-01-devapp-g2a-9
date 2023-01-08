@@ -18,7 +18,10 @@ extract($_POST);
         <div class="content">
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
-            <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a></div>
+
+            <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a><form style="all: unset" action="session_destroy.php" method="POST"><input class="social" type="submit" value="Déconnexion" /></form></div>
+            
+
                 <div class="main-card">
                     <h1 style="text-align: center">Compte Utilisateur <span style="position:relative; top: -.1em;">🙋</span></h1>
                     <div class="zone-utilisateur">
