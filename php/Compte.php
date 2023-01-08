@@ -1,8 +1,6 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-if(!session_status() != PHP_SESSION_ACTIVE){
-    header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
-}
+include("include/check_session.php");
 extract($_POST);
 ?>
 
