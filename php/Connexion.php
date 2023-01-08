@@ -34,7 +34,7 @@ if (isset($valider)) {
         if (password_verify($password, $res['mdpUser'])){
             if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
 
-            $_SESSION["autoriser"] = "oui"; // Valider la session
+            $_SESSION["connected"] = true; // Valider la session
 
             // Rediriger vers la page d'origine ou l'index
             if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
