@@ -9,52 +9,30 @@ if (isset($valider)) {
               (SERVER = DEDICATED)
               (SID = db11g)
             )
-          )" ;
+          )";
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
-    // Affichage d'erreur si la connexion échoue
-    if (!$conn) {
-        $e = oci_error();
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-    }
+    //EMAIL
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
 
-    // Prepare the statement
-    $stid = oci_parse($conn, 'SELECT EMAILUSER FROM UTILISATEUR');
-    if (!$stid) {
-        $e = oci_error($conn);
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    if ($row = oci_fetch_array($stid, OCI_ASSOC)){
+         $res["emailUser"] = true;
+         $res["mdpUser"] = $row['MDPUSER'];
     }
+    else $res["emailUser"] = false;
 
-    // Perform the logic of the query
-    $r = oci_execute($stid);
-    if (!$r) {
-        $e = oci_error($stid);
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-    }
-
-    // Fetch the results of the query
-    print "<table border='1'>\n";
-    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-        print "<tr>\n";
-        foreach ($row as $item) {
-            print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
-        }
-        print "</tr>\n";
-    }
-    print "</table>\n";
+    //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
 
     oci_free_statement($stid);
     oci_close($conn);
 
-    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
-    // bind $email
-    // $res = stat->exec
-    // if (empty($res)) erreur = email non connu
-    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
-    // else :
-    if (empty($res["emailUser"])) {
+    if (!$res["emailUser"]) {
         $erreur = "Adresse Email inconnue";
     } else {
+        print(password_hash("$password", PASSWORD_DEFAULT));
+        print(password_verify($password, $res['mdpUser']) ? "true" : "false");
         if (password_verify($password, $res['mdpUser'])){
             if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
 
@@ -100,7 +78,7 @@ if (isset($valider)) {
 
                     <button type="submit" name="valider">Connexion</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email est incorrect</p>" : '';?>
+                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';?>
 
                     <a class="alternate social" href="Inscription.php">Inscription</a>
                 </form>
