@@ -19,7 +19,7 @@ extract($_POST);
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
 
-            <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a><form style="all: unset" action="session_destroy.php" method="POST"><input class="social" type="submit" value="Déconnexion" /></form></div>
+            <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a><form style="all: unset;" action="session_destroy.php" method="POST"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></form></div>
             
 
                 <div class="main-card">
