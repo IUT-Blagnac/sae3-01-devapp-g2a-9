@@ -31,8 +31,6 @@ if (isset($valider)) {
     if (!$res["emailUser"]) {
         $erreur = "Adresse Email inconnue";
     } else {
-        print(password_hash("$password", PASSWORD_DEFAULT));
-        print(password_verify($password, $res['mdpUser']) ? "true" : "false");
         if (password_verify($password, $res['mdpUser'])){
             if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
 
