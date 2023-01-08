@@ -37,7 +37,7 @@ if (isset($valider)) {
             $_SESSION["connected"] = true; // Valider la session
 
             // Rediriger vers la page d'origine ou l'index
-            if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
+            if (isset($_GET["origine"])) header("Location:".$_GET["origine"]);
             else header("Location: index.php");
         }
         else{
