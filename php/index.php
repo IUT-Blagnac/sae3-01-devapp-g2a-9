@@ -15,7 +15,7 @@
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res[] = $row['nomcat'];
+        $res[] = $row['NOMCAT'];
     }
     //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
 
