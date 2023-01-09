@@ -3,21 +3,63 @@
 session_start();
 extract($_POST);
 if (isset($valider)) {
-    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
-    // bind $email
-    // $res = stat->exec
-    // if (empty($res)) erreur = email non connu
-    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
-    // else :
-    if ($email == "user@a.com" && $password == "123") {
-        if (isset($souvenir)) {
-            setcookie('email', $email, time() + 60*60*24*30); // un mois
-        }
-        $_SESSION["autoriser"] = "oui";
-        header("Location: index.php");
-    } else {
-        $erreur = "Email incorrect ou déjà assignée";
+    $db = "(DESCRIPTION =
+            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
+            (CONNECT_DATA =
+              (SERVER = DEDICATED)
+              (SID = db11g)
+            )
+          )";
+    $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+
+    //EMAIL
+    $query = prepare("SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'");
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
+
+    if ($row = oci_fetch_array($stid, OCI_ASSOC)){
+        $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
     }
+    else{
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = "L'email est incorrect.";
+        }
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+        else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+            $error = "Le mot de passe doit contenir ";
+        }
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$nom) || !preg_match("/^[a-zA-Z']+*$/",$nom)) {
+            $error = "Le prénom peut seuleument contenir des lettres, des tirets et des espaces et doit au moins contenir une lettre.";
+        }
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom) || !preg_match("/^[a-zA-Z']+*$/",$nom)) {
+            $error = "Le nom peut seuleument contenir des lettres, des tirets et des espaces et doit au moins contenir une lettre.";
+        }
+        else if(preg_match('/^[0-9]{8, 10}+$/', $numtel)) {
+            $error = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
+        }
+        else{
+            $query = prepare("
+            INSERT INTO utilisateur (idUser,emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
+            VALUES ('drbhw70828','gravida.sagittis@outlook.ca','AFU52JUB6EJ',0,'Benton','Faith','0738755996', 0);
+            ");
+            $stid = oci_parse($conn, $query);
+            oci_execute($stid);
+
+
+
+            header("Location: index.php");
+    }
+}
+
+    //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
+
+    oci_free_statement($stid);
+    oci_close($conn);
+
+    
 }
 ?>
 
