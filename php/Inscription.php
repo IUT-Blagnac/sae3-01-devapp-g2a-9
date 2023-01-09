@@ -11,6 +11,10 @@ if (isset($valider)) {
             )
           )";
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+    if (!$conn) {
+        $m = oci_error();
+        trigger_error(htmlentities($m['message']), E_USER_ERROR);
+    }
 
     //EMAIL
     $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
@@ -41,18 +45,25 @@ if (isset($valider)) {
             $erreur = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
         }
         else{
-            echo "la ca rentre dedans";
             $query = "
             INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
-            VALUES ('$email','".password_hash($password, PASSWORD_DEFAULT)."',0,'$nom','$prenom','$numtel', ".isset($entreprise) ? "1" : "0".");
+            VALUES (':email',':password',0,':nom',':prenom',':numtel', :entreprise);
             ";
             $stid = oci_parse($conn, $query);
-            $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
-		    echo htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);		
+
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $isset_entreprise = isset($entreprise) ? 1 : 0; 
+
+            oci_bind_by_name($stid, ":email", $email);
+            oci_bind_by_name($stid, ":password", $password_hash);
+            oci_bind_by_name($stid, ":nom", $nom);
+            oci_bind_by_name($stid, ":prenom", $prenom);
+            oci_bind_by_name($stid, ":numtel", $numtel);
+            oci_bind_by_name($stid, ":entreprise", $isset_entreprise);
+
             oci_execute($stid);
             oci_commit($conn);
 
-            echo "sort";
 
             // header("Location: index.php");
         }
