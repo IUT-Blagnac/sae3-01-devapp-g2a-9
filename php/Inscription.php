@@ -13,7 +13,7 @@ if (isset($valider)) {
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
     //EMAIL
-    $query = prepare("SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'");
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
@@ -23,34 +23,38 @@ if (isset($valider)) {
     $number    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
 
-    if ($row = oci_fetch_array($stid, OCI_ASSOC)){
-        $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
-    }
-    else{
+    if ($row = oci_fetch_array($stid, OCI_ASSOC)) $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
+    if($row === false){
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "L'email est incorrect.";
+            $erreur = "L'email est incorrect.";
         }
         else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-            $error = "Le mot de passe doit contenir ";
+            $erreur = "Le mot de passe doit contenir ";
         }
-        else if (!preg_match("/^[a-zA-Z-' ]*$/",$nom) || !preg_match("/^[a-zA-Z']+*$/",$nom)) {
-            $error = "Le prénom peut seuleument contenir des lettres, des tirets et des espaces et doit au moins contenir une lettre.";
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
+            $erreur = "Le prénom peut seuleument contenir des lettres, des tirets et des espaces.";
         }
-        else if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom) || !preg_match("/^[a-zA-Z']+*$/",$nom)) {
-            $error = "Le nom peut seuleument contenir des lettres, des tirets et des espaces et doit au moins contenir une lettre.";
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom)) {
+            $erreur = "Le nom peut seuleument contenir des lettres, des tirets et des espaces.";
         }
         else if(preg_match('/^[0-9]{8, 10}+$/', $numtel)) {
-            $error = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
+            $erreur = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
         }
         else{
-            $query = prepare("
-            INSERT INTO utilisateur (idUser,emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
-            VALUES ('$email','".hash_password($password, PASSWORD_DEFAULT)."',0,'$nom','$prenom','$numtel', ".isset($entreprise) ? "1" : "0".");
-            ");
+            echo "la ca rentre dedans";
+            $query = "
+            INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
+            VALUES ('$email','".password_hash($password, PASSWORD_DEFAULT)."',0,'$nom','$prenom','$numtel', ".isset($entreprise) ? "1" : "0".");
+            ";
             $stid = oci_parse($conn, $query);
+            $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+		    echo htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);		
             oci_execute($stid);
+            oci_commit($conn);
 
-            header("Location: index.php");
+            echo "sort";
+
+            // header("Location: index.php");
         }
     }
     oci_free_statement($stid);
@@ -95,7 +99,7 @@ if (isset($valider)) {
                     
                     <button type="submit" name="valider">Inscription</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Adresse email déjà utilisée</p>" : '';?>
+                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';?>
 
                     <a class="alternate social" href="Connexion.php">Connexion</a>
                         
