@@ -51,6 +51,7 @@ if (isset($valider)) {
             oci_execute($stid);
 
             header("Location: index.php");
+        }
     }
     oci_free_statement($stid);
     oci_close($conn);
