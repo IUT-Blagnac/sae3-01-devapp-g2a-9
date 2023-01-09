@@ -40,14 +40,9 @@
                     <div class="main-card-content">
                         <?php
                             foreach ($res as $categorie){
-                            echo " <a href=\"Categories.php?cat=" . $categorie . "\" class=\"categorie\"><button>" . ucfirst($categorie) . "</button></a>";
+                            echo " <a href=\"Categories.php?cat=" . $categorie . "\" class=\"categorie\"><button>".ucwords($categorie)."</button></a>";
                             }
                         ?>
-                        <!-- <a href="Categories.php?cat=cpu" class="categorie"><button>Processeurs</button></a>
-                        <a href="Categories.php?cat=hdd" class="categorie"><button>Disques durs</button></a>
-                        <a href="Categories.php?cat=gpu" class="categorie"><button>Cartes graphiques</button></a>
-                        <a href="Categories.php?cat=mb" class="categorie"><button>Cartes mères</button></a>
-                        <a href="Categories.php?cat=ventirad" class="categorie"><button>Ventilateurs</button></a> -->
                     </div>
                 </div>
                 <div class="main-card">
