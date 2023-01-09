@@ -13,7 +13,7 @@ if (isset($valider)) {
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
     //EMAIL
-    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
+    $query = prepare("SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'");
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 

@@ -17,6 +17,12 @@ if (isset($valider)) {
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
+    //Pour vérifier le mot de passe plus bas
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number    = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
     if ($row = oci_fetch_array($stid, OCI_ASSOC)){
         $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
     }
@@ -24,10 +30,6 @@ if (isset($valider)) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "L'email est incorrect.";
         }
-        $uppercase = preg_match('@[A-Z]@', $password);
-        $lowercase = preg_match('@[a-z]@', $password);
-        $number    = preg_match('@[0-9]@', $password);
-        $specialChars = preg_match('@[^\w]@', $password);
         else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
             $error = "Le mot de passe doit contenir ";
         }
@@ -43,23 +45,15 @@ if (isset($valider)) {
         else{
             $query = prepare("
             INSERT INTO utilisateur (idUser,emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
-            VALUES ('drbhw70828','gravida.sagittis@outlook.ca','AFU52JUB6EJ',0,'Benton','Faith','0738755996', 0);
+            VALUES ('$email','".hash_password($password, PASSWORD_DEFAULT)."',0,'$nom','$prenom','$numtel', ".isset($entreprise) ? "1" : "0".");
             ");
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
 
-
-
             header("Location: index.php");
     }
-}
-
-    //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
-
     oci_free_statement($stid);
     oci_close($conn);
-
-    
 }
 ?>
 
