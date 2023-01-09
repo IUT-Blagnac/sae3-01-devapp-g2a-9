@@ -47,7 +47,7 @@ if (isset($valider)) {
         else{
             $query = "
             INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
-            VALUES (':email',':password',0,':nom',':prenom',':numtel', :entreprise);
+            VALUES (:email, :password, 0, :nom, :prenom, :numtel, :entreprise);
             ";
             $stid = oci_parse($conn, $query);
 
