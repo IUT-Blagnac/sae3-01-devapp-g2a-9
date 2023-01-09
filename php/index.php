@@ -9,7 +9,7 @@
               )";
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
-    //EMAIL
+    //categories
     $query = "SELECT nomcat FROM categorie";
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
@@ -17,7 +17,17 @@
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
         $res[] = $row['NOMCAT'];
     }
-    //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
+    
+    //nouveautées
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
+
+    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $nouveautePrix[] = $row['PRIXPRODUIT'];
+        $nouveauteId[] = $row['IDPRODUIT'];
+        $nouveauteNom[] = $row['NOMPRODUIT']; 
+    }
 
     oci_free_statement($stid);
     oci_close($conn);
@@ -49,30 +59,16 @@
                     <h2>Nouveautés</h2>
                     <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
+                        <?php
+                            for ($i=0; $i < 5; $i++) { 
+                                echo" <div class=\"produit\">
+                                <div><a>".$nouveauteNom."</a></div>
+                                <div><img src=\"./img/produits".$nouveauteId."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a>".$nouveautePrix."</a></div>
+                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                                </div>";
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="main-card">
