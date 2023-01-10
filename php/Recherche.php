@@ -19,7 +19,7 @@
                           )";
                 $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
                 //requete sql
-                $query = 'SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ="'.$recherche.'"';
+                $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
                 $stid = oci_parse($conn, $query);
                 oci_execute($stid);
                 while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
