@@ -128,6 +128,7 @@ $res = oci_execute($stid);
                                     <label for=\"cryptogramme-carte-bancaire\">Date d'expiration</label>
                                     <input value=\"{$row['DATECB']}\" id=\"date-carte-bancaire\" disabled/>
 
+                                    <label for=\"submit\"></label>
                                     <form method=\"post\" style=\"all: initial;\">
                                         <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
                                         <input type=\"submit\" name=\"delCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
