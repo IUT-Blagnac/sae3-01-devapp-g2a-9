@@ -40,22 +40,22 @@
                         </form>
                     </div>
                 </div>
-                <div class="main-card">
-                    <h2>Résultats de la recherche</h2>
-                    <div class="main-card-content">
-                    <?php
-                            if (isset($_GET['recherche'])){
-                            foreach($res as $produit) { 
-                                echo" <div class=\"produit\">
-                                <div><a><strong>".$produit['nom']."</strong></a></div>
-                                <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a>".$produit['prix']." €</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                </div>";
-                            }
+                <?php
+                    if (isset($_GET['recherche'])){
+                        echo"<div class=\"main-card\">
+                            <h2>Résultats de la recherche</h2>
+                            <div class=\"main-card-content\">";
+                        foreach($res as $produit) { 
+                            echo" <div class=\"produit\">
+                        <div><a><strong>".$produit['nom']."</strong></a></div>
+                        <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                        <div><a>".$produit['prix']." €</a></div>
+                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                        </div>";
                         }
-                        ?>
-                </div>
+                        echo"</div>";
+                    }
+                ?>
             </main>
             <?php include("include/footer.html"); ?>
         </div>
