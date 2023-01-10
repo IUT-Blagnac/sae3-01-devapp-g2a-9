@@ -7,27 +7,29 @@
     </head>
     <body>
         <?php
+            $recherche =  htmlspecialchars($_GET['recherche']);
+            session_start();
+            $db = "(DESCRIPTION =
+            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
+            (CONNECT_DATA =
+            (SERVER = DEDICATED)
+            (SID = db11g)
+            )
+            )";
+            $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+            //requete sql
             if (isset($_GET['recherche'])){
-                $recherche =  htmlspecialchars($_GET['recherche']);
-                session_start();
-                $db = "(DESCRIPTION =
-                            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
-                            (CONNECT_DATA =
-                              (SERVER = DEDICATED)
-                              (SID = db11g)
-                            )
-                          )";
-                $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
-                //requete sql
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
-                $stid = oci_parse($conn, $query);
-                oci_execute($stid);
-                while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-                    $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
-                }
-                oci_free_statement($stid);
-                oci_close($conn);
+            } else {
+                $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
             }
+            $stid = oci_parse($conn, $query);
+            oci_execute($stid);
+            while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+                $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
+            }
+            oci_free_statement($stid);
+            oci_close($conn);
         ?>
         <div class="content">
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
@@ -37,6 +39,7 @@
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
+
                         </form>
                     </div>
                 </div>
