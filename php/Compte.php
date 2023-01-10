@@ -40,7 +40,7 @@ if(isset($addCB)){
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
-        VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, :dateCb, :cryptoCb, :emailuser)";
+        VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
         $stid = oci_parse($connect, $query);
 
         oci_bind_by_name($stid, ":numeroCb", $numcb);
