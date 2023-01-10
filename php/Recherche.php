@@ -7,7 +7,6 @@
     </head>
     <body>
         <?php
-            $recherche =  htmlspecialchars($_GET['recherche']);
             session_start();
             $db = "(DESCRIPTION =
             (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
@@ -19,6 +18,7 @@
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
             //requete sql
             if (isset($_GET['recherche'])){
+                $recherche =  htmlspecialchars($_GET['recherche']);
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
             } else {
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
