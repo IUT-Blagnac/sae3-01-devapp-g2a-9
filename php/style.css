@@ -406,7 +406,9 @@ button:hover {
 }
 
 /* COMPTE =========== */
-
+.emoji_modification{
+    all: none;
+}
 .zone-utilisateur{
     width: 100%;
     display: flex;

@@ -24,6 +24,19 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
     $prenom = $row['PRENOMUSER'];
     $tel = $row['TELUSER'];
 }
+
+//Cartes bancaires
+$query = "SELECT * FROM CARTEBANCAIRE WHERE EMAILUSER LIKE :email";
+$stid = oci_parse($connect, $query);
+
+oci_bind_by_name($stid, ":email", $_SESSION['email']);
+
+$res = oci_execute($stid);
+
+if (!$res) {
+    $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+    $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+}
 ?>
 
 
@@ -80,30 +93,34 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
                     
                     <h1  style="text-align: center">Méthodes de paiement <span style="position:relative; top: -.1em;">💳</span></h1>
                     <div class="zone-utilisateur">
-                        <div class="bulle">
-                            <div class="carte-bancaire">
-                                <form method="post" style="all: none;">
-                                    <input type="hidden" name="idCB" value="<?php echo $cb['idCB']?>">
-                                    <input type="submit" name="delCB" value="🗑️" style="all: none;">
-                                </form>
-                                <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                <input value="Demeyere" id="nom-carte-bancaire" disabled/>
+                        <?php
+                        while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+                            echo "<div class=\"bulle\">
+                                <div class=\"carte-bancaire\">
+                                    <form method=\"post\" style=\"all: none;\">
+                                        <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
+                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" class=\"emoji_modification\">
+                                    </form>
+                                    <label for=\"nom-carte-bancaire\" style=\"margin-top:0;\">Nom</label>
+                                    <input value=\"{$row['NOMCB']}\" id=\"nom-carte-bancaire\" disabled/>
 
-                                <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                <input id="numero-carte-bancaire" value="4973 XXXX XXXX XXXX" disabled>
-                            
-                                <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                <input value="4XX" id="cryptogramme-carte-bancaire" disabled/>
+                                    <label for=\"numero-carte-bancaire\">Numéro de Carte Bancaire</label>
+                                    <input id=\"numero-carte-bancaire\" value=\"".substr($row['NUMEROCB'],0,4)."XXXX XXXX XXXX\" disabled>
                                 
-                                <label class="checkbox-label" for="paiement-3-fois">
-                                <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois" checked disabled>
-                                Paiement en 3 fois
-                                </label>
+                                    <label for=\"cryptogramme-carte-bancaire\">Cryptogramme visuel</label>
+                                    <input value=\"".substr($row['CRYPTOCB'],0,1)."XX\" id=\"cryptogramme-carte-bancaire\" disabled/>
+
+                                    <label for=\"cryptogramme-carte-bancaire\">Cryptogramme visuel</label>
+                                    <input value=\"{$row['DATECB']}\" id=\"cryptogramme-carte-bancaire\" disabled/>
+                                </div>
                             </div>
-                        </div>
+                            ";
+                        }
+                        ?>
+                        
                         <div class="bulle">
                             <div class="carte-bancaire">
-                                <form action="post">
+                                <form method="post">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
                                     <input placeholder="Demeyere" id="nom-carte-bancaire"/>
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
@@ -115,7 +132,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
                                     <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois">
                                     Paiement en 3 fois
                                     </label>
-                                    <input type="submit" name="addCB" value="➕">
+                                    <input type="submit" name="addCB" value="➕" class="emoji_modification">
                                 </form>
                             </div>
                         </div>
