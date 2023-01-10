@@ -42,23 +42,28 @@
                 </div>
                 <?php
                     if (isset($_GET['recherche'])){
-                        echo"<div class=\"main-card\">
+                        if (isset($res)) {
+                            echo"<div class=\"main-card\">
                             <h2>Résultats de la recherche</h2>
                             <div class=\"main-card-content\">";
-                        foreach($res as $produit) { 
-                            echo" <div class=\"produit\">
-                        <div><a><strong>".$produit['nom']."</strong></a></div>
-                        <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>";
-                        if($produit['reduc'] != $produit['prix']){
-                            echo"<div><a class=\"reduc\">".$produit['prix']." €</a></div>
-                            <div><a>".$produit['reduc']." €</a></div>";
-                        } else{
-                            echo"<div><a>".$produit['prix']." €</a></div>";
+                            foreach($res as $produit) { 
+                                echo" <div class=\"produit\">
+                            <div><a><strong>".$produit['nom']."</strong></a></div>
+                            <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>";
+                            if($produit['reduc'] != $produit['prix']){
+                                echo"<div><a class=\"reduc\">".$produit['prix']." €</a></div>
+                                <div><a>".$produit['reduc']." €</a></div>";
+                            } else{
+                                echo"<div><a>".$produit['prix']." €</a></div>";
+                            }
+                            echo"<div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                            </div>";
+                            }
+                            echo"</div>";
+                        } else {
+                            echo"<div class=\"main-card\">
+                            <h2>Désolé nous n'avons pas de ".$_GET['recherche']." en stock :(</h2>";
                         }
-                        echo"<div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>";
-                        }
-                        echo"</div>";
                     }
                 ?>
             </main>
