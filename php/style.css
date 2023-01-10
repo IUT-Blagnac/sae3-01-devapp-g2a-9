@@ -417,6 +417,9 @@ button:hover {
     text-align: left;
     background-color: rgba(255, 0, 0, 0.5);
 }
+.round_button{
+    border-radius: 20px;
+}
 .zone-utilisateur{
     width: 100%;
     display: flex;

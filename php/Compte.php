@@ -116,7 +116,7 @@ $res = oci_execute($stid);
                         while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
                             echo "<div class=\"bulle\">
                                 <div class=\"carte-bancaire\">
-                                    <form method=\"post\" style=\"all: none;\">
+                                    <form method=\"post\" style=\"all: initial;\">
                                         <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
                                         <input type=\"submit\" name=\"delCB\" value=\"🗑️\" class=\"emoji_modification\">
                                     </form>
