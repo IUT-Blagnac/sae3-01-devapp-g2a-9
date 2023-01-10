@@ -44,6 +44,7 @@
                     <h2>Résultats de la recherche</h2>
                     <div class="main-card-content">
                     <?php
+                            if (isset($_GET['recherche'])){
                             foreach($res as $produit) { 
                                 echo" <div class=\"produit\">
                                 <div><a><strong>".$produit['nom']."</strong></a></div>
@@ -52,6 +53,7 @@
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>";
                             }
+                        }
                         ?>
                 </div>
             </main>
