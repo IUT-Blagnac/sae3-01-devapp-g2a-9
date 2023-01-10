@@ -3,6 +3,29 @@ error_reporting(E_ERROR | E_PARSE);
 session_start();
 if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 extract($_POST);
+include("include/connect_inc.php");
+
+if (isset($valider)) {
+    //Utilisateur
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE ':email'";
+    $stid = oci_parse($connect, $query);
+
+    oci_bind_by_name($stid, ":email", $_SESSION['email']);
+
+    $res = oci_execute($stid);
+
+    if (!$res) {
+        $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+        $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+    }
+
+    if($row = oci_fetch_array($stid, OCI_ASSOC)){
+        $email = $row['EMAILUSER'];
+        $nom = $row['NOMUSER'];
+        $prenom = $row['PRENOMUSER'];
+        $tel = $row['TELUSER'];
+    }
+}
 ?>
 
 
@@ -27,27 +50,27 @@ extract($_POST);
                     <div class="zone-utilisateur">
                         <div class="bulle">
                             <img src="img/pécé.jpg" alt="Image Utilisateur" id="image-utilisateur">
-                            <h3>Nicolas Vion</h3>
+                            <h3><?php echo ucwords($prenom)." ".ucwords($nom) ?></h3>
                         </div>
                         <div class="bulle">
                             <div class="label-value">
                                 <label for="prenom" style="margin-top:0;">Prénom</label>
-                                <input value="Nicolas" id="prenom" disabled/>
+                                <input value=<?php echo"\"".ucwords($prenom)."\"" ?> id="prenom" disabled/>
                             </div>
 
                             <div class="label-value">
                                 <label for="nom" style="margin-top:0;">Nom</label>
-                                <input value="Vion" id="nom" disabled/>
+                                <input value=<?php echo"\"".ucwords($nom)."\"" ?> id="nom" disabled/>
                             </div>
                             
                             <div class="label-value">
                                 <label for="email" style="margin-top:0;">Adresse Email</label>
-                                <input value="anton.xu@yvelin.net" id="email" disabled/>
+                                <input value=<?php echo"\"".ucwords($email)."\"" ?> id="email" disabled/>
                             </div>
 
                             <div class="label-value">
                                 <label for="numero-telephone" style="margin-top:0;">N° Téléphone</label>
-                                <input value="07 71 22 21 47" id="numero-telephone" disabled/>
+                                <input value=<?php echo"\"".ucwords($tel)."\"" ?> id="numero-telephone" disabled/>
                             </div>
                         </div>
                     </div>
