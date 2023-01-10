@@ -19,7 +19,6 @@ if (!$res) {
 }
 
 while($row = oci_fetch_array($stid, OCI_ASSOC)){
-    echo $row;
     $email = $row['EMAILUSER'];
     $nom = $row['NOMUSER'];
     $prenom = $row['PRENOMUSER'];
@@ -67,7 +66,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
                             
                             <div class="label-value">
                                 <label for="email" style="margin-top:0;">Adresse Email</label>
-                                <input value=<?php echo"\"".ucwords($email)."\"" ?> id="email" disabled/>
+                                <input value=<?php echo"\"".$email."\"" ?> id="email" disabled/>
                             </div>
 
                             <div class="label-value">
