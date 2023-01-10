@@ -24,8 +24,8 @@
     $stid2 = oci_parse($conn, $query2);
     oci_execute($stid2);
     
-    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res2 = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT']];
+    while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
+        $res2 = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
     
     oci_free_statement($stid);
