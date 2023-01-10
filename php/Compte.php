@@ -34,9 +34,9 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 $res = oci_execute($stid);
 
 if(isset($addCB)){
-    if (!preg_match("[0-9]{16}", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
+    if (!preg_match("\d{16}", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("[a-zA-Z-' ]*",$nomcb)) $erreur = "Nom invalide.";
-    else if (!preg_match("[0-9]{3}", $numcb)) $erreur = "Cryptogramme invalide.";
+    else if (!preg_match("\d{3}", $numcb)) $erreur = "Cryptogramme invalide.";
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
