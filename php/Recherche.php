@@ -49,7 +49,7 @@
                             echo" <div class=\"produit\">
                         <div><a><strong>".$produit['nom']."</strong></a></div>
                         <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>";
-                        if($produit['reduc']>0){
+                        if($produit['reduc'] != $produit['prix']){
                             echo"<div><a class=\"reduc\">".$produit['prix']." €</a></div>
                             <div><a>".$produit['reduc']." €</a></div>";
                         } else{
