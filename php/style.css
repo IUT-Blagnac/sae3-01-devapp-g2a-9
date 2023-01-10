@@ -414,6 +414,8 @@ button:hover {
 /* COMPTE =========== */
 .emoji_modification{
     all: none;
+    text-align: left;
+    background-color: rgba(255, 0, 0, 0.5);
 }
 .zone-utilisateur{
     width: 100%;
