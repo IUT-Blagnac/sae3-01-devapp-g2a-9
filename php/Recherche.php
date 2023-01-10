@@ -48,9 +48,14 @@
                         foreach($res as $produit) { 
                             echo" <div class=\"produit\">
                         <div><a><strong>".$produit['nom']."</strong></a></div>
-                        <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
-                        <div><a>".$produit['prix']." €</a></div>
-                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                        <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>";
+                        if($produit['reduc']>0){
+                            echo"<div><a class=\"reduc\">".$produit['prix']." €</a></div>
+                            <div><a>".$produit['reduc']." €</a></div>";
+                        } else{
+                            echo"<div><a>".$produit['prix']." €</a></div>";
+                        }
+                        echo"<div><a href=\"produit.php\"><button>Acheter</button></a></div>
                         </div>";
                         }
                         echo"</div>";
