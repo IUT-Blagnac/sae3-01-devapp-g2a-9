@@ -414,7 +414,6 @@ button:hover {
 /* COMPTE =========== */
 .emoji_modification{
     all: initial;
-    background-color: rgba(255, 0, 0, 0.5);
     border-radius: 5px;
 }
 .round_button{
