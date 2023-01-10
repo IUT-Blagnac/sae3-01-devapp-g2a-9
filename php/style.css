@@ -230,6 +230,9 @@ main {
     border: 2px solid black;
     border-radius: 5px;
 }
+.image-produit{
+    height: auto;
+}
 /* .produit div{
     margin: 5px;
     width: auto;
