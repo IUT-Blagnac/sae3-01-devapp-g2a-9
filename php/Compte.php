@@ -33,10 +33,27 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
 $res = oci_execute($stid);
 
-if (!$res) {
-    $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
-    $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+if(isset($addCB)){
+    $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
+    VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, :dateCb, :cryptoCb, :emailuser)";
+    $stid = oci_parse($connect, $query);
+
+    oci_bind_by_name($stid, ":numeroCb", $numcb);
+    oci_bind_by_name($stid, ":nomCb", $nomcb);
+    oci_bind_by_name($stid, ":dateCb", $dateCb);
+    oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
+    oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
+
+    $res = oci_execute($stid);
+
+    while($row = oci_fetch_array($stid, OCI_ASSOC)){
+        $email = $row['EMAILUSER'];
+        $nom = $row['NOMUSER'];
+        $prenom = $row['PRENOMUSER'];
+        $tel = $row['TELUSER'];
+    }
 }
+
 ?>
 
 
@@ -122,17 +139,19 @@ if (!$res) {
                             <div class="carte-bancaire">
                                 <form method="post">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                    <input placeholder="Demeyere" id="nom-carte-bancaire"/>
-                                    <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire" placeholder="4973 XXXX XXXX XXXX">
-                                    <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                    <input placeholder="4XX" id="cryptogramme-carte-bancaire"/>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire" name="nomcb"/>
                                     
+                                    <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
+                                    <input id="numero-carte-bancaire" name="numcb" placeholder="4973 XXXX XXXX XXXX">
+
+                                    <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
+                                    <input placeholder="4XX" id="cryptogramme-carte-bancaire" name="cryptocb"/>
+
                                     <label class="checkbox-label" for="paiement-3-fois">
                                     <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois">
                                     Paiement en 3 fois
                                     </label>
-                                    <input type="submit" name="addCB" value="➕" class="emoji_modification">
+                                    <input type="submit" name="addCB" value="+" class="emoji_modification">
                                 </form>
                             </div>
                         </div>
