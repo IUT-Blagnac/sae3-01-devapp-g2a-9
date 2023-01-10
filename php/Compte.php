@@ -50,6 +50,8 @@ if(isset($addCB)){
         oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
         $res = oci_execute($stid);
+
+        $erreur = $datecb;
     }
 }
 
