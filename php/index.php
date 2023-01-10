@@ -20,10 +20,9 @@
     
     oci_free_statement($stid);
     oci_close($conn);
-    
+
     //nouveautées
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
-    $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
