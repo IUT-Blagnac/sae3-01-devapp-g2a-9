@@ -154,12 +154,12 @@ nav .start-recherche, a:nth-child(4):hover~.animation {
 	left: calc(100%/6 * 3);
 	background-color: #a200ff;
 }
-nav .start-connexion, nav .start-inscription, nav .start-reset_mdp, a:nth-child(5):hover~.animation {
+nav .start-connexion, nav .start-compte nav, .start-inscription, nav .start-reset_mdp, a:nth-child(5):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 4);
 	background-color: #ffc5d1;
 }
-nav .start-panier, nav .start-compte, nav .start-achat, a:nth-child(6):hover~.animation {
+nav .start-panier, nav .start-achat, a:nth-child(6):hover~.animation {
 	/* left: 80%; */
 	left: calc(100%/6 * 5);
 	background-color: #ffd480;
