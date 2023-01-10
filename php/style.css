@@ -413,7 +413,7 @@ button:hover {
 
 /* COMPTE =========== */
 .emoji_modification{
-    all: none;
+    all: initial;
     text-align: left;
     background-color: rgba(255, 0, 0, 0.5);
 }
