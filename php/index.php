@@ -25,7 +25,7 @@
     oci_execute($stid2);
     
     while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
-        $res2[] =  $row2['NOMPRODUIT'];
+        $res2[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
     
     oci_free_statement($stid);
@@ -62,7 +62,7 @@
                         <?php
                             foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
-                                <div><a>".$produit."</a></div>
+                                <div><a>".$produit['nom']."</a></div>
                                 <div><img src=\"./img/produits".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
                                 <div><a>".$produit['prix']."</a></div>
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
