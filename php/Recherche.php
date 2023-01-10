@@ -39,7 +39,14 @@
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
-
+                            <select name="categorieRecherchee">
+                                <option value="" disabled selected>Catégorie</option>
+                                <option value="1">Processeurs</option>
+                                <option value="2">Stockage mémoire</option>
+                                <option value="3">Cartes graphiques</option>
+                                <option value="4">Cartes meres</option>
+                                <option value="5">Ventilateurs</option>
+                            </select>
                         </form>
                     </div>
                 </div>
