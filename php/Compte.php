@@ -138,7 +138,7 @@ $res = oci_execute($stid);
                                     <label for=\"submit\"></label>
                                     <form method=\"post\" style=\"all: initial;\">
                                         <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
-                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
+                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5); cursor: pointer;\">
                                     </form>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@ $res = oci_execute($stid);
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
                                     
                                     <label for="submit"></label>
-                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color: rgba(42, 153, 14, 0.5);">
+                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
                                 </form>
                             </div>
                         </div>
