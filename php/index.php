@@ -18,18 +18,18 @@
         $res[] = $row['NOMCAT'];
     }
     
-    oci_free_statement($stid);
     
     //nouveautées
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
-    $stid = oci_parse($conn, $query);
-    oci_execute($stid);
-
+    $stid2 = oci_parse($conn, $query);
+    oci_execute($stid2);
+    
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
         $res2 = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT']];
     }
-
+    
     oci_free_statement($stid);
+    oci_free_statement($stid2);
     oci_close($conn);
 ?>
 
