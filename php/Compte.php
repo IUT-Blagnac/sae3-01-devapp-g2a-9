@@ -28,7 +28,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 //Ajout CB
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
-    else if (!preg_match("/[a-zA-Z-' ]{2,}/",$nomcb)) $erreur = "Nom invalide.";
+    else if (!preg_match("/[a-zA-Z-' ]{2,20}/",$nomcb)) $erreur = "Nom invalide.";
     else if (!preg_match("/[0-9]{3}/", $numcb)) $erreur = "Cryptogramme invalide.";
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
     else{
@@ -48,6 +48,7 @@ if(isset($addCB)){
 
 //Supprimer CB
 if(isset($delCB)){
+    echo $_SESSION['email'];
     $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB AND EMAILUSER LIKE :email;";
     $stid = oci_parse($connect, $query);
 
