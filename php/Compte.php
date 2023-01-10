@@ -48,10 +48,11 @@ if(isset($addCB)){
 
 //Supprimer CB
 if(isset($delCB)){
-    $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB;";
+    $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB AND EMAILUSER LIKE :email;";
     $stid = oci_parse($connect, $query);
 
     oci_bind_by_name($stid, ":idCB", $idCB);
+    oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
     $res = oci_execute($stid);
 }
