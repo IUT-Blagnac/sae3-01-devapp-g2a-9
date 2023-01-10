@@ -139,7 +139,7 @@ $res = oci_execute($stid);
                         
                         <div class="bulle">
                             <div class="carte-bancaire">
-                                <form method="post">
+                                <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
                                     <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="[a-zA-Z-' ]{2,}" name="nomcb"/>
                                     
