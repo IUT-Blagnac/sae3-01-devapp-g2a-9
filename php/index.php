@@ -72,9 +72,9 @@
                         <?php
                             foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
-                                <div><a>".$produit['nom']."</a></div>
-                                <div><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a>".$produit['prix']."</a></div>
+                                <div><a><strong>".$produit['nom']."</strong></a></div>
+                                <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a>".$produit['prix']." €</a></div>
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>";
                             }
@@ -88,10 +88,10 @@
                     <?php
                             foreach($res3 as $produit) { 
                                 echo" <div class=\"produit\">
-                                <div><a>".$produit['nom']."</a></div>
+                                <div><a><strong>".$produit['nom']."</strong></a></div>
                                 <div><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a class=\"reduc\">".$produit['prix']."</a></div>
-                                <div><a>".$produit['reduc']."</a></div>
+                                <div><a class=\"reduc\">".$produit['prix']." €</a></div>
+                                <div><a>".$produit['reduc']." €</a></div>
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>";
                             }

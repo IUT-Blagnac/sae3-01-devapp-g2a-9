@@ -230,13 +230,19 @@ main {
     border: 2px solid black;
     border-radius: 5px;
 }
+.image-produit-content{
+    display: flex;
+    justify-content: center;
+    margin: 5% 0;
+}
 .image-produit{
     height: 20em;
     max-width: 30em;
+    border-radius: 5%;
 }
 .reduc{
     color: #d11339;
-    text-decoration: line;
+    text-decoration: line-through;
 }
 /* .produit div{
     margin: 5px;
