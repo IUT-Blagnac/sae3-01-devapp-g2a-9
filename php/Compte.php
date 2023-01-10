@@ -34,23 +34,22 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 $res = oci_execute($stid);
 
 if(isset($addCB)){
-    $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
-    VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, :dateCb, :cryptoCb, :emailuser)";
-    $stid = oci_parse($connect, $query);
+    if (!preg_match("\d{16}", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
+    else if (!preg_match("[a-zA-Z-' ]*",$nomcb)) $erreur = "Nom invalide.";
+    else if (!preg_match("\d{3}", $numcb)) $erreur = "Cryptogramme invalide.";
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
+    else{
+        $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
+        VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, :dateCb, :cryptoCb, :emailuser)";
+        $stid = oci_parse($connect, $query);
 
-    oci_bind_by_name($stid, ":numeroCb", $numcb);
-    oci_bind_by_name($stid, ":nomCb", $nomcb);
-    oci_bind_by_name($stid, ":dateCb", $dateCb);
-    oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
-    oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
+        oci_bind_by_name($stid, ":numeroCb", $numcb);
+        oci_bind_by_name($stid, ":nomCb", $nomcb);
+        oci_bind_by_name($stid, ":dateCb", $datecb);
+        oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
+        oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
-    $res = oci_execute($stid);
-
-    while($row = oci_fetch_array($stid, OCI_ASSOC)){
-        $email = $row['EMAILUSER'];
-        $nom = $row['NOMUSER'];
-        $prenom = $row['PRENOMUSER'];
-        $tel = $row['TELUSER'];
+        $res = oci_execute($stid);
     }
 }
 
@@ -70,13 +69,13 @@ if(isset($addCB)){
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
 
-            <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a><form style="all: unset;" action="session_destroy.php" method="POST"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></form></div>
-            <?php
-                echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
-                echo isset($erreur_res) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
-            ?>
+            <div class="align-left"><form style="all: unset;" action="session_destroy.php" method="POST"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></form></div>
 
                 <div class="main-card">
+                    <?php
+                        echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                        echo isset($erreur_res) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                    ?>
                     <h1 style="text-align: center">Compte Utilisateur <span style="position:relative; top: -.1em;">🙋</span></h1>
                     <div class="zone-utilisateur">
                         <div class="bulle">
@@ -127,8 +126,8 @@ if(isset($addCB)){
                                     <label for=\"cryptogramme-carte-bancaire\">Cryptogramme visuel</label>
                                     <input value=\"".substr($row['CRYPTOCB'],0,1)."XX\" id=\"cryptogramme-carte-bancaire\" disabled/>
 
-                                    <label for=\"cryptogramme-carte-bancaire\">Cryptogramme visuel</label>
-                                    <input value=\"{$row['DATECB']}\" id=\"cryptogramme-carte-bancaire\" disabled/>
+                                    <label for=\"cryptogramme-carte-bancaire\">Date d'expiration</label>
+                                    <input value=\"{$row['DATECB']}\" id=\"date-carte-bancaire\" disabled/>
                                 </div>
                             </div>
                             ";
@@ -139,18 +138,17 @@ if(isset($addCB)){
                             <div class="carte-bancaire">
                                 <form method="post">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                    <input placeholder="Demeyere" id="nom-carte-bancaire" name="nomcb"/>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="[a-zA-Z-' ]*" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire" name="numcb" placeholder="4973 XXXX XXXX XXXX">
+                                    <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="4973 XXXX XXXX XXXX">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                    <input placeholder="4XX" id="cryptogramme-carte-bancaire" name="cryptocb"/>
+                                    <input placeholder="4XX" pattern="[0-9]{3}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
-                                    <label class="checkbox-label" for="paiement-3-fois">
-                                    <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois">
-                                    Paiement en 3 fois
-                                    </label>
+                                    <label class="checkbox-label" for="date-carte-bancaire">
+                                    <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
+
                                     <input type="submit" name="addCB" value="+" class="emoji_modification">
                                 </form>
                             </div>
