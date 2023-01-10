@@ -81,7 +81,7 @@ if (isset($valider)) {
                     <input type="email" name="email" placeholder="sushi18@pouet.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
                    
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
+                    <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
 
                     <label for="prenom">Prenom</label>
                     <input type="text" name="prenom" placeholder="Clint" id="prenom"/>
