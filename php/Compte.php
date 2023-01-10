@@ -43,9 +43,17 @@ if(isset($addCB)){
         oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
         $res = oci_execute($stid);
-
-        $erreur = $datecb;
     }
+}
+
+//Supprimer CB
+if(isset($delCB)){
+    $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB;";
+    $stid = oci_parse($connect, $query);
+
+    oci_bind_by_name($stid, ":idCB", $idCB);
+
+    $res = oci_execute($stid);
 }
 
 //Affichage CB
@@ -155,7 +163,7 @@ $res = oci_execute($stid);
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
                                     
                                     <label for="submit"></label>
-                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color:rgba(42, 153, 14, 0.5);">
+                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color: rgba(42, 153, 14, 0.5);">
                                 </form>
                             </div>
                         </div>
