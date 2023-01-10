@@ -33,7 +33,7 @@
     $stid3 = oci_parse($conn, $query3);
     oci_execute($stid3);
     
-    while ($row3 = oci_fetch_array($stid2, OCI_ASSOC)) {
+    while ($row3 = oci_fetch_array($stid3, OCI_ASSOC)) {
         $res3[] = ['nom' => $row3['NOMPRODUIT'], 'id'=> $row3['IDPRODUIT'], 'prix' => $row3['PRIXPRODUIT'], 'reduc' => $row3['REDUC']];
     }
 
