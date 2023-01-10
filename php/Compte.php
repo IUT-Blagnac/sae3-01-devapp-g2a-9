@@ -118,7 +118,7 @@ $res = oci_execute($stid);
                                 <div class=\"carte-bancaire\">
                                     <form method=\"post\" style=\"all: initial;\">
                                         <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
-                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" class=\"emoji_modification\">
+                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" class=\"emoji_modification\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
                                     </form>
                                     <label for=\"nom-carte-bancaire\" style=\"margin-top:0;\">Nom</label>
                                     <input value=\"{$row['NOMCB']}\" id=\"nom-carte-bancaire\" disabled/>
@@ -139,7 +139,7 @@ $res = oci_execute($stid);
                         
                         <div class="bulle">
                             <div class="carte-bancaire">
-                                <form method="post">
+                                <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
                                     <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="[a-zA-Z-' ]{2,}" name="nomcb"/>
                                     
@@ -152,7 +152,7 @@ $res = oci_execute($stid);
                                     <label for="date-carte-bancaire"></label>
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
 
-                                    <div class="round_button"><input type="submit" name="addCB" value="➕ Ajouter la carte" class="emoji_modification"></div>
+                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color:rgba(42, 153, 14, 0.5);">
                                 </form>
                             </div>
                         </div>
