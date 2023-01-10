@@ -18,10 +18,10 @@ if (isset($valider)) {
     if ($row = oci_fetch_array($stid, OCI_ASSOC)) $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
     if($row === false){
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $erreur = "L'email est incorrect.";
+            $erreur = "Le format de l'email est incorrect.";
         }
         else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-            $erreur = "Le mot de passe doit contenir ";
+            $erreur = "Le mot de passe doit contenir huit caractères dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
         }
         else if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
             $erreur = "Le prénom peut seuleument contenir des lettres, des tirets et des espaces.";
