@@ -7,7 +7,7 @@ include("include/connect_inc.php");
 
 if (isset($valider)) {
     //Utilisateur
-    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE ':email'";
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
     $stid = oci_parse($connect, $query);
 
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
