@@ -413,10 +413,12 @@ button:hover {
 
 /* COMPTE =========== */
 .emoji_modification{
-    font-size: 2em;
     all: initial;
     background-color: rgba(255, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius: 5px;
+}
+.round_button{
+    font-size: 2em;
 }
 .zone-utilisateur{
     width: 100%;
