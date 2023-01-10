@@ -72,7 +72,7 @@ $res = oci_execute($stid);
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
 
-            <div class="align-left"><form style="all: unset;" action="session_destroy.php" method="POST"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></form></div>
+            <div class="align-left"><form style="all: initial;" action="session_destroy.php" method="POST"><div class="round_button"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></div></form></div>
 
                 <div class="main-card">
                     <?php
@@ -152,7 +152,7 @@ $res = oci_execute($stid);
                                     <label for="date-carte-bancaire"></label>
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
 
-                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" class="emoji_modification">
+                                    <div class="round_button"><input type="submit" name="addCB" value="➕ Ajouter la carte" class="emoji_modification"></div>
                                 </form>
                             </div>
                         </div>
