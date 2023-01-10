@@ -34,9 +34,9 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 $res = oci_execute($stid);
 
 if(isset($addCB)){
-    if (!preg_match("[0-9]{16}", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
-    else if (!preg_match("[a-zA-Z-' ]{2,}",$nomcb)) $erreur = "Nom invalide.";
-    else if (!preg_match("[0-9]{3}", $numcb)) $erreur = "Cryptogramme invalide.";
+    if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
+    else if (!preg_match("/[a-zA-Z-' ]{2,}/",$nomcb)) $erreur = "Nom invalide.";
+    else if (!preg_match("/[0-9]{3}/", $numcb)) $erreur = "Cryptogramme invalide.";
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
@@ -146,10 +146,10 @@ if(isset($addCB)){
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="4XX" pattern="[0-9]{3}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
-                                    <label class="checkbox-label" for="date-carte-bancaire">
+                                    <label for="date-carte-bancaire"></label>
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
 
-                                    <input type="submit" name="addCB" value="+" class="emoji_modification">
+                                    <input type="submit" name="addCB" value="➕ Ajouter la carte" class="emoji_modification">
                                 </form>
                             </div>
                         </div>
