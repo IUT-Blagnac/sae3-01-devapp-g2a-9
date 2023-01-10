@@ -18,6 +18,9 @@
         $res[] = $row['NOMCAT'];
     }
     
+    oci_free_statement($stid);
+    oci_close($conn);
+    
     //nouveautées
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
     $stid = oci_parse($conn, $query);
@@ -58,7 +61,6 @@
                     <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
                         <?php
-                            echo "$res2";
                             foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
                                 <div><a>".$produit['nom']."</a></div>
