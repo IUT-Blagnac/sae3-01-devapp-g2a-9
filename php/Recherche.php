@@ -60,7 +60,7 @@
                 </div>
                 <?php
                     // if (isset($_GET['recherche'])){
-                        if (isset($res)) {
+                        // if (isset($res)) {
                             echo"<div class=\"main-card\">
                             <h2>Résultats de la recherche</h2>
                             <div class=\"main-card-content\">";
@@ -78,10 +78,10 @@
                             </div>";
                             }
                             echo"</div>";
-                        } else {
+                        // } else {
                             echo"<div class=\"main-card\">
                             <h2>Désolé nous n'avons pas de ".$_GET['recherche']." en stock :(</h2>";
-                        }
+                        // }
                     // }
                 ?>
             </main>
