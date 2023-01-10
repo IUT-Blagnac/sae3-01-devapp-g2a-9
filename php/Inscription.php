@@ -2,23 +2,11 @@
 <?php 
 session_start();
 extract($_POST);
+include("include/connect_inc.php");
 if (isset($valider)) {
-    $db = "(DESCRIPTION =
-            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
-            (CONNECT_DATA =
-              (SERVER = DEDICATED)
-              (SID = db11g)
-            )
-          )";
-    $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
-    if (!$conn) {
-        $m = oci_error();
-        trigger_error(htmlentities($m['message']), E_USER_ERROR);
-    }
-
     //EMAIL
     $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
-    $stid = oci_parse($conn, $query);
+    $stid = oci_parse($connect, $query);
     oci_execute($stid);
 
     //Pour vérifier le mot de passe plus bas
@@ -45,11 +33,9 @@ if (isset($valider)) {
             $erreur = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
         }
         else{
-            $query = "
-            INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
-            VALUES (:email, :password, 0, :nom, :prenom, :numtel, :entreprise);
-            ";
-            $stid = oci_parse($conn, $query);
+            $query = "INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
+            VALUES (:email, :password, 0, :nom, :prenom, :numtel, :entreprise)";
+            $stid = oci_parse($connect, $query);
 
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $isset_entreprise = isset($entreprise) ? 1 : 0; 
@@ -61,11 +47,13 @@ if (isset($valider)) {
             oci_bind_by_name($stid, ":numtel", $numtel);
             oci_bind_by_name($stid, ":entreprise", $isset_entreprise);
 
-            oci_execute($stid);
-            oci_commit($conn);
+            $res = oci_execute($stid);
+            if (!$res) {
+                $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+                $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+            }
 
-
-            // header("Location: index.php");
+            header("Location: Connexion.php");
         }
     }
     oci_free_statement($stid);
@@ -110,7 +98,10 @@ if (isset($valider)) {
                     
                     <button type="submit" name="valider">Inscription</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';?>
+                    <?php
+                    echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                    echo isset($erreur_res) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                    ?>
 
                     <a class="alternate social" href="Connexion.php">Connexion</a>
                         

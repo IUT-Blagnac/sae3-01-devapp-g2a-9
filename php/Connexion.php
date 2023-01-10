@@ -13,8 +13,11 @@ if (isset($valider)) {
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
     //EMAIL
-    $query = prepare("SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'");
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
     $stid = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":email", $email);
+
     oci_execute($stid);
 
     if ($row = oci_fetch_array($stid, OCI_ASSOC)){
