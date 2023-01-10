@@ -43,7 +43,10 @@ if (isset($valider)) {
             <main>
 
             <div class="align-left"><a href="Compte.php?edit" class="social">MODIFIER</a><form style="all: unset;" action="session_destroy.php" method="POST"><input style="background-color: rgba(255, 0, 0, 0.5);" class="social" type="submit" value="DÉCONNEXION" /></form></div>
-            
+            <?php
+                echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                echo isset($erreur_res) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+            ?>
 
                 <div class="main-card">
                     <h1 style="text-align: center">Compte Utilisateur <span style="position:relative; top: -.1em;">🙋</span></h1>
