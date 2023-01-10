@@ -236,7 +236,7 @@ main {
 }
 .reduc{
     color: #d11339;
-    text-decoration: line;
+    text-decoration: line !important;
 }
 /* .produit div{
     margin: 5px;
