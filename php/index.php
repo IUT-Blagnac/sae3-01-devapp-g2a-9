@@ -24,9 +24,7 @@
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $nouveautePrix[] = $row['PRIXPRODUIT'];
-        $nouveauteId[] = $row['IDPRODUIT'];
-        $nouveauteNom[] = $row['NOMPRODUIT']; 
+        $res2 = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT']];
     }
 
     oci_free_statement($stid);
@@ -60,11 +58,11 @@
                     <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
                         <?php
-                            for ($i=0; $i < 5; $i++) { 
+                            foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
-                                <div><a>".$nouveauteNom."</a></div>
-                                <div><img src=\"./img/produits".$nouveauteId."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a>".$nouveautePrix."</a></div>
+                                <div><a>".$produit['nom']."</a></div>
+                                <div><img src=\"./img/produits".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a>".$produit['prix']."</a></div>
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>";
                             }
