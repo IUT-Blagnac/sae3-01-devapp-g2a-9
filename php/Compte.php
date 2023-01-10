@@ -5,27 +5,24 @@ if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(_
 extract($_POST);
 include("include/connect_inc.php");
 
-if (isset($valider)) {
-    //Utilisateur
-    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
-    $stid = oci_parse($connect, $query);
+//Utilisateur
+$query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
+$stid = oci_parse($connect, $query);
 
-    oci_bind_by_name($stid, ":email", $_SESSION['email']);
+oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
-    $res = oci_execute($stid);
+$res = oci_execute($stid);
 
-    if (!$res) {
-        $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
-        $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
-    }
+if (!$res) {
+    $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+    $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+}
 
-    while($row = oci_fetch_array($stid, OCI_ASSOC)){
-        echo $row;
-        $email = $row['EMAILUSER'];
-        $nom = $row['NOMUSER'];
-        $prenom = $row['PRENOMUSER'];
-        $tel = $row['TELUSER'];
-    }
+while($row = oci_fetch_array($stid, OCI_ASSOC)){
+    $email = $row['EMAILUSER'];
+    $nom = $row['NOMUSER'];
+    $prenom = $row['PRENOMUSER'];
+    $tel = $row['TELUSER'];
 }
 ?>
 
@@ -69,7 +66,7 @@ if (isset($valider)) {
                             
                             <div class="label-value">
                                 <label for="email" style="margin-top:0;">Adresse Email</label>
-                                <input value=<?php echo"\"".ucwords($email)."\"" ?> id="email" disabled/>
+                                <input value=<?php echo"\"".$email."\"" ?> id="email" disabled/>
                             </div>
 
                             <div class="label-value">
