@@ -48,7 +48,7 @@ if(isset($addCB)){
 
 //Supprimer CB
 if(isset($delCB)){
-    echo $delCB;
+    echo $idCB;
     $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB AND EMAILUSER LIKE :email;";
     $stid = oci_parse($connect, $query);
 
@@ -146,7 +146,7 @@ $res = oci_execute($stid);
                                     <label for=\"submit\"></label>
                                     <form method=\"post\" style=\"all: initial;\">
                                         <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
-                                        <input type=\"submit\" name=\"pasdelCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
+                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
                                     </form>
                                 </div>
                             </div>
