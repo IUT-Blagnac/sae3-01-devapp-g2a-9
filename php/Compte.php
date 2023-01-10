@@ -77,11 +77,15 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
                     </div>
                 </div>
                 <div class="main-card">
+                    
                     <h1  style="text-align: center">Méthodes de paiement <span style="position:relative; top: -.1em;">💳</span></h1>
                     <div class="zone-utilisateur">
                         <div class="bulle">
                             <div class="carte-bancaire">
-                            
+                                <form method="post" style="all: none;">
+                                    <input type="hidden" name="idCB" value="<?php echo $cb['idCB']?>">
+                                    <input type="submit" name="delCB" value="🗑️" style="all: none;">
+                                </form>
                                 <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
                                 <input value="Demeyere" id="nom-carte-bancaire" disabled/>
 
@@ -99,38 +103,20 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
                         </div>
                         <div class="bulle">
                             <div class="carte-bancaire">
-                            
-                                <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                <input value="Prochaska" id="nom-carte-bancaire" disabled/>
-
-                                <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                <input id="numero-carte-bancaire" value="8473 XXXX XXXX XXXX" disabled>
-                            
-                                <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                <input value="2XX" id="cryptogramme-carte-bancaire" disabled/>
-                                
-                                <label class="checkbox-label" for="paiement-3-fois">
-                                <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois" disabled>
-                                Paiement en 3 fois
-                                </label>
-                            </div>
-                        </div>
-                        <div class="bulle">
-                            <div class="carte-bancaire">
-
-                                <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                <input value="Xu" id="nom-carte-bancaire" disabled/>
-
-                                <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                <input id="numero-carte-bancaire" value="3630 XXXX XXXX XXXX" disabled>
-                            
-                                <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                <input value="6XX" id="cryptogramme-carte-bancaire" disabled/>
-                                
-                                <label class="checkbox-label" for="paiement-3-fois">
-                                <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois" checked disabled>
-                                Paiement en 3 fois
-                                </label>
+                                <form action="post">
+                                    <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire"/>
+                                    <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
+                                    <input id="numero-carte-bancaire" placeholder="4973 XXXX XXXX XXXX">
+                                    <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
+                                    <input placeholder="4XX" id="cryptogramme-carte-bancaire"/>
+                                    
+                                    <label class="checkbox-label" for="paiement-3-fois">
+                                    <input type="checkbox" name="paiement-3-fois" id="paiement-3-fois">
+                                    Paiement en 3 fois
+                                    </label>
+                                    <input type="submit" name="addCB" value="➕">
+                                </form>
                             </div>
                         </div>
                     </div>
