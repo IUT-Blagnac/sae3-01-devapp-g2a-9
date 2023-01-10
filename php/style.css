@@ -231,7 +231,8 @@ main {
     border-radius: 5px;
 }
 .image-produit{
-    height: auto;
+    height: 20em;
+    max-width: 30em;
 }
 /* .produit div{
     margin: 5px;
