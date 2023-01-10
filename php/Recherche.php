@@ -7,8 +7,8 @@
     </head>
     <body>
         <?php
-            $recherche =  htmlspecialchars($_GET['recherche']);
-            if (isset($recherche)){
+            if (isset($_GET['recherche'])){
+                $recherche =  htmlspecialchars($_GET['recherche']);
                 session_start();
                 $db = "(DESCRIPTION =
                             (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
