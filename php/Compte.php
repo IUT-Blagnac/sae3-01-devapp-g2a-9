@@ -116,21 +116,22 @@ $res = oci_execute($stid);
                         while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
                             echo "<div class=\"bulle\">
                                 <div class=\"carte-bancaire\">
-                                    <form method=\"post\" style=\"all: initial;\">
-                                        <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
-                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" class=\"emoji_modification\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
-                                    </form>
                                     <label for=\"nom-carte-bancaire\" style=\"margin-top:0;\">Nom</label>
                                     <input value=\"{$row['NOMCB']}\" id=\"nom-carte-bancaire\" disabled/>
 
                                     <label for=\"numero-carte-bancaire\">Numéro de Carte Bancaire</label>
-                                    <input id=\"numero-carte-bancaire\" value=\"".substr($row['NUMEROCB'],0,4)."XXXX XXXX XXXX\" disabled>
+                                    <input id=\"numero-carte-bancaire\" value=\"".substr($row['NUMEROCB'],0,4)." XXXX XXXX XXXX\" disabled>
                                 
                                     <label for=\"cryptogramme-carte-bancaire\">Cryptogramme visuel</label>
                                     <input value=\"".substr($row['CRYPTOCB'],0,1)."XX\" id=\"cryptogramme-carte-bancaire\" disabled/>
 
                                     <label for=\"cryptogramme-carte-bancaire\">Date d'expiration</label>
                                     <input value=\"{$row['DATECB']}\" id=\"date-carte-bancaire\" disabled/>
+
+                                    <form method=\"post\" style=\"all: initial;\">
+                                        <input type=\"hidden\" name=\"idCB\" value=\"{$row['IDCB']}\">
+                                        <input type=\"submit\" name=\"delCB\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5)\">
+                                    </form>
                                 </div>
                             </div>
                             ";
@@ -149,9 +150,10 @@ $res = oci_execute($stid);
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="4XX" pattern="[0-9]{3}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
-                                    <label for="date-carte-bancaire"></label>
+                                    <label for="date-carte-bancaire">Date d'expiration</label>
                                     <input type="date" id="start" name="datecb" value="2003-02-27" min="2000-01-01">
-
+                                    
+                                    <label for="submit"></label>
                                     <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color:rgba(42, 153, 14, 0.5);">
                                 </form>
                             </div>
