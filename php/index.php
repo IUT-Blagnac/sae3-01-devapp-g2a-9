@@ -58,6 +58,7 @@
                     <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
                         <?php
+                            echo "$res2";
                             foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
                                 <div><a>".$produit['nom']."</a></div>
