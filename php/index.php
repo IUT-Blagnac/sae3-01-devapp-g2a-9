@@ -18,18 +18,18 @@
         $res[] = $row['NOMCAT'];
     }
     
+    
     //nouveautées
-    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
-    $stid = oci_parse($conn, $query);
-    oci_execute($stid);
-
+    $query2 = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE dateproduit BETWEEN ADD_MONTHS(sysdate, -6) and sysdate;";
+    $stid2 = oci_parse($conn, $query2);
+    oci_execute($stid2);
+    
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $nouveautePrix[] = $row['PRIXPRODUIT'];
-        $nouveauteId[] = $row['IDPRODUIT'];
-        $nouveauteNom[] = $row['NOMPRODUIT']; 
+        $res2 = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT']];
     }
-
+    
     oci_free_statement($stid);
+    oci_free_statement($stid2);
     oci_close($conn);
 ?>
 
@@ -60,11 +60,11 @@
                     <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
                         <?php
-                            for ($i=0; $i < 5; $i++) { 
+                            foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
-                                <div><a>".$nouveauteNom."</a></div>
-                                <div><img src=\"./img/produits".$nouveauteId."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a>".$nouveautePrix."</a></div>
+                                <div><a>".$produit['nom']."</a></div>
+                                <div><img src=\"./img/produits".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a>".$produit['prix']."</a></div>
                                 <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>";
                             }
