@@ -54,6 +54,7 @@
                             </select>
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
+                            <input type="submit" value="Rechercher 🔎">
                         </form>
                     </div>
                 </div>
