@@ -25,14 +25,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
     $tel = $row['TELUSER'];
 }
 
-//Cartes bancaires
-$query = "SELECT * FROM CARTEBANCAIRE WHERE EMAILUSER LIKE :email";
-$stid = oci_parse($connect, $query);
-
-oci_bind_by_name($stid, ":email", $_SESSION['email']);
-
-$res = oci_execute($stid);
-
+//Ajout CB
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/[a-zA-Z-' ]{2,}/",$nomcb)) $erreur = "Nom invalide.";
@@ -54,6 +47,14 @@ if(isset($addCB)){
         $erreur = $datecb;
     }
 }
+
+//Affichage CB
+$query = "SELECT * FROM CARTEBANCAIRE WHERE EMAILUSER LIKE :email";
+$stid = oci_parse($connect, $query);
+
+oci_bind_by_name($stid, ":email", $_SESSION['email']);
+
+$res = oci_execute($stid);
 
 ?>
 
