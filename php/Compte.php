@@ -19,7 +19,8 @@ if (isset($valider)) {
         $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
     }
 
-    if($row = oci_fetch_array($stid, OCI_ASSOC)){
+    while($row = oci_fetch_array($stid, OCI_ASSOC)){
+        echo $row;
         $email = $row['EMAILUSER'];
         $nom = $row['NOMUSER'];
         $prenom = $row['PRENOMUSER'];
