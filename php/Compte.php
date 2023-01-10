@@ -48,17 +48,13 @@ if(isset($addCB)){
 
 //Supprimer CB
 if(isset($delCB)){
-    echo $_SESSION['email'];
     $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB AND EMAILUSER LIKE :email;";
     $stid = oci_parse($connect, $query);
 
     oci_bind_by_name($stid, ":idCB", $idCB);
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
-    $res = oci_execute($stid);
-
-    $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
-    if($e) $erreur_res = htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);
+    $res = oci_execute($stid, OCI_COMMIT_ON_SUCCESS);
 }
 
 //Affichage CB
