@@ -138,7 +138,7 @@ if(isset($addCB)){
                             <div class="carte-bancaire">
                                 <form method="post">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="/^[a-zA-Z-' ]*$/" name="nomcb"/>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="[a-zA-Z-' ]*" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
                                     <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="4973 XXXX XXXX XXXX">
