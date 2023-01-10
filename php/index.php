@@ -27,9 +27,19 @@
     while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
         $res2[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
+
+    // produits en réductions
+    $query3 = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE reduction > 0 and rownum <= 4";
+    $stid3 = oci_parse($conn, $query3);
+    oci_execute($stid3);
     
+    while ($row3 = oci_fetch_array($stid2, OCI_ASSOC)) {
+        $res3[] = ['nom' => $row3['NOMPRODUIT'], 'id'=> $row3['IDPRODUIT'], 'prix' => $row3['PRIXPRODUIT'], 'reduc' => $row3['REDUC']];
+    }
+
     oci_free_statement($stid);
     oci_free_statement($stid2);
+    oci_free_statement($stid3);
     oci_close($conn);
 ?>
 
@@ -75,42 +85,17 @@
                     <h2>Soldes</h2>
                     <!-- SELECT FROM Produit WHERE reduc > 0 -->
                     <div class="main-card-content">
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
+                    <?php
+                            foreach($res3 as $produit) { 
+                                echo" <div class=\"produit\">
+                                <div><a>".$produit['nom']."</a></div>
+                                <div><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a class=\"reduc\">".$produit['prix']."</a></div>
+                                <div><a>".$produit['reduc']."</a></div>
+                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                                </div>";
+                            }
+                        ?>
                     </div>
                 </div>
             </main>
