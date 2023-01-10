@@ -21,8 +21,9 @@ if (isset($valider)) {
     oci_execute($stid);
 
     if ($row = oci_fetch_array($stid, OCI_ASSOC)){
-         $res["emailUser"] = true;
-         $res["mdpUser"] = $row['MDPUSER'];
+        $_SESSION["email"] = $row['EMAILUSER'];
+        $res["emailUser"] = true;
+        $res["mdpUser"] = $row['MDPUSER'];
     }
     else $res["emailUser"] = false;
 
