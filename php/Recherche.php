@@ -38,7 +38,6 @@
                     <div class="barre-de-recheche">
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
-                            <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
                                 <option value=""selected>Catégorie</option>
                                 <option value="1">Processeurs</option>
@@ -52,7 +51,8 @@
                                 <option value="1">SousCat1</option>
                                 <option value="2">SousCat2</option>
                             </select>
-
+                            <input type="number" name="prixMin" placeholder="Prix minimum">
+                            <input type="number" name="prixMax" placeholder="Prix maximum">
                         </form>
                     </div>
                 </div>
