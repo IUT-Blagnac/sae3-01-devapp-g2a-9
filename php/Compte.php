@@ -195,7 +195,7 @@ $res = oci_execute($listeadresses);
                         }
                         ?>
                         
-                        <div class="bulle 妈妈">
+                        <div class="bulle">
                             <div class="carte-bancaire" id="ajouterbullecb">
                                 <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
