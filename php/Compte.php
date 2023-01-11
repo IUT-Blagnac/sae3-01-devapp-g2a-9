@@ -215,7 +215,7 @@ $res = oci_execute($listeadresses);
                                 </form>
                             </div>
                         </div>
-                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bulleplus" onclick="document.getElementById('bulleplus').style.display='none';document.getElementById('ajouterbullecb').style.display='flex'">
+                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bullepluscb" onclick="document.getElementById('bullepluscb').style.display='none';document.getElementById('ajouterbullecb').style.display='flex'">
                             <p style="font-size: 10em;color: lightgrey;">+</p>
                         </div>
                     </div>
@@ -251,7 +251,7 @@ $res = oci_execute($listeadresses);
                             </div>";
                             }
                         ?>
-                        <div class="bulle">
+                        <div class="bulle" id="ajouterbulleadresse">
                             <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
@@ -273,6 +273,9 @@ $res = oci_execute($listeadresses);
                                     <input type="submit" name="addAdresse" value="➕ Ajouter l'adresse" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
                                 </form>
                             </div>
+                        </div>
+                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bulleplusadresse" onclick="document.getElementById('bulleplusadresse').style.display='none';document.getElementById('ajouterbulleadresse').style.display='flex'">
+                            <p style="font-size: 10em;color: lightgrey;">+</p>
                         </div>
                     </div>
                 </div>
