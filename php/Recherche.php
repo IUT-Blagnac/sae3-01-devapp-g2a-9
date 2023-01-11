@@ -121,6 +121,7 @@
                                     $i = 1;
                                     foreach ($row2 as $categorie) {
                                         echo"<option value=0".$i.">".$row2."</option>";
+                                        $i += 1;
                                     }
                                 ?>
                                 <!-- <option value="01">Processeurs</option>
