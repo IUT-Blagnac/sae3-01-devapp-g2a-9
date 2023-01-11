@@ -38,6 +38,8 @@ if(isset($addCB)){
         oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
         $res = oci_execute($stid);
+
+        header("Location: Compte.php");
     }
 }
 
@@ -62,6 +64,8 @@ if(isset($addAdresse)){
         oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
         $res = oci_execute($stid);
+
+        header("Location: Compte.php");
     }
 }
 
@@ -75,6 +79,8 @@ if(isset($delCB)){
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
     $res = oci_execute($stid, OCI_COMMIT_ON_SUCCESS);
+
+    header("Location: Compte.php");
 }
 
 //Supprimer Adresse
@@ -86,6 +92,8 @@ if(isset($delAdresse)){
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
     $res = oci_execute($stid, OCI_COMMIT_ON_SUCCESS);
+
+    header("Location: Compte.php");
 }
 
 //Affichage CB
