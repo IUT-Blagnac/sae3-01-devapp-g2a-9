@@ -25,8 +25,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/[a-zA-Z-' ]{2,20}/",$nomcb)) $erreur = "Nom invalide.";
-    else if (!preg_match("/[0-9]{3}/", $numcb)) $erreur = "Cryptogramme invalide.";
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $erreur = "Email invalide.";
+    else if (!preg_match("/[0-9]{3}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
@@ -36,6 +35,30 @@ if(isset($addCB)){
         oci_bind_by_name($stid, ":nomCb", $nomcb);
         oci_bind_by_name($stid, ":dateCb", $datecb);
         oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
+        oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
+
+        $res = oci_execute($stid);
+    }
+}
+
+
+//Ajout Adresse
+if(isset($addAdresse)){
+    if (!preg_match("/.{2,20}/", $alias)) $erreur = "Alias invalide.";
+    else if (!preg_match("/[a-zA-Z-' ]{2,30}/",$ville)) $erreur = "Nom de ville invalide.";
+    else if (!preg_match("/[a-zA-Z-' ]{2,50}/",$adresse)) $erreur = "Adresse invalide.";
+    else if (!preg_match("/[a-zA-Z0-9]{8}/",$code_postal)) $erreur = "Code-postal invalide.";
+    else if (!preg_match("/[a-zA-Z-' ]{2,50}/",$complement)) $erreur = "Complément d'adresse invalide.";
+    else{
+        $query = "INSERT INTO ADRESSE (idAdresse, alias, ville, adresse, code_postal, complement, emailuser)
+        VALUES(CB_SEQ.NEXTVAL, :alias, :ville, adresse, :code_postal, :complement, :emailuser)";
+        $stid = oci_parse($connect, $query);
+
+        oci_bind_by_name($stid, ":alias", $alias);
+        oci_bind_by_name($stid, ":ville", $ville);
+        oci_bind_by_name($stid, ":adresse", $adresse);
+        oci_bind_by_name($stid, ":code_postal", $code_postal);
+        oci_bind_by_name($stid, ":complement", $complement);
         oci_bind_by_name($stid, ":emailUser", $_SESSION['email']);
 
         $res = oci_execute($stid);
@@ -195,12 +218,12 @@ $res = oci_execute($listeadresses);
 
                                     <label for=\"nom-adresse-livraison\" style=\"margin-top:0;\">Alias de l'adresse</label>
                                     <input value=\"À la maison 🏠\" id=\"nom-adresse-livraison\" disabled/>
-
-                                    <label for=\"code-postal-adresse-livraison\">Code Postal</label>
-                                    <input id=\"code-postal-adresse-livraison\" value=\"31700\" disabled>
-
+                                    
                                     <label for=\"ville-adresse-livraison\">Ville</label>
                                     <input id=\"ville-adresse-livraison\" value=\"Blagnac\" disabled>
+                                    
+                                    <label for=\"code-postal-adresse-livraison\">Code Postal</label>
+                                    <input id=\"code-postal-adresse-livraison\" value=\"31700\" disabled>
                                 
                                     <label for=\"adresse-adresse-livraison\">Adresse</label>
                                     <input id=\"adresse-adresse-livraison\" value=\"2 Bis Rue des Potiers\" disabled>
@@ -219,24 +242,25 @@ $res = oci_execute($listeadresses);
                         ?>
                         <div class="bulle">
                             <div class="carte-bancaire">
+                                <form method="post" style="all: initial">
+                                    <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
+                                    <input placeholder="Chez tonton Patrick 🐐" name="alias" id="nom-adresse-livraison"/>
 
-                                <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                <input placeholder="Chez tonton Patrick 🐐" id="nom-adresse-livraison"/>
+                                    <label for="ville-adresse-livraison">Ville</label>
+                                    <input id="ville-adresse-livraison" name="ville" placeholder="Toulouse">
 
-                                <label for="code-postal-adresse-livraison">Code Postal</label>
-                                <input id="code-postal-adresse-livraison" placeholder="31000">
+                                    <label for="code-postal-adresse-livraison">Code Postal</label>
+                                    <input id="code-postal-adresse-livraison" name="code_postal" placeholder="31000">
+                                    
+                                    <label for="adresse-adresse-livraison">Adresse</label>
+                                    <input id="adresse-adresse-livraison" name="adresse" placeholder="28 Allée des potirons">
+                                    
+                                    <label for="complement-adresse-livraison">Complément</label>
+                                    <input id="complement-adresse-livraison" name="complement" placeholder="">
 
-                                <label for="ville-adresse-livraison">Ville</label>
-                                <input id="ville-adresse-livraison" placeholder="Toulouse">
-                            
-                                <label for="adresse-adresse-livraison">Adresse</label>
-                                <input id="adresse-adresse-livraison" placeholder="28 Allée des potirons">
-                                
-                                <label for="complement-adresse-livraison">Complément</label>
-                                <input id="complement-adresse-livraison" placeholder="">
-
-                                <label for="submit"></label>
-                                <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
+                                    <label for="submit"></label>
+                                    <input type="submit" name="addAdresse" value="➕ Ajouter l'adresse" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
+                                </form>
                             </div>
                         </div>
                     </div>
