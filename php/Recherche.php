@@ -19,15 +19,15 @@
             //requete sql
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                $titreRecherche = "Résultat de la recherche :";
             } else {
                 $recherche = '';
-                $titreRecherche = "Tout les produits";
             }
             if ($recherche == ''){
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
+                $titreRecherche = "Tout les produits :";
             } else {
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
+                $titreRecherche = "Résultats de la recherche :";
             }
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
@@ -42,9 +42,7 @@
             <main>
                 <div class="barre-de-recherche">
                     <div class="barre-de-recheche">
-                        <?php
-                            echo"<label for=\"barre-de-recherche\">".$titreRecherche."</label>"
-                        ?>
+                        <label for="barre-de-recherche"></label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
@@ -70,7 +68,7 @@
                     // if (isset($_GET['recherche'])){
                         if (!is_null($res)) {
                             echo"<div class=\"main-card\">
-                            <h2>Résultats de la recherche</h2>
+                            <h2>".$titreRecherche."</h2>
                             <div class=\"main-card-content\">";
                             foreach($res as $produit) { 
                                 echo" <div class=\"produit\">
