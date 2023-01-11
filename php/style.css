@@ -432,6 +432,7 @@ button:hover {
     width: 20vw;
 }
 .bulle{
+    align-self: center;
     justify-content: flex-start;
     align-items: center;
     display:flex;

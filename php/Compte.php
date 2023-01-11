@@ -129,7 +129,7 @@ $res = oci_execute($listeadresses);
                     ?>
                     <h1 style="text-align: center">Compte Utilisateur <span style="position:relative; top: -.1em;">🙋</span></h1>
                     <div class="zone-utilisateur">
-                        <div class="bulle">
+                        <div class="bulle" style="height: fit-content">
                             <img src="img/pécé.jpg" alt="Image Utilisateur" id="image-utilisateur">
                             <h3><?php echo ucwords($prenom)." ".ucwords($nom) ?></h3>
                         </div>
