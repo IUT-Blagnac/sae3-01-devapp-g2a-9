@@ -93,9 +93,9 @@
                 $titreRecherche = "Résultats de la recherche :";
             }
             if ($optionTri == 0){
-                $query .= " ORDER BY P.PRIXPRODUIT ASC";
+                $query .= " ORDER BY (P.PRIXPRODUIT - P.REDUCTION) ASC";
             } elseif ($optionTri == 1){
-                $query .= " ORDER BY P.PRIXPRODUIT DESC";
+                $query .= " ORDER BY (P.PRIXPRODUIT - P.REDUCTION) DESC";
             } elseif($optionTri == 2){
                 $query .= " ORDER BY P.NOMPRODUIT ASC";
             } elseif($optionTri == 3){
