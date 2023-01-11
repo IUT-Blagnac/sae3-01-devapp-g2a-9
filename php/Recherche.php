@@ -70,13 +70,22 @@
                 $query .= " P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
-            if ($prixMin != ''){
+            if ($prixMin != ""){
                 if ($recherche != "" or $categorieRecherchee != ""){
                     $query .= " AND";
                 } else {
                     $query .= " WHERE";
                 }
                 $query .= " (P.PRIXPRODUIT - P.REDUCTION) >'".$prixMin."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
+            if ($prixMax != ''){
+                if ($recherche != "" or $categorieRecherchee != "" or $prixMin !=""){
+                    $query .= " AND";
+                } else {
+                    $query .= " WHERE";
+                }
+                $query .= " (P.PRIXPRODUIT - P.REDUCTION) <'".$prixMax."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
 
