@@ -148,14 +148,6 @@
                             </select>
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
-                            <select name="tri" class="select-style">
-                                <option value=""selected>Options de tri</option>
-                                <option value="0">Prix 🥐</option>     
-                                <option value="1">Prix dé🥐</option>     
-                                <option value="2">Nom A-Z</option>     
-                                <option value="3">Nom Z-A</option>     
-                                <option value="4">Nouveautées</option>     
-                            </select>
                             <?php
                                 if($optionTri ==''){
                                     echo"<select name=\"tri\" class=\"select-style\">
