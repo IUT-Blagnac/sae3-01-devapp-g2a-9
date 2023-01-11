@@ -11,7 +11,7 @@
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                $query .= "WHERE NOMPRODUIT ='".$recherche."'";
+                // $query .= "WHERE NOMPRODUIT ='".$recherche."'";
             } else {
                 $recherche = '';
             }
