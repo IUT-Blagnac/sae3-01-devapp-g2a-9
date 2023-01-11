@@ -25,7 +25,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/.{2,64}/",$nomcb)) $erreur = "Nom invalide.";
-    else if (!preg_match("/[0-9]{,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
+    else if (!preg_match("/[0-9]{0,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
@@ -197,7 +197,7 @@ $res = oci_execute($listeadresses);
                                     <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="4973 XXXX XXXX XXXX">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                    <input placeholder="4XX" pattern="[0-9]{3}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
+                                    <input placeholder="4XX" pattern="[0-9]{0,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
                                     <label for="date-carte-bancaire">Date d'expiration</label>
                                     <input type="date" id="start" name="datecb" value="2023-02-27" min="2000-01-01">
