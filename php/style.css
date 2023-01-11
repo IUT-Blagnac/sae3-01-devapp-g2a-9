@@ -332,11 +332,11 @@ input, select {
     font-weight: 300;
     margin-bottom: 2%;
 }
-.select-style{
+.select-style option{
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: #1c2130;
     border-radius: 3px;
     padding: 0 10px;
     font-size: 18px;
