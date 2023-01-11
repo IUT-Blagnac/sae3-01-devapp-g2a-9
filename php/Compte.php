@@ -24,7 +24,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 //Ajout CB
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
-    else if (!preg_match("/[a-zA-Z-' ]{2,64}/",$nomcb)) $erreur = "Nom invalide.";
+    else if (!preg_match("/.{2,64}/",$nomcb)) $erreur = "Nom invalide.";
     else if (!preg_match("/[0-9]{,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
@@ -45,10 +45,10 @@ if(isset($addCB)){
 //Ajout Adresse
 if(isset($addAdresse)){
     if (!preg_match("/.{1,64}/", $alias)) $erreur = "Alias invalide.";
-    else if (!preg_match("/[a-zA-Z-' ]{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
-    else if (!preg_match("/[a-zA-Z-' ]{1,128}/",$adresse)) $erreur = "Adresse invalide.";
+    else if (!preg_match("/.{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
+    else if (!preg_match("/.{1,128}/",$adresse)) $erreur = "Adresse invalide.";
     else if (!preg_match("/[0-9]{5}/",$code_postal)) $erreur = "Code-postal invalide.";
-    else if (!preg_match("/[a-zA-Z0-9-' ]{,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
+    else if (!preg_match("/.{,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
     else{
         $query = "INSERT INTO ADRESSE (idAdresse, alias, ville, adresse, code_postal, complement, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :alias, :ville, adresse, :code_postal, :complement, :emailuser)";
