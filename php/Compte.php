@@ -216,7 +216,7 @@ $res = oci_execute($listeadresses);
                             </div>
                         </div>
                         <div class="bulle" id="bulleplus" onclick="document.getElementById('bulleplus').style.display='none';document.getElementById('ajouterbullecb').style.display='flex'">
-
+                            <p style="font-size: 5em;">+</p>
                         </div>
                     </div>
                 </div>
