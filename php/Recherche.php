@@ -47,16 +47,16 @@
                             <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
                                 <option value=""selected>Catégorie</option>
-                                <option value="1">Processeurs</option>
-                                <option value="2">Stockage mémoire</option>
-                                <option value="3">Cartes graphiques</option>
-                                <option value="4">Cartes meres</option>
-                                <option value="5">Ventilateurs</option>
+                                <option value="01">Processeurs</option>
+                                <option value="02">Stockage mémoire</option>
+                                <option value="03">Cartes graphiques</option>
+                                <option value="04">Cartes meres</option>
+                                <option value="05">Ventilateurs</option>
                             </select>
                             <select name="sousCategorieRecherchee">
                                 <option value=""selected>Sous Catégorie</option>
-                                <option value="1">SousCat1</option>
-                                <option value="2">SousCat2</option>
+                                <option value="00A">SousCat1</option>
+                                <option value="00B">SousCat2</option>
                             </select>
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
