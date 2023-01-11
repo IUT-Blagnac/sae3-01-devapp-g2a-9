@@ -57,3 +57,15 @@ END;
 
 
 -- TRIGGER MAJ DE STOCK
+
+CREATE OR REPLACE TRIGGER t_i_produit_maj_stock
+AFTER INSERT
+ON DetailCommande
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        UPDATE Produit
+        SET stockproduit = stockproduit - :OLD.quantite
+        WHERE Produit.idproduit = :OLD.idproduit;
+    END IF;
+END;
