@@ -131,11 +131,18 @@
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
-                            <select name="categorieRecherchee" class="select-style">
-                                <option value=""selected>Catégorie</option>
-                                <?php
+                            <?php
+                                echo"<select name=\"categorieRecherchee\" class=\"select-style\">";
+                                    if($categorieRecherchee == ''){
+                                        echo"<option value=\"\"selected>Catégorie</option>";
+                                    } else {
+                                        echo"<option value=\"\">Catégorie</option>";
+                                    }
                                     $i = 1;
                                     foreach ($res2 as $categorie) {
+                                        if($categorieRecherchee == $i){
+                                            echo"<option value=\"0".strval($i)."\"selected>".$categorie."</option>";
+                                        }
                                         echo"<option value=\"0".strval($i)."\">".$categorie."</option>";
                                         $i += 1;
                                     }
