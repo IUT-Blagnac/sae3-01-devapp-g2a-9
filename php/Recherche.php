@@ -17,8 +17,14 @@
             )";
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
             //requete sql
-            $recherche =  htmlspecialchars($_GET['recherche']);
-            if (is_null($_GET['recherche']) or !isset($_GET['recherche'])){
+            if (isset($_GET['recherche'])){
+                $recherche =  htmlspecialchars($_GET['recherche']);
+                $titreRecherche = "Résultat de la recherche :";
+            } else {
+                $recherche = '';
+                $titreRecherche = "Tout les produits";
+            }
+            if ($recherche == ''){
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
             } else {
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
@@ -36,7 +42,9 @@
             <main>
                 <div class="barre-de-recherche">
                     <div class="barre-de-recheche">
-                        <label for="barre-de-recherche">Rechercher</label>
+                        <?php
+                            echo"<label for=\"barre-de-recherche\">".$titreRecherche."</label>"
+                        ?>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
