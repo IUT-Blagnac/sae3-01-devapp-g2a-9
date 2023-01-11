@@ -45,12 +45,12 @@ if(isset($addCB)){
 //Ajout Adresse
 if(isset($addAdresse)){
     echo $alias;
-    echo preg_match("/[.]{,64}/", $alias);
-    if (!preg_match("/.{,64}/", $alias)) $erreur = "Alias invalide.";
+    echo preg_match("/.{0,64}/", $alias);
+    if (!preg_match("/.{0,64}/", $alias)) $erreur = "Alias invalide.";
     else if (!preg_match("/.{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
     else if (!preg_match("/.{1,128}/",$adresse)) $erreur = "Adresse invalide.";
     else if (!preg_match("/[0-9]{5}/",$code_postal)) $erreur = "Code-postal invalide.";
-    else if (!preg_match("/.{,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
+    else if (!preg_match("/.{0,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
     else{
         $query = "INSERT INTO ADRESSE (idAdresse, alias, ville, adresse, code_postal, complement, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :alias, :ville, adresse, :code_postal, :complement, :emailuser)";
