@@ -149,6 +149,16 @@
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
                             <?php
+                                if($prixMin == ''){
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
+                                } else {
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=".$prixMax.">";
+                                }
+                                if($prixMax == ''){
+                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix maximum\">";
+                                } else {
+                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=".$prixMax.">";
+                                }
                                 if($optionTri ==''){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\"selected>Options de tri</option>
