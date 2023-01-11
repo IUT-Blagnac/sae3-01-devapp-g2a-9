@@ -131,7 +131,7 @@
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
-                            <select name="categorieRecherchee">
+                            <select name="categorieRecherchee" class="select-style">
                                 <option value=""selected>Catégorie</option>
                                 <?php
                                     $i = 1;
