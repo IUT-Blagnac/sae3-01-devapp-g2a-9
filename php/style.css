@@ -451,8 +451,8 @@ button:hover {
     color: white;
 }
 
-.妈妈 {
-    background-color: rgba(255, 255, 255, 0.557);
+#ajouterbullecb {
+    display: none;
 }
 
 .align-left{
