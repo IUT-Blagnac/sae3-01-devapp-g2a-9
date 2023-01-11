@@ -34,7 +34,11 @@
             } else {
                 $prixMax = '';
             }
-
+            if (isset($_GET['tri'])){
+                $optionTri = htmlspecialchars($_GET['tri']);
+            } else {
+                $optionTri = '';
+            }
 
              
 
@@ -88,6 +92,17 @@
                 $query .= " (P.PRIXPRODUIT - P.REDUCTION) <'".$prixMax."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
+            if ($optionTri == 0){
+                $query .= " ORDER BY P.PRIXPRODUIT ASC";
+            } elseif ($optionTri == 1){
+                $query .= " ORDER BY P.PRIXPRODUIT DESC";
+            } elseif($optionTri == 2){
+                $query .= " ORDER BY P.NOMPRODUIT ASC";
+            } elseif($optionTri == 3){
+                $query .= " ORDER BY P.NOMPRODUIT DESC";
+            } elseif($optionTri == 4){
+                $query .= " ORDER BY P.DATEPRODUIT DESC";
+            }
 
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
@@ -139,7 +154,7 @@
                                 <option value="1">Prix dé🥐</option>     
                                 <option value="2">Nom A-Z</option>     
                                 <option value="3">Nom Z-A</option>     
-                                <option value="3">Nouveautées</option>     
+                                <option value="4">Nouveautées</option>     
                             </select>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
