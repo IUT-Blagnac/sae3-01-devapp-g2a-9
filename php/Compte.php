@@ -45,7 +45,7 @@ if(isset($addCB)){
 //Ajout Adresse
 if(isset($addAdresse)){
     echo $alias;
-    echo preg_match("/.{,64}/", $alias);
+    echo preg_match("/[.]{,64}/", $alias);
     if (!preg_match("/.{,64}/", $alias)) $erreur = "Alias invalide.";
     else if (!preg_match("/.{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
     else if (!preg_match("/.{1,128}/",$adresse)) $erreur = "Adresse invalide.";
