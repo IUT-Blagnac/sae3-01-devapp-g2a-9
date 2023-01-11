@@ -125,11 +125,6 @@
                                         $i += 1;
                                     }
                                 ?>
-                                <!-- <option value="01">Processeurs</option>
-                                <option value="02">Stockage mémoire</option>
-                                <option value="03">Cartes graphiques</option>
-                                <option value="04">Cartes meres</option>
-                                <option value="05">Ventilateurs</option> -->
                             </select>
                             <select name="sousCategorieRecherchee">
                                 <option value=""selected>Sous Catégorie</option>
@@ -138,6 +133,14 @@
                             </select>
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
+                            <select name="tri">
+                                <option value=""selected>Options de tri</option>
+                                <option value="0">Prix 🥐</option>     
+                                <option value="1">Prix dé🥐</option>     
+                                <option value="2">Nom A-Z</option>     
+                                <option value="3">Nom Z-A</option>     
+                                <option value="3">Nouveautées</option>     
+                            </select>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
                     </div>
