@@ -60,7 +60,7 @@
                 </div>
                 <?php
                     // if (isset($_GET['recherche'])){
-                        if (!is_null($res)) {
+                        if (is_null($res)) {
                             echo"<div class=\"main-card\">
                             <h2>Résultats de la recherche</h2>
                             <div class=\"main-card-content\">";
