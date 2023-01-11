@@ -44,7 +44,7 @@ if(isset($addCB)){
 
 //Ajout Adresse
 if(isset($addAdresse)){
-    if (!preg_match("/.{1,64}/", $alias)) $erreur = "Alias invalide.";
+    if (!preg_match("/.{,64}/", $alias)) $erreur = "Alias invalide.";
     else if (!preg_match("/.{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
     else if (!preg_match("/.{1,128}/",$adresse)) $erreur = "Adresse invalide.";
     else if (!preg_match("/[0-9]{5}/",$code_postal)) $erreur = "Code-postal invalide.";
@@ -191,7 +191,7 @@ $res = oci_execute($listeadresses);
                             <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern="[a-zA-Z-' ]{2,}" name="nomcb"/>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern=".{2,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
                                     <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="4973 XXXX XXXX XXXX">
@@ -244,19 +244,19 @@ $res = oci_execute($listeadresses);
                             <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                    <input placeholder="Chez tonton Patrick 🐐" name="alias" id="nom-adresse-livraison"/>
+                                    <input placeholder="Chez tonton Patrick 🐐" name="alias" pattern=".{,64}" id="nom-adresse-livraison"/>
 
                                     <label for="ville-adresse-livraison">Ville</label>
-                                    <input id="ville-adresse-livraison" name="ville" placeholder="Toulouse">
+                                    <input id="ville-adresse-livraison" pattern=".{1,45}" name="ville" placeholder="Toulouse">
 
                                     <label for="code-postal-adresse-livraison">Code Postal</label>
-                                    <input id="code-postal-adresse-livraison" name="code_postal" placeholder="31000">
+                                    <input id="code-postal-adresse-livraison" pattern="[0-9]{5}" name="code_postal" placeholder="31000">
                                     
                                     <label for="adresse-adresse-livraison">Adresse</label>
-                                    <input id="adresse-adresse-livraison" name="adresse" placeholder="28 Allée des potirons">
+                                    <input id="adresse-adresse-livraison" name="adresse" pattern=".{1,128}" placeholder="28 Allée des potirons">
                                     
                                     <label for="complement-adresse-livraison">Complément</label>
-                                    <input id="complement-adresse-livraison" name="complement" placeholder="">
+                                    <input id="complement-adresse-livraison" name="complement" pattern=".{,64}" placeholder="">
 
                                     <label for="submit"></label>
                                     <input type="submit" name="addAdresse" value="➕ Ajouter l'adresse" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
