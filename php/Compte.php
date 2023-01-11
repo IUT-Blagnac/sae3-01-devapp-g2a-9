@@ -195,8 +195,8 @@ $res = oci_execute($listeadresses);
                         }
                         ?>
                         
-                        <div class="bulle">
-                            <div class="carte-bancaire" id="ajouterbullecb">
+                        <div class="bulle" id="ajouterbullecb">
+                            <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
                                     <input placeholder="Demeyere" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
@@ -216,7 +216,7 @@ $res = oci_execute($listeadresses);
                             </div>
                         </div>
                         <div class="bulle" id="bulleplus" onclick="document.getElementById('bulleplus').style.display='none';document.getElementById('ajouterbullecb').style.display='flex'">
-                            <p style="font-size: 5em;">+</p>
+                            <p style="font-size: 7em;">+</p>
                         </div>
                     </div>
                 </div>
