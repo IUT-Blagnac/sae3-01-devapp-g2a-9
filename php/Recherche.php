@@ -101,7 +101,7 @@
             oci_execute($stid2);
 
             while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
-                $res2[] = $row['NOMCAT'];
+                $res2[] = $row2['NOMCAT'];
             }
 
             oci_free_statement($stid);
