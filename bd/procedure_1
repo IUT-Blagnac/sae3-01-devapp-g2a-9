@@ -25,44 +25,35 @@ END;
 
 
 CREATE OR REPLACE TRIGGER t_idu_commande_maj_montant
-AFTER INSERT OR DELETE OR UPDATING OF idproduit, quantite
+AFTER INSERT OR DELETE OR UPDATING OF quantite
 ON DetailCommande
 FOR EACH ROW
 DECLARE
 	v_idcomm Commande.idcommande%TYPE;
 	v_prix Produit.prixproduit%TYPE;
-	v_quant_old DetailCommande.quantite%TYPE;
-	v_quant_new DetailCommande.quantite%TYPE;
+	v_quant DetailCommande.quantite%TYPE;
 	v_total_prix_commande Commande.montant%TYPE;
+	v_idprod Produit.idproduit%TYPE;
 BEGIN
-	IF (DELETING OR UPDATING) THEN
-		-- on met la quantite du produit avant le changement dans une variable
-		SELECT :OLD.quantite INTO v_quant_old
-		FROM DetailCommande
-		WHERE idcommande = ...;
-		-- on met la quantite du produit apres le changement dans une variable
-		SELECT :NEW.quantite INTO v_quant_new
-		FROM DetailCommande
-		WHERE idcommande = ...;
-		-- on soustrait la nouvelle quantite de l'ancienne quantite si celle-ci est inférieure
-		IF 
-		SELECT SUM(DetailCommande.quantite) INTO  v_total_prix_commande
-		FROM Commande, DetailCommande
-
+	IF DELETING OR UPDATING THEN
+		SELECT prixproduit INTO v_prix
+		FROM Produit P
+		WHERE P.idproduit = :OLD.idproduit;
+		UPDATE Commande
+		SET montant = montant - (:OLD.quantite * v_prix)
+		WHERE Commande.idcommande = :OLD.idcommande;
 	END IF;
 
-	IF (UPDATING) THEN 
-		-- on supprime et on remet la ligne car quant varie mais sans suppression
-
-
-	IF (INSERTING) THEN
-		SELECT nome INTO vnome1
-		FROM Equipe
-		WHERE ne = :OLD.ne1;
-		SELECT nome INTO vnome2
-		FROM Equipe
-		WHERE ne = :OLD.ne2;
-
-		END IF;
+	IF INSERTING OR UPDATING THEN 
+		-- on supprime et on remet la ligne car quantite varie mais sans suppression
+		SELECT prixproduit INTO v_prix
+		FROM Produit P
+		WHERE P.idproduit = :NEW.idproduit;
+		UPDATE Commande
+		SET montant = montant + (:NEW.quantite * v_prix)
+		WHERE Commande.idcommande = :NEW.idcommande;
 	END IF;
 END;
+
+
+-- TRIGGER MAJ DE STOCK
