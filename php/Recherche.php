@@ -7,39 +7,38 @@
     </head>
     <body>
         <?php
-            $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
+            $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                $query .= "WHERE NOMPRODUIT ='".$recherche."'";
             } else {
                 $recherche = '';
             }
-            // if (isset($_GET['categorieRecherchee'])){
-            //     $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
-            // } else {
-            //     $categorieRecherchee = '';
-            // }
-            // if (isset($_GET['categorieRecherchee'])){
-            //     $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
-            // } else {
-            //     $categorieRecherchee = '';
-            // }
-            // if (isset($_GET['sousCategorieRecherchee'])){
-            //     $sousCategorieRecherchee = htmlspecialchars($_GET['sousCategorieRecherchee']);
-            // } else {
-            //     $sousCategorieRecherchee = '';
-            // }
-            // if (isset($_GET['prixMin'])){
-            //     $prixMin = htmlspecialchars($_GET['prixMin']);
-            // } else {
-            //     $prixMin = '';
-            // }
-            // if (isset($_GET['prixMax'])){
-            //     $prixMax = htmlspecialchars($_GET['prixMax']);
-            // } else {
-            //     $prixMax = '';
-            // }
+            if (isset($_GET['categorieRecherchee'])){
+                $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
+            } else {
+                $categorieRecherchee = '';
+            }
+            if (isset($_GET['categorieRecherchee'])){
+                $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
+            } else {
+                $categorieRecherchee = '';
+            }
+            if (isset($_GET['sousCategorieRecherchee'])){
+                $sousCategorieRecherchee = htmlspecialchars($_GET['sousCategorieRecherchee']);
+            } else {
+                $sousCategorieRecherchee = '';
+            }
+            if (isset($_GET['prixMin'])){
+                $prixMin = htmlspecialchars($_GET['prixMin']);
+            } else {
+                $prixMin = '';
+            }
+            if (isset($_GET['prixMax'])){
+                $prixMax = htmlspecialchars($_GET['prixMax']);
+            } else {
+                $prixMax = '';
+            }
 
 
              
@@ -53,14 +52,22 @@
             )
             )";
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
-            //requete sql
+            //Construction de la requete SQL
             if ($recherche == ''){
-                // $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
                 $titreRecherche = "Tout les produits :";
             } else {
-                // $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
+                $query .= " WHERE NOMPRODUIT ='".$recherche."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
+            if ($categorieRecherchee != ''){
+                if ($recherche != ""){
+                    $query .= " AND";
+                }
+                $query .= " WHERE C.IDCAT = '000".$categorieRecherchee."' AND P.IDSOUSCAT = S.IDSOUSCAT AND S.IDCAT = C.IDCAT";
+                $titreRecherche = "Résultats de la recherche :";
+            }
+            
+
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
             while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
