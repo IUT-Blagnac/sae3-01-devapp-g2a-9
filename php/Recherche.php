@@ -157,7 +157,7 @@
                                 <option value="4">Nouveautées</option>     
                             </select>
                             <?php
-                                if($titreRecherche ==''){
+                                if($optionTri ==''){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\"selected>Options de tri</option>
                                     <option value=\"0\">Prix 🥐</option>     
@@ -166,7 +166,7 @@
                                     <option value=\"3\">Nom Z-A</option>     
                                     <option value=\"4\">Nouveautées</option>     
                                 </select>";
-                                } elseif ($titreRecherche == 0){
+                                } elseif ($optionTri == 0){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\">Options de tri</option>
                                     <option value=\"0\"selected>Prix 🥐</option>     
@@ -175,7 +175,7 @@
                                     <option value=\"3\">Nom Z-A</option>     
                                     <option value=\"4\">Nouveautées</option>     
                                 </select>";
-                                } elseif($titreRecherche== 1){
+                                } elseif($optionTri== 1){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\">Options de tri</option>
                                     <option value=\"0\">Prix 🥐</option>     
@@ -184,7 +184,7 @@
                                     <option value=\"3\">Nom Z-A</option>     
                                     <option value=\"4\">Nouveautées</option>     
                                 </select>";
-                                } elseif($titreRecherche == 2){
+                                } elseif($optionTri == 2){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\">Options de tri</option>
                                     <option value=\"0\">Prix 🥐</option>     
@@ -193,7 +193,7 @@
                                     <option value=\"3\">Nom Z-A</option>     
                                     <option value=\"4\">Nouveautées</option>     
                                 </select>";
-                                } elseif($titreRecherche == 3){
+                                } elseif($optionTri == 3){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\">Options de tri</option>
                                     <option value=\"0\">Prix 🥐</option>     
@@ -202,7 +202,7 @@
                                     <option value=\"3\"selected>Nom Z-A</option>     
                                     <option value=\"4\">Nouveautées</option>     
                                 </select>";
-                                } elseif($titreRecherche == 4){
+                                } elseif($optionTri == 4){
                                     echo"<select name=\"tri\" class=\"select-style\">
                                     <option value=\"\">Options de tri</option>
                                     <option value=\"0\">Prix 🥐</option>     
