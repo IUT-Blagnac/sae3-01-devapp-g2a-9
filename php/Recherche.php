@@ -167,6 +167,12 @@
                             echo"<div class=\"main-card\">
                             <h2>Désolé nous n'avons pas de ".$_GET['recherche']." en stock :(</h2>";
                         }
+
+                        $i = 1;
+                                    foreach ($row2 as $categorie) {
+                                        echo"<h2>".strval($i)."-----".$categorie."</h2>";
+                                        $i += 1;
+                                    }
                 ?>
             </main>
             <?php include("include/footer.html"); ?>
