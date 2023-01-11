@@ -101,7 +101,7 @@
             } elseif($optionTri == 3){
                 $query .= " ORDER BY P.NOMPRODUIT DESC";
             } elseif($optionTri == 4){
-                $query .= " ORDER BY P.DATEPRODUIT DESC";
+                $query .= " ORDER BY date_field DESC";
             }
 
             $stid = oci_parse($conn, $query);
