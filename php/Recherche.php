@@ -156,6 +156,63 @@
                                 <option value="3">Nom Z-A</option>     
                                 <option value="4">Nouveautées</option>     
                             </select>
+                            <?php
+                                if($titreRecherche ==''){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\"selected>Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif ($titreRecherche == 0){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\"selected>Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($titreRecherche== 1){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\" selected>Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($titreRecherche == 2){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\"selected>Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($titreRecherche == 3){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\"selected>Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($titreRecherche == 4){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\"selected>Nouveautées</option>     
+                                </select>";
+                                }
+                            ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
                     </div>
