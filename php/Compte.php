@@ -50,8 +50,8 @@ if(isset($addAdresse)){
     else if (!preg_match("/[0-9]{5}/",$code_postal)) $erreur = "Code-postal invalide.";
     else if (!preg_match("/.{0,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
     else{
-        $query = "INSERT INTO ADRESSE (idAdresse, alias, ville, adresse, code_postal, complement, emailuser)
-        VALUES(CB_SEQ.NEXTVAL, :alias, :ville, adresse, :code_postal, :complement, :emailuser)";
+        $query = "INSERT INTO ADRESSE (idAdresse, surnomadresse, ville, adresse, codepostal, complement, emailuser)
+        VALUES(ADRESSE_SEQ.NEXTVAL, :alias, :ville, :adresse, :code_postal, :complement, :emailuser)";
         $stid = oci_parse($connect, $query);
 
         oci_bind_by_name($stid, ":alias", $alias);
