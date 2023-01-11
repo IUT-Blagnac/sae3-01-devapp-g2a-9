@@ -130,8 +130,12 @@
                     <div class="barre-de-recheche">
                         <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
-                            <input type="text" name="recherche" placeholder="Nom du produit">
                             <?php
+                                if($recherche==''){
+                                    echo"<input type=\"text\" name=\"recherche\" placeholder=\"Nom du produit\">";
+                                } else {
+                                    echo"<input type=\"text\" name=\"recherche\" value=\"".$recherche."\" placeholder=\"Nom du produit\">";
+                                }
                                 echo"<select name=\"categorieRecherchee\" class=\"select-style\">";
                                     if($categorieRecherchee == ''){
                                         echo"<option value=\"\"selected>Catégorie</option>";
@@ -171,12 +175,12 @@
                                 if($prixMin == ''){
                                     echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
                                 } else {
-                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=".$prixMin.">";
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\" value=".$prixMin.">";
                                 }
                                 if($prixMax == ''){
                                     echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix maximum\">";
                                 } else {
-                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=".$prixMax.">";
+                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix minimum\" value=".$prixMax.">";
                                 }
                                 if($optionTri ==''){
                                     echo"<select name=\"tri\" class=\"select-style\">
