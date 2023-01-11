@@ -342,7 +342,7 @@ input, select {
     font-size: 18px;
     font-weight: 300;
 }
-.select-style option:hover{
+.select-style option:checked{
     display: block;
     height: 50px;
     width: 100%;
