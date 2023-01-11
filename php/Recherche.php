@@ -64,8 +64,10 @@
             if ($sousCategorieRecherchee != ''){
                 if ($recherche != "" or $categorieRecherchee != ""){
                     $query .= " AND";
+                } else {
+                    $query .= " WHERE";
                 }
-                $query .= " WHERE P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
+                $query .= " P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
 
