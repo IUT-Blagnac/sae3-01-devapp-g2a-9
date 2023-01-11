@@ -299,7 +299,6 @@ form {
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 10px 35px;
-    margin-bottom: 2%;
 }
 form * {
     user-select: none;
@@ -331,6 +330,7 @@ input, select {
     padding: 0 10px;
     font-size: 18px;
     font-weight: 300;
+    margin-bottom: 2%;
 }
 .custom-select option{
     background-color: rgba(28, 33, 48, .5);
