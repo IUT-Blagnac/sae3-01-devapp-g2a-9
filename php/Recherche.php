@@ -141,14 +141,14 @@
                                     }
                                 ?>
                             </select>
-                            <select name="sousCategorieRecherchee">
+                            <select name="sousCategorieRecherchee" class="select-style">
                                 <option value=""selected>Sous Catégorie</option>
                                 <option value="00A">SousCat1</option>
                                 <option value="00B">SousCat2</option>
                             </select>
                             <input type="number" name="prixMin" placeholder="Prix minimum">
                             <input type="number" name="prixMax" placeholder="Prix maximum">
-                            <select name="tri">
+                            <select name="tri" class="select-style">
                                 <option value=""selected>Options de tri</option>
                                 <option value="0">Prix 🥐</option>     
                                 <option value="1">Prix dé🥐</option>     
