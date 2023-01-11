@@ -24,7 +24,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 //Ajout CB
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
-    else if (!preg_match("/.{2,64}/",$nomcb)) $erreur = "Nom invalide.";
+    else if (!preg_match("/.{1,64}/",$nomcb)) $erreur = "Nom invalide.";
     else if (!preg_match("/[0-9]{0,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
@@ -191,13 +191,13 @@ $res = oci_execute($listeadresses);
                             <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-carte-bancaire" style="margin-top:0;">Nom</label>
-                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern=".{2,64}" name="nomcb"/>
+                                    <input placeholder="Demeyere" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="4973 XXXX XXXX XXXX">
+                                    <input id="numero-carte-bancaire" pattern="[0-9]{16}" name="numcb" placeholder="1234567812345678">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                    <input placeholder="4XX" pattern="[0-9]{0,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
+                                    <input placeholder="123" pattern="[0-9]{0,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
                                     <label for="date-carte-bancaire">Date d'expiration</label>
                                     <input type="date" id="start" name="datecb" value="2023-02-27" min="2000-01-01">
