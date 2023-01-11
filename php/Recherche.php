@@ -9,12 +9,12 @@
         <?php
             // $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
 
-            // if (isset($_GET['recherche'])){
-            //     $recherche =  htmlspecialchars($_GET['recherche']);
-            //     $query .= "WHERE NOMPRODUIT ='".$recherche."'";
-            // } else {
-            //     $recherche = '';
-            // }
+            if (isset($_GET['recherche'])){
+                $recherche =  htmlspecialchars($_GET['recherche']);
+                $query .= "WHERE NOMPRODUIT ='".$recherche."'";
+            } else {
+                $recherche = '';
+            }
             // if (isset($_GET['categorieRecherchee'])){
             //     $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
             // } else {
