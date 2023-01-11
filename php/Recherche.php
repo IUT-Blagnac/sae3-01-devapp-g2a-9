@@ -42,7 +42,7 @@
             <main>
                 <div class="barre-de-recherche">
                     <div class="barre-de-recheche">
-                        <label for="barre-de-recherche"></label>
+                        <label for="barre-de-recherche">Rechercher</label>
                         <form action="Recherche.php" method="get">
                             <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
@@ -66,7 +66,7 @@
                 </div>
                 <?php
                     // if (isset($_GET['recherche'])){
-                        if (!is_null($res)) {
+                        if (!is_null($res) or isset($res)) {
                             echo"<div class=\"main-card\">
                             <h2>".$titreRecherche."</h2>
                             <div class=\"main-card-content\">";
