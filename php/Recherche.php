@@ -120,7 +120,7 @@
                                 <?php
                                     $i = 1;
                                     foreach ($row2 as $categorie) {
-                                        echo"<option value=0".strval($i).">".$row2."</option>";
+                                        echo"<option value=0".strval($i).">".$categorie."</option>";
                                         $i += 1;
                                     }
                                 ?>
