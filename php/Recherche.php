@@ -19,6 +19,8 @@
             //requete sql
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
+            } else {
+                $recherche = '';
             }
             if ($recherche == ''){
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
