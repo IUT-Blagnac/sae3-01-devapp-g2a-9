@@ -44,13 +44,11 @@ if(isset($addCB)){
 
 //Ajout Adresse
 if(isset($addAdresse)){
-    echo $alias;
-    echo preg_match("/[.]{,64}/", $alias);
-    if (!preg_match("/.{,64}/", $alias)) $erreur = "Alias invalide.";
+    if (!preg_match("/.{0,64}/", $alias)) $erreur = "Alias invalide.";
     else if (!preg_match("/.{1,45}/",$ville)) $erreur = "Nom de ville invalide.";
     else if (!preg_match("/.{1,128}/",$adresse)) $erreur = "Adresse invalide.";
     else if (!preg_match("/[0-9]{5}/",$code_postal)) $erreur = "Code-postal invalide.";
-    else if (!preg_match("/.{,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
+    else if (!preg_match("/.{0,64}/",$complement)) $erreur = "Complément d'adresse invalide.";
     else{
         $query = "INSERT INTO ADRESSE (idAdresse, alias, ville, adresse, code_postal, complement, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :alias, :ville, adresse, :code_postal, :complement, :emailuser)";
@@ -246,7 +244,7 @@ $res = oci_execute($listeadresses);
                             <div class="carte-bancaire">
                                 <form method="post" style="all: initial">
                                     <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                    <input placeholder="Chez tonton Patrick 🐐" name="alias" pattern=".{,64}" id="nom-adresse-livraison"/>
+                                    <input placeholder="Chez tonton Patrick 🐐" name="alias" pattern=".{0,64}" id="nom-adresse-livraison"/>
 
                                     <label for="ville-adresse-livraison">Ville</label>
                                     <input id="ville-adresse-livraison" pattern=".{1,45}" name="ville" placeholder="Toulouse">
@@ -258,7 +256,7 @@ $res = oci_execute($listeadresses);
                                     <input id="adresse-adresse-livraison" name="adresse" pattern=".{1,128}" placeholder="28 Allée des potirons">
                                     
                                     <label for="complement-adresse-livraison">Complément</label>
-                                    <input id="complement-adresse-livraison" name="complement" pattern=".{,64}" placeholder="">
+                                    <input id="complement-adresse-livraison" name="complement" pattern=".{0,64}" placeholder="">
 
                                     <label for="submit"></label>
                                     <input type="submit" name="addAdresse" value="➕ Ajouter l'adresse" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
