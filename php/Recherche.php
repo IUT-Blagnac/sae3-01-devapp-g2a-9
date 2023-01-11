@@ -105,6 +105,7 @@
             }
 
             oci_free_statement($stid);
+            oci_free_statement($stid2);
             oci_close($conn);
         ?>
         <div class="content">
