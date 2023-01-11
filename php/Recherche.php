@@ -19,7 +19,7 @@
             //requete sql
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                $titreRecherche = "Résultat de la recherche :"
+                $titreRecherche = "Résultat de la recherche :";
             } else {
                 $recherche = '';
                 $titreRecherche = "Tout les produits";
