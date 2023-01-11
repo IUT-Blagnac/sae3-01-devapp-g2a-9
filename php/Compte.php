@@ -217,19 +217,19 @@ $res = oci_execute($listeadresses);
                                 <div class=\"carte-bancaire\">
 
                                     <label for=\"nom-adresse-livraison\" style=\"margin-top:0;\">Alias de l'adresse</label>
-                                    <input value=\"À la maison 🏠\" id=\"nom-adresse-livraison\" disabled/>
+                                    <input value=\"{$row['SURNOMADRESSE']}\" id=\"nom-adresse-livraison\" disabled/>
                                     
                                     <label for=\"ville-adresse-livraison\">Ville</label>
-                                    <input id=\"ville-adresse-livraison\" value=\"Blagnac\" disabled>
+                                    <input id=\"ville-adresse-livraison\" value=\"{$row['VILLE']}\" disabled>
                                     
                                     <label for=\"code-postal-adresse-livraison\">Code Postal</label>
-                                    <input id=\"code-postal-adresse-livraison\" value=\"31700\" disabled>
+                                    <input id=\"code-postal-adresse-livraison\" value=\"{$row['CODEPOSTAL']}\" disabled>
                                 
                                     <label for=\"adresse-adresse-livraison\">Adresse</label>
-                                    <input id=\"adresse-adresse-livraison\" value=\"2 Bis Rue des Potiers\" disabled>
+                                    <input id=\"adresse-adresse-livraison\" value=\"{$row['ADRESSE']}\" disabled>
                                     
                                     <label for=\"complement-adresse-livraison\">Complément</label>
-                                    <input id=\"complement-adresse-livraison\" value=\"Appartement n°7\" disabled>
+                                    <input id=\"complement-adresse-livraison\" value=\"{$row['COMPLEMENT']}\" disabled>
 
                                     <label for=\"submit\"></label>
                                     <form method=\"post\" style=\"all: initial;\">
