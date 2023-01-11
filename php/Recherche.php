@@ -11,7 +11,6 @@
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                $query .= " WHERE NOMPRODUIT ='".$recherche."'";
             } else {
                 $recherche = '';
             }
@@ -59,6 +58,7 @@
                 $titreRecherche = "Tout les produits :";
             } else {
                 // $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
+                $query .= " WHERE NOMPRODUIT ='".$recherche."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
             $stid = oci_parse($conn, $query);
