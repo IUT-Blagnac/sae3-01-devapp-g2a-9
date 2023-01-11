@@ -7,7 +7,7 @@
     </head>
     <body>
         <?php
-            $query = "SELECT DISTINCT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
+            $query = "SELECT DISTINCT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, P.DATEPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
