@@ -7,17 +7,12 @@
     </head>
     <body>
         <?php
-            $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
+            $query = "SELECT DISTINCT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
             } else {
                 $recherche = '';
-            }
-            if (isset($_GET['categorieRecherchee'])){
-                $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
-            } else {
-                $categorieRecherchee = '';
             }
             if (isset($_GET['categorieRecherchee'])){
                 $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
@@ -66,7 +61,13 @@
                 $query .= " WHERE C.IDCAT = '000".$categorieRecherchee."' AND P.IDSOUSCAT = S.IDSOUSCAT AND S.IDCAT = C.IDCAT";
                 $titreRecherche = "Résultats de la recherche :";
             }
-            
+            if ($sousCategorieRecherchee != ''){
+                if ($recherche != "" or $categorieRecherchee != ""){
+                    $query .= " AND";
+                }
+                $query .= " WHERE P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
 
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
