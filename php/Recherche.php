@@ -7,6 +7,43 @@
     </head>
     <body>
         <?php
+            // $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
+
+            // if (isset($_GET['recherche'])){
+            //     $recherche =  htmlspecialchars($_GET['recherche']);
+            //     $query .= "WHERE NOMPRODUIT ='".$recherche."'";
+            // } else {
+            //     $recherche = '';
+            // }
+            // if (isset($_GET['categorieRecherchee'])){
+            //     $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
+            // } else {
+            //     $categorieRecherchee = '';
+            // }
+            // if (isset($_GET['categorieRecherchee'])){
+            //     $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
+            // } else {
+            //     $categorieRecherchee = '';
+            // }
+            // if (isset($_GET['sousCategorieRecherchee'])){
+            //     $sousCategorieRecherchee = htmlspecialchars($_GET['sousCategorieRecherchee']);
+            // } else {
+            //     $sousCategorieRecherchee = '';
+            // }
+            // if (isset($_GET['prixMin'])){
+            //     $prixMin = htmlspecialchars($_GET['prixMin']);
+            // } else {
+            //     $prixMin = '';
+            // }
+            // if (isset($_GET['prixMax'])){
+            //     $prixMax = htmlspecialchars($_GET['prixMax']);
+            // } else {
+            //     $prixMax = '';
+            // }
+
+
+             
+
             session_start();
             $db = "(DESCRIPTION =
             (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
@@ -17,13 +54,8 @@
             )";
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
             //requete sql
-            if (isset($_GET['recherche'])){
-                $recherche =  htmlspecialchars($_GET['recherche']);
-            } else {
-                $recherche = '';
-            }
             if ($recherche == ''){
-                $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit";
+                $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
                 $titreRecherche = "Tout les produits :";
             } else {
                 $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
