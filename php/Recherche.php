@@ -94,6 +94,16 @@
             while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
                 $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
             }
+
+            //categories
+            $query2 = "SELECT nomcat FROM categorie";
+            $stid2 = oci_parse($conn, $query2);
+            oci_execute($stid2);
+
+            while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
+                $res2[] = $row['NOMCAT'];
+            }
+
             oci_free_statement($stid);
             oci_close($conn);
         ?>
@@ -107,11 +117,17 @@
                             <input type="text" name="recherche" placeholder="Nom du produit">
                             <select name="categorieRecherchee">
                                 <option value=""selected>Catégorie</option>
-                                <option value="01">Processeurs</option>
+                                <?php
+                                    $i = 1;
+                                    foreach ($row2 as $categorie) {
+                                        echo"<option value=0".$i.">".$row2."</option>";
+                                    }
+                                ?>
+                                <!-- <option value="01">Processeurs</option>
                                 <option value="02">Stockage mémoire</option>
                                 <option value="03">Cartes graphiques</option>
                                 <option value="04">Cartes meres</option>
-                                <option value="05">Ventilateurs</option>
+                                <option value="05">Ventilateurs</option> -->
                             </select>
                             <select name="sousCategorieRecherchee">
                                 <option value=""selected>Sous Catégorie</option>
