@@ -141,12 +141,26 @@
                                     }
                                 ?>
                             </select>
-                            <select name="sousCategorieRecherchee" class="select-style">
-                                <option value=""selected>Sous Catégorie</option>
-                                <option value="00A">SousCat1</option>
-                                <option value="00B">SousCat2</option>
-                            </select>
                             <?php
+                                if($sousCategorieRecherchee == ''){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    <option value=\"\"selected>Sous Catégorie</option>
+                                    <option value=\"00A\">SousCat1</option>
+                                    <option value=\"00B\">SousCat2</option>
+                                    </select>";
+                                } elseif($sousCategorieRecherchee == '00A'){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    <option value=\"\">Sous Catégorie</option>
+                                    <option value=\"00A\"selected>SousCat1</option>
+                                    <option value=\"00B\">SousCat2</option>
+                                    </select>";
+                                } elseif($sousCategorieRecherchee == '00A'){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    <option value=\"\">Sous Catégorie</option>
+                                    <option value=\"00A\">SousCat1</option>
+                                    <option value=\"00B\"selected>SousCat2</option>
+                                    </select>";
+                                }
                                 if($prixMin == ''){
                                     echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
                                 } else {
