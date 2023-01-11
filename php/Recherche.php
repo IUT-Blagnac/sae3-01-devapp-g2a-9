@@ -7,11 +7,11 @@
     </head>
     <body>
         <?php
-            // $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
+            $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
-                // $query .= "WHERE NOMPRODUIT ='".$recherche."'";
+                $query .= "WHERE NOMPRODUIT ='".$recherche."'";
             } else {
                 $recherche = '';
             }
@@ -55,10 +55,10 @@
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
             //requete sql
             if ($recherche == ''){
-                $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
+                // $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P";
                 $titreRecherche = "Tout les produits :";
             } else {
-                $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
+                // $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, (PRIXPRODUIT - REDUCTION) as REDUC FROM produit WHERE NOMPRODUIT ='".$recherche."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
             $stid = oci_parse($conn, $query);
