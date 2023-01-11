@@ -70,6 +70,15 @@
                 $query .= " P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
+            if ($prixMin != ''){
+                if ($recherche != "" or $categorieRecherchee != ""){
+                    $query .= " AND";
+                } else {
+                    $query .= " WHERE";
+                }
+                $query .= " (P.PRIXPRODUIT - P.REDUCTION) >'".$prixMin."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
 
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
@@ -131,7 +140,6 @@
                             echo"<div class=\"main-card\">
                             <h2>Désolé nous n'avons pas de ".$_GET['recherche']." en stock :(</h2>";
                         }
-                        echo $query
                 ?>
             </main>
             <?php include("include/footer.html"); ?>
