@@ -54,14 +54,32 @@ if(isset($delCB)){
     $res = oci_execute($stid, OCI_COMMIT_ON_SUCCESS);
 }
 
+//Supprimer Adresse
+if(isset($delAdresse)){
+    $query = "DELETE FROM ADRESSE WHERE IDADRESSE LIKE :idAdresse AND EMAILUSER LIKE :email";
+    $stid = oci_parse($connect, $query);
+
+    oci_bind_by_name($stid, ":idAdresse", $idAdresse);
+    oci_bind_by_name($stid, ":email", $_SESSION['email']);
+
+    $res = oci_execute($stid, OCI_COMMIT_ON_SUCCESS);
+}
 
 //Affichage CB
 $query = "SELECT * FROM CARTEBANCAIRE WHERE EMAILUSER LIKE :email";
-$stid = oci_parse($connect, $query);
+$listecb = oci_parse($connect, $query);
 
-oci_bind_by_name($stid, ":email", $_SESSION['email']);
+oci_bind_by_name($listecb, ":email", $_SESSION['email']);
 
-$res = oci_execute($stid);
+$res = oci_execute($listecb);
+
+//Affichage Adresse
+$query = "SELECT * FROM ADRESSE WHERE EMAILUSER LIKE :email";
+$listeadresses = oci_parse($connect, $query);
+
+oci_bind_by_name($listeadresses, ":email", $_SESSION['email']);
+
+$res = oci_execute($listeadresses);
 
 ?>
 
@@ -120,7 +138,7 @@ $res = oci_execute($stid);
                     <h1  style="text-align: center">Méthodes de paiement <span style="position:relative; top: -.1em;">💳</span></h1>
                     <div class="zone-utilisateur">
                         <?php
-                        while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+                        while ($row = oci_fetch_array($listecb, OCI_ASSOC)) {
                             echo "<div class=\"bulle\">
                                 <div class=\"carte-bancaire\">
                                     <label for=\"nom-carte-bancaire\" style=\"margin-top:0;\">Nom</label>
@@ -171,61 +189,54 @@ $res = oci_execute($stid);
                 <div class="main-card">
                     <h1  style="text-align: center">Adresses de livraison <span style="position:relative; top: -.1em;">📫</span></h1>
                     <div class="zone-utilisateur">
-                    <div class="bulle">
-                            <div class="carte-bancaire">
+                        <?php
+                            while ($row = oci_fetch_array($listeadresses, OCI_ASSOC)) { echo "<div class=\"bulle\">
+                                <div class=\"carte-bancaire\">
 
-                                <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                <input value="À la maison 🏠" id="nom-adresse-livraison" disabled/>
+                                    <label for=\"nom-adresse-livraison\" style=\"margin-top:0;\">Alias de l'adresse</label>
+                                    <input value=\"À la maison 🏠\" id=\"nom-adresse-livraison\" disabled/>
 
-                                <label for="code-postal-adresse-livraison">Code Postal</label>
-                                <input id="code-postal-adresse-livraison" value="31700" disabled>
+                                    <label for=\"code-postal-adresse-livraison\">Code Postal</label>
+                                    <input id=\"code-postal-adresse-livraison\" value=\"31700\" disabled>
 
-                                <label for="ville-adresse-livraison">Ville</label>
-                                <input id="ville-adresse-livraison" value="Blagnac" disabled>
-                            
-                                <label for="adresse-adresse-livraison">Adresse</label>
-                                <input id="adresse-adresse-livraison" value="2 Bis Rue des Potiers" disabled>
+                                    <label for=\"ville-adresse-livraison\">Ville</label>
+                                    <input id=\"ville-adresse-livraison\" value=\"Blagnac\" disabled>
                                 
-                                <label for="complement-adresse-livraison">Complément</label>
-                                <input id="complement-adresse-livraison" value="Appartement n°7" disabled>
-                            </div>
-                        </div>
+                                    <label for=\"adresse-adresse-livraison\">Adresse</label>
+                                    <input id=\"adresse-adresse-livraison\" value=\"2 Bis Rue des Potiers\" disabled>
+                                    
+                                    <label for=\"complement-adresse-livraison\">Complément</label>
+                                    <input id=\"complement-adresse-livraison\" value=\"Appartement n°7\" disabled>
+
+                                    <label for=\"submit\"></label>
+                                    <form method=\"post\" style=\"all: initial;\">
+                                        <input type=\"hidden\" name=\"idAdresse\" value=\"{$row['IDADRESSE']}\">
+                                        <input type=\"submit\" name=\"delAdresse\" value=\"🗑️\" style=\"background-color: rgba(255, 0, 0, 0.5); cursor: pointer;\">
+                                    </form>
+                                </div>
+                            </div>";
+                            }
+                        ?>
                         <div class="bulle">
                             <div class="carte-bancaire">
 
                                 <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                <input value="Chez tonton Patrick 🐐" id="nom-adresse-livraison" disabled/>
+                                <input placeholder="Chez tonton Patrick 🐐" id="nom-adresse-livraison"/>
 
                                 <label for="code-postal-adresse-livraison">Code Postal</label>
-                                <input id="code-postal-adresse-livraison" value="31000" disabled>
+                                <input id="code-postal-adresse-livraison" placeholder="31000">
 
                                 <label for="ville-adresse-livraison">Ville</label>
-                                <input id="ville-adresse-livraison" value="Toulouse" disabled>
+                                <input id="ville-adresse-livraison" placeholder="Toulouse">
                             
                                 <label for="adresse-adresse-livraison">Adresse</label>
-                                <input id="adresse-adresse-livraison" value="28 Allée des potirons" disabled>
+                                <input id="adresse-adresse-livraison" placeholder="28 Allée des potirons">
                                 
                                 <label for="complement-adresse-livraison">Complément</label>
-                                <input id="complement-adresse-livraison" value="" disabled>
-                            </div>
-                        </div>
-                        <div class="bulle">
-                            <div class="carte-bancaire">
+                                <input id="complement-adresse-livraison" placeholder="">
 
-                                <label for="nom-adresse-livraison" style="margin-top:0;">Alias de l'adresse</label>
-                                <input value="Ancien Appartement 🏢" id="nom-adresse-livraison" disabled/>
-
-                                <label for="code-postal-adresse-livraison">Code Postal</label>
-                                <input id="code-postal-adresse-livraison" value="34000" disabled>
-
-                                <label for="ville-adresse-livraison">Ville</label>
-                                <input id="ville-adresse-livraison" value="Montpellier" disabled>
-                            
-                                <label for="adresse-adresse-livraison">Adresse</label>
-                                <input id="adresse-adresse-livraison" value="14 Avenue Kennedy" disabled>
-                                
-                                <label for="complement-adresse-livraison">Complément</label>
-                                <input id="complement-adresse-livraison" value="Appartement n°23" disabled>
+                                <label for="submit"></label>
+                                <input type="submit" name="addCB" value="➕ Ajouter la carte" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
                             </div>
                         </div>
                     </div>
