@@ -451,6 +451,10 @@ button:hover {
     color: white;
 }
 
+.妈妈 {
+    background-color: rgba(255, 255, 255, 0.557);
+}
+
 .align-left{
     gap: 1em;
     display: flex;
