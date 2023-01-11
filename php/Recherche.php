@@ -66,6 +66,7 @@
                 </div>
                 <?php
                     // if (isset($_GET['recherche'])){
+                        error_reporting(0);
                         if (!is_null($res) or isset($res)) {
                             echo"<div class=\"main-card\">
                             <h2>".$titreRecherche."</h2>
