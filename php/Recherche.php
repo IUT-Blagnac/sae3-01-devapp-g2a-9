@@ -146,13 +146,11 @@
                                 <option value="00A">SousCat1</option>
                                 <option value="00B">SousCat2</option>
                             </select>
-                            <input type="number" name="prixMin" placeholder="Prix minimum">
-                            <input type="number" name="prixMax" placeholder="Prix maximum">
                             <?php
                                 if($prixMin == ''){
                                     echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
                                 } else {
-                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=".$prixMax.">";
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=".$prixMin.">";
                                 }
                                 if($prixMax == ''){
                                     echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix maximum\">";
