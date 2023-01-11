@@ -169,7 +169,7 @@
                         }
 
                         $i = 1;
-                                    foreach ($row2 as $categorie) {
+                                    foreach ($res2 as $categorie) {
                                         echo"<h2>".strval($i)."-----".$categorie."</h2>";
                                         $i += 1;
                                     }
