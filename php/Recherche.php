@@ -129,6 +129,7 @@
                             echo"<div class=\"main-card\">
                             <h2>Désolé nous n'avons pas de ".$_GET['recherche']." en stock :(</h2>";
                         }
+                        echo $query
                 ?>
             </main>
             <?php include("include/footer.html"); ?>
