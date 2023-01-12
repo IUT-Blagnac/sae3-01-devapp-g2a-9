@@ -72,7 +72,7 @@
                 } else {
                     $query .= " WHERE";
                 }
-                $query .= " P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
+                $query .= " P.IDSOUSCAT ='".substr($categorieRecherchee, -2).$sousCategorieRecherchee."'";
                 $titreRecherche = "Résultats de la recherche :";
             }
             if ($prixMin != ""){
