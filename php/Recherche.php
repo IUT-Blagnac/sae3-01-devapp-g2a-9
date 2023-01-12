@@ -249,7 +249,7 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        var txt = document.getElementById(\"cat\").selectedIndex.text;
+                                        var txt = document.getElementById(\"cat\").selectedIndex;
                             
                                         console.log(txt);
                                     })
