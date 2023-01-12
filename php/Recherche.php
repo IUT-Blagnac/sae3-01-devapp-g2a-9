@@ -121,12 +121,12 @@
             }
 
             // Sous catégories
-            $query3 = "SELECT DISTINCT IDSOUSCAT, NOMSOUSCAT FROM SOUSCATEGORIE";
+            $query3 = "SELECT DISTINCT IDSOUSCAT, NOMSOUSCAT, IDCAT FROM SOUSCATEGORIE";
             $stid3 = oci_parse($conn, $query3);
             oci_execute($stid3);
 
             while ($row3 = oci_fetch_array($stid3, OCI_ASSOC)){
-                $res3[] = ['id' => $row3['IDSOUSCAT'], 'nom' => $row3['NOMSOUSCAT']];
+                $res3[] = ['id' => $row3['IDSOUSCAT'], 'nom' => $row3['NOMSOUSCAT'], 'cat' => $row3['IDCAT']];
             }
 
             oci_free_statement($stid);
@@ -250,7 +250,8 @@
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         var catSelected = document.getElementById(\"cat\").value;
-                                        document.getElementById(\"sousCat\").options[1].innerHTML = catSelected;
+                                        ".$res3.".forEach(element => if( element[\"cat\"] == catSelected)
+                                         document.getElementById(\"sousCat\").options[1].innerHTML = element[\"nom\"];
                                     })
                                 </script>";
                             ?>
