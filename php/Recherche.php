@@ -140,7 +140,7 @@
                 <div class="barre-de-recherche">
                     <div class="barre-de-recheche">
                         <label for="barre-de-recherche">Rechercher</label>
-                        <form action="Recherche.php" method="get">
+                        <form action="Recherche.php" method="get" name="Recherche">
                             <?php
                                 if($recherche==''){
                                     echo"<input type=\"text\" name=\"recherche\" placeholder=\"Nom du produit\">";
@@ -163,19 +163,19 @@
                                     }
                                 echo"</select>";
                                 if($sousCategorieRecherchee == ''){
-                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
                                     <option value=\"\"selected>Sous Catégorie</option>
                                     <option value=\"00A\">SousCat1</option>
                                     <option value=\"00B\">SousCat2</option>
                                     </select>";
                                 } elseif($sousCategorieRecherchee == '00A'){
-                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
                                     <option value=\"\">Sous Catégorie</option>
                                     <option value=\"00A\"selected>SousCat1</option>
                                     <option value=\"00B\">SousCat2</option>
                                     </select>";
                                 } elseif($sousCategorieRecherchee == '00B'){
-                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
                                     <option value=\"\">Sous Catégorie</option>
                                     <option value=\"00A\">SousCat1</option>
                                     <option value=\"00B\"selected>SousCat2</option>
@@ -247,8 +247,13 @@
                                     <option value=\"4\"selected>Nouveautées</option>     
                                 </select>";
                                 }
-                                // echo"<script
-                                // /script>";
+                                echo"<script
+                                    document.forms[\"Recherche\"][\"sousCategorieRecherchee\"].addEventListener(\"input\", function(){
+                                        var txt = document.getElementById(\"sousCat\").option[document.getElementById(\"sousCat\").selectedIndex].text;
+                            
+                                        console.log(txt);
+                                    }
+                                /script>";
                             ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
