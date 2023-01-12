@@ -10,12 +10,12 @@
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
     //categories
-    $query = "SELECT NOMCAT, IDCAT FROM CATEGORIE";
-    $stid = oci_parse($connect, $query);
+    $query = "SELECT nomcat FROM categorie";
+    $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $categories[] = [ 'NOMCAT' => $row['NOMCAT'], 'IDCAT' => $row['IDCAT'] ];
+        $res[] = $row['NOMCAT'];
     }
     
     
@@ -59,8 +59,8 @@
                     <h2>Catégories</h2>
                     <div class="main-card-content">
                         <?php
-                            foreach ($categories as $i){
-                                echo " <a href=\"Categories.php?cat=" . $i['IDCAT'] . "\" class=\"categorie\"><button>".ucwords($i['NOMCAT'])."</button></a>";
+                            foreach ($res as $categorie){
+                            echo " <a href=\"Categories.php?cat=" . $categorie . "\" class=\"categorie\"><button>".ucwords($categorie)."</button></a>";
                             }
                         ?>
                     </div>
