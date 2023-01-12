@@ -252,7 +252,7 @@
                                         var txt = document.getElementById(\"sousCat\").selectedIndex.text;
                             
                                         console.log(txt);
-                                    }
+                                    })
                                 </script>";
                             ?>
                             <input type="submit" value="Rechercher 🔎">
