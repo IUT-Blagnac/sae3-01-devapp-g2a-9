@@ -247,11 +247,13 @@
                                     <option value=\"4\"selected>Nouveautées</option>     
                                 </select>";
                                 }
-                                $aaaaah = 'oui';
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(\"".$aaaaah."\");
-                                        
+                                        console.log(\"".$res3['nom']."\");
+                                        var catSelected = document.getElementById(\"cat\").value;
+                                        ".$res3.".forEach(element => if( element[\"cat\"] == catSelected){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = element[\"nom\"];
+                                        });
                                     })
                                 </script>";
                             ?>
