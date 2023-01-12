@@ -253,7 +253,7 @@
                             
                                         console.log(txt);
                                     }
-                                /script>";
+                                </script>";
                             ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
