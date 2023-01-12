@@ -250,7 +250,7 @@
                                 $aaaaah = 'oui';
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(".$aaaaah.");
+                                        console.log(\"".$aaaaah."\");
                                         
                                     })
                                 </script>";
