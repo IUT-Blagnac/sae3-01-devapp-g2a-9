@@ -247,9 +247,10 @@
                                     <option value=\"4\"selected>Nouveautées</option>     
                                 </select>";
                                 }
+                                $aaaaah = 'oui';
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(".$res3.");
+                                        console.log(".$aaaaah.");
                                         
                                     })
                                 </script>";
