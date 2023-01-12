@@ -3,8 +3,8 @@ error_reporting(E_ERROR | E_PARSE);
 include("include/connect_inc.php");
 
 //categories
-$query = "SELECT nomcat FROM categorie";
-$stid = oci_parse($conn, $query);
+$query = "SELECT NOMCAT FROM CATEGORIE";
+$stid = oci_parse($connect, $query);
 oci_execute($stid);
 
 while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
