@@ -147,7 +147,7 @@
                                 } else {
                                     echo"<input type=\"text\" name=\"recherche\" value=\"".$recherche."\" placeholder=\"Nom du produit\">";
                                 }
-                                echo"<select name=\"categorieRecherchee\" class=\"select-style\">";
+                                echo"<select name=\"categorieRecherchee\" class=\"select-style\" id=\"cat\">";
                                     if($categorieRecherchee == ''){
                                         echo"<option value=\"\"selected>Catégorie</option>";
                                     } else {
@@ -248,8 +248,8 @@
                                 </select>";
                                 }
                                 echo"<script>
-                                    document.getElementById(\"sousCat\").addEventListener(\"change\", function(){
-                                        var txt = document.getElementById(\"sousCat\").selectedIndex.text;
+                                    document.getElementById(\"cat\").addEventListener(\"change\", function(){
+                                        var txt = document.getElementById(\"cat\").selectedIndex.text;
                             
                                         console.log(txt);
                                     })
