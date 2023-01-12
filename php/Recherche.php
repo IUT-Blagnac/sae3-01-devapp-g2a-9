@@ -252,7 +252,22 @@
                                         console.log(\"".$res3[0]['cat']."\");
                                         var nbCategories = ".count($res3)."/2;
                                         var catSelected = document.getElementById(\"cat\").selectedIndex;
-                                        document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[0]['nom']."\";
+                                        if(catSelected == 1 ){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[0]['nom']."\";
+                                            document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[1]['nom']."\";
+                                        } else if(catSelected == 2 ){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[2]['nom']."\";
+                                            document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[3]['nom']."\";
+                                        } else if(catSelected == 3 ){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[4]['nom']."\";
+                                            document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[5]['nom']."\";
+                                        } else if(catSelected == 4 ){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[6]['nom']."\";
+                                            document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[7]['nom']."\";
+                                        } else if(catSelected == 5 ){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[8]['nom']."\";
+                                            document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[9]['nom']."\";
+                                        }
                                         console.log(catSelected);
                                         console.log(nbCategories);
                                     })
