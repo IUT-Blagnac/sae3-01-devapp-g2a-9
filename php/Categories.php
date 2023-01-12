@@ -60,10 +60,10 @@ if (isset($_REQUEST["cat"])) {
                         $nomcat = $categorie['NOMCAT'];
                     }
                 }
-                
+
                 if (isset($_REQUEST["cat"])) {
                     echo "<div class=\"main-card\">
-                        <h2>" . ucwords($categories[$_REQUEST["cat"]]) . "</h2>
+                        <h2>" . ucwords($nomcat) . "</h2>
                         <div class=\"main-card-content\">";
                         foreach ($produits as $produit) {
                             echo "<div class=\"produit\">
