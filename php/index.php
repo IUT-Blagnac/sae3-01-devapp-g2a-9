@@ -56,16 +56,6 @@
             <?php $page = strtolower(basename(__FILE__, '.php')); include("include/header.php"); ?>
             <main>
                 <div class="main-card">
-                    <h2>Catégories</h2>
-                    <div class="main-card-content">
-                        <?php
-                            foreach ($res as $categorie){
-                            echo " <a href=\"Categories.php?cat=" . $categorie . "\" class=\"categorie\"><button>".ucwords($categorie)."</button></a>";
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="main-card">
                     <h2>Nouveautés</h2>
                     <div class="main-card-content">
                         
