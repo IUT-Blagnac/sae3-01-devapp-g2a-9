@@ -249,7 +249,6 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(\"".$res3[0]['cat']."\");
                                         var nbCategories = ".count($res3)."/2;
                                         var catSelected = document.getElementById(\"cat\").selectedIndex;
                                         if(catSelected == 1 ){
@@ -268,8 +267,6 @@
                                             document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[8]['nom']."\";
                                             document.getElementById(\"sousCat\").options[2].innerHTML = \"".$res3[9]['nom']."\";
                                         }
-                                        console.log(catSelected);
-                                        console.log(nbCategories);
                                     })
                                 </script>";
                             ?>
