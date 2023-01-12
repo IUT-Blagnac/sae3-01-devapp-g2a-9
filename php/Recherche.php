@@ -249,8 +249,9 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(\"".$res3[0]['nom']."\");
-                                        
+                                        console.log(\"".$res3[0]['cat']."\");
+                                        var catSelected = document.getElementById(\"cat\").value;
+                                        console.log(catSelected);
                                     })
                                 </script>";
                             ?>
