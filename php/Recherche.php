@@ -251,7 +251,7 @@
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         console.log(\"".$res3[0]['cat']."\");
                                         var catSelected = document.getElementById(\"cat\").value;
-                                        document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[0]['cat']."\";
+                                        document.getElementById(\"sousCat\").options[1].innerHTML = \"sauxisse\";
                                         console.log(catSelected);
                                     })
                                 </script>";
