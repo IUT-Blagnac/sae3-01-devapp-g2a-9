@@ -63,7 +63,7 @@
                 if ($recherche != ""){
                     $query .= " AND";
                 }
-                $query .= " WHERE C.IDCAT = '000".$categorieRecherchee."' AND P.IDSOUSCAT = S.IDSOUSCAT AND S.IDCAT = C.IDCAT";
+                $query .= " WHERE C.IDCAT = '".$categorieRecherchee."' AND P.IDSOUSCAT = S.IDSOUSCAT AND S.IDCAT = C.IDCAT";
                 $titreRecherche = "Résultats de la recherche :";
             }
             if ($sousCategorieRecherchee != ''){
