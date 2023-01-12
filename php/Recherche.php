@@ -120,8 +120,18 @@
                 $res2[] = $row2['NOMCAT'];
             }
 
+            // Sous catégories
+            $query3 = "SELECT DISTINCT IDSOUSCAT, NOMSOUSCAT FROM SOUSCATEGORIE";
+            $stid3 = oci_parse($conn, $query3);
+            oci_execute($stid3);
+
+            while ($row3 = oci_fetch_array($stid3, OCI_ASSOC)){
+                $res3[] = ['id' => $row3['IDSOUSCAT'], 'nom' => $row3['NOMSOUSCAT']];
+            }
+
             oci_free_statement($stid);
             oci_free_statement($stid2);
+            oci_free_statement($stid3);
             oci_close($conn);
         ?>
         <div class="content">
@@ -151,9 +161,7 @@
                                         echo"<option value=\"0".strval($i)."\">".$categorie."</option>";
                                         $i += 1;
                                     }
-                                ?>
-                            </select>
-                            <?php
+                                echo"</select>";
                                 if($sousCategorieRecherchee == ''){
                                     echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
                                     <option value=\"\"selected>Sous Catégorie</option>
@@ -166,13 +174,14 @@
                                     <option value=\"00A\"selected>SousCat1</option>
                                     <option value=\"00B\">SousCat2</option>
                                     </select>";
-                                } elseif($sousCategorieRecherchee == '00A'){
+                                } elseif($sousCategorieRecherchee == '00B'){
                                     echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\">
                                     <option value=\"\">Sous Catégorie</option>
                                     <option value=\"00A\">SousCat1</option>
                                     <option value=\"00B\"selected>SousCat2</option>
                                     </select>";
                                 }
+
                                 if($prixMin == ''){
                                     echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
                                 } else {
@@ -238,6 +247,8 @@
                                     <option value=\"4\"selected>Nouveautées</option>     
                                 </select>";
                                 }
+                                // echo"<script
+                                // /script>";
                             ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
