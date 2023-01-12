@@ -11,6 +11,8 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
     $categories[] = $row['NOMCAT'];
 }
 
+print_r($categories);
+
 
 // Produits par catégorie
 if (isset($_REQUEST["cat"])) {
