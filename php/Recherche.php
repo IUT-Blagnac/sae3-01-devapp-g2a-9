@@ -249,7 +249,7 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        console.log(\"".$res3[0]."\");
+                                        console.log(\"".$res3[0]['nom']."\");
                                         
                                     })
                                 </script>";
