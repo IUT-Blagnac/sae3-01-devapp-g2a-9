@@ -248,8 +248,8 @@
                                 </select>";
                                 }
                                 echo"<script>
-                                    document.forms[\"Recherche\"][\"sousCategorieRecherchee\"].addEventListener(\"input\", function(){
-                                        var txt = document.getElementById(\"sousCat\").option[document.getElementById(\"sousCat\").selectedIndex].text;
+                                    document.getElementById(\"sousCat\").addEventListener(\"change\", function(){
+                                        var txt = document.getElementById(\"sousCat\").selectedIndex.text;
                             
                                         console.log(txt);
                                     }
