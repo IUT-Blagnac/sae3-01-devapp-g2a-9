@@ -1,3 +1,36 @@
+<?php 
+error_reporting(E_ERROR | E_PARSE);
+include("include/connect_inc.php");
+
+//categories
+$query = "SELECT nomcat FROM categorie";
+$stid = oci_parse($conn, $query);
+oci_execute($stid);
+
+while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+    $res[] = $row['NOMCAT'];
+}
+
+
+// Produits par catégorie
+if (isset($_REQUEST["cat"])) {
+    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S WHERE C.IDCAT = :categorie";
+    $categorie = $_REQUEST["cat"];
+    $stid = oci_parse($connect, $query);
+
+    oci_bind_by_name($stid, ":categorie", $categorie);
+
+    $res = oci_execute($stid);
+
+    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
+    }
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+
+?>
+
 <html lang="fr">
     <head>
         <title>Commerce de la rue</title>
@@ -13,11 +46,11 @@
                 <div class="main-card">
                     <h2>Catégories</h2>
                     <div class="main-card-content">
-                        <a href="Categories.php?cat=cpu" class="categorie"><button>Processeurs</button></a>
-                        <a href="Categories.php?cat=hdd" class="categorie"><button>Disques durs</button></a>
-                        <a href="Categories.php?cat=gpu" class="categorie"><button>Cartes graphiques</button></a>
-                        <a href="Categories.php?cat=mb" class="categorie"><button>Cartes mères</button></a>
-                        <a href="Categories.php?cat=ventirad" class="categorie"><button>Ventilateurs</button></a>
+                        <?php
+                            foreach ($res as $categorie){
+                            echo " <a href=\"Categories.php?cat=" . $categorie . "\" class=\"categorie\"><button>".ucwords($categorie)."</button></a>";
+                            }
+                        ?>
                     </div>
                 </div>
                 <?php
