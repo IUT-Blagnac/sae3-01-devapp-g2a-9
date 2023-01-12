@@ -14,7 +14,7 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
 
 // Produits par catégorie
 if (isset($_REQUEST["cat"])) {
-    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S WHERE C.IDCAT = :categorie";
+    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
     $categorie = $_REQUEST["cat"];
     $stid = oci_parse($connect, $query);
 
