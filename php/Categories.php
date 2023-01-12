@@ -8,7 +8,7 @@ $stid = oci_parse($connect, $query);
 oci_execute($stid);
 
 while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-    $categories[] = $row['NOMCAT'];
+    $categories[] = [ 'NOMCAT' => $row['NOMCAT'], 'IDCAT' => $row['IDCAT'] ];
 }
 
 
@@ -48,7 +48,7 @@ if (isset($_REQUEST["cat"])) {
                     <div class="main-card-content">
                         <?php
                             foreach ($categories as $i){
-                                echo " <a href=\"Categories.php?cat=" . $i . "\" class=\"categorie\"><button>".ucwords($i)."</button></a>";
+                                echo " <a href=\"Categories.php?cat=" . $i['IDCAT'] . "\" class=\"categorie\"><button>".ucwords($i['NOMCAT'])."</button></a>";
                             }
                         ?>
                     </div>
