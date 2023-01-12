@@ -11,57 +11,57 @@ Groupe G2A09
 
 == Fiches de tests
 
-=== Compte client
+=== Authentification client
 
 ==== Inscription client
 
 |===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
-|TestInscriptionOK
-|Inscription d'un client
-|Un compte client est créé avec les informations renseignées
-|Toutes les informations du nouveau client sont renseignées correctement
+| TestInscriptionOK
+| Inscription d'un client
+| Un compte client est créé avec les informations renseignées
+| Toutes les informations du nouveau client sont renseignées correctement
 
-|TestInscriptionNOK
-|Inscription d'un client
-|Blocage : Il manque un information sur le client à renseigner
+| TestInscriptionNOK
+| Inscription d'un client
+| Blocage : Il manque une information sur le client à renseigner
 |
 
-|TestInscriptionMDP
-|Inscription d'un client
-|Blocage : Le mot de passe n'est pas assez sécurisé
+| TestInscriptionMDP
+| Inscription d'un client
+| Blocage : Le mot de passe n'est pas assez sécurisé
 |
 
-|TestInscriptionExistant
-|Inscription d'un client
-|Blocage : L'email est déjà utilisé pour un compte existant
+| TestInscriptionExistant
+| Inscription d'un client
+| Blocage : L'email est déjà utilisé pour un compte existant
 |
 |===
 
 ==== Connexion client
 
 |===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
-|TestConnexionOK
-|Connexion d'un client
-|Connexion du client à son compte
-|Les informations renseignées du compte client sont correctes
+| TestConnexionOK
+| Connexion d'un client
+| Connexion du client à son compte
+| Les informations renseignées du compte client sont correctes
 
-|TestConnexionNOK
-|Connexion d'un client
-|Blocage : Demande de renseigner les champs manquants du formulaire
-|Il manque une information sur le compte client à renseigner
+| TestConnexionNOK
+| Connexion d'un client
+| Blocage : Demande de renseigner les champs manquants du formulaire
+| Il manque une information sur le compte client à renseigner
 
-|TestConnexionEmailInconnu
-|Connexion d'un client
-|Blocage avec erreur : "Adresse Email inconnue"
-|L'adresse email fournie est inconnue
+| TestConnexionEmailInconnu
+| Connexion d'un client
+| Blocage avec erreur : "Adresse Email inconnue"
+| L'adresse email fournie est inconnue
 
-|TestConnexionMDPInvalide
-|Connexion d'un client
-|Blocage : "Mot de passe invalide"
+| TestConnexionMDPInvalide
+| Connexion d'un client
+| Blocage : "Mot de passe invalide"
 | - L'adresse email fournie est connue
   - Le mot de passe associé est invalide
 |===
@@ -69,11 +69,11 @@ Groupe G2A09
 ==== Se souvenir de moi
 
 |===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
-|TestSouvenirOK
-|Se souvenir de l'adresse email du client
-|L'email se remplit automatiquement lors de l'arrivée sur la page Connexion
+| TestSouvenirOK
+| Se souvenir de l'adresse email du client
+| L'email se remplit automatiquement lors de l'arrivée sur la page Connexion
 | - Le client a réussi à se connecter +
   - La case "Se souvenir de moi" était cochée
 
@@ -82,54 +82,63 @@ Groupe G2A09
 ==== Oubli de mot de passe
 
 |===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
-|TestOubliMDP
-|Réinitialiser son mot de passe
-|Recevoir une leçon de Philippe Etchebest
-|Cliquer sur le bouton "Mot de passe oublié" sur la page de connexion
+| TestOubliMDP
+| Réinitialiser son mot de passe
+| Recevoir une leçon de Philippe Etchebest
+| Cliquer sur le bouton "Mot de passe oublié" sur la page de connexion
 |===
 
-=== CRUD Carte Bancaire
+=== Coordonnées Client
 
-==== Ajout carte bancaire
-
-|===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
-
-|TestAjoutCBOK
-|Ajout d'une carte bancaire
-|La carte bancaire est ajoutée au compte
-|Les informations renseignées
-
-|TestAjoutCBNOK
-|Ajout d'une carte bancaire
-|Blocage : Il manque un information sur le client à renseigner
-|
-
-|TestAjoutCBFormat
-|Ajout d'une carte bancaire
-|Blocage : Le mot de passe n'est pas assez sécurisé
-|
-
-|TestAjoutCBExistant
-|Ajout d'une carte bancaire
-|Blocage : L'email est déjà utilisé pour un compte existant
-|
-|===
-
-==== Suppression carte bancaire
+==== CRUD Carte bancaire
 
 |===
-|Nom Test |Nom cas utilisation |Condition de satisfaction |Pré-condition
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
-|TestConnexionOK
-|Connexion d'un client
-|Les informations du compte client sont correctes
-|Le client possède un compte
+| TestAjoutCBOK
+| Ajout d'une carte bancaire
+| La carte bancaire est ajoutée au compte
+| Les informations renseignées sont correctes
 
-|TestConnexionNOK
-|Connexion d'un client
-|Blocage : Il manque une information sur le compte client à renseigner
-|Le client possède un compte
+| TestAjoutCBNOK
+| Ajout d'une carte bancaire
+| Blocage : Il manque une information
+| 
+
+| TestSupprCBOK
+| Suppression d'une carte bancaire
+| La carte bancaire est bien supprimée du compte
+| - L'utilisateur est connecté
+  - Il existe une carte bancaire associée au compte
 |===
+
+==== CRUD Adresse
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestAjoutAdrOK
+| Ajout d'une adresse
+| L'adresse est ajoutée au compte
+| Les informations renseignées sont correctes
+
+| TestAjoutAdrNOK
+| Ajout d'une adresse
+| Blocage : Il manque une information
+| 
+
+| TestSupprAdrOK
+| Suppression d'une adresse
+| L'adresse est bien supprimée du compte
+| - L'utilisateur est connecté
+  - Il existe une adresse associée au compte
+|===
+
+=== Achat
+
+==== Panier
+
+==== Commande
+
