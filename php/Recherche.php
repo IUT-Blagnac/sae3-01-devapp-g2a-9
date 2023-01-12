@@ -247,13 +247,13 @@
                                     <option value=\"4\"selected>Nouveautées</option>     
                                 </select>";
                                 }
-                                // echo"<script
-                                //     document.forms[\"Recherche\"][\"sousCategorieRecherchee\"].addEventListener(\"input\", function(){
-                                //         var txt = document.getElementById(\"sousCat\").option[document.getElementById(\"sousCat\").selectedIndex].text;
+                                echo"<script>
+                                    document.forms[\"Recherche\"][\"sousCategorieRecherchee\"].addEventListener(\"input\", function(){
+                                        var txt = document.getElementById(\"sousCat\").option[document.getElementById(\"sousCat\").selectedIndex].text;
                             
-                                //         console.log(txt);
-                                //     }
-                                // /script>";
+                                        console.log(txt);
+                                    }
+                                /script>";
                             ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
