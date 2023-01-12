@@ -250,9 +250,11 @@
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         console.log(\"".$res3[0]['cat']."\");
+                                        var nbCategories = ".count($res3)."/2;
                                         var catSelected = document.getElementById(\"cat\").value;
                                         document.getElementById(\"sousCat\").options[1].innerHTML = \"".$res3[0]['nom']."\";
                                         console.log(catSelected);
+                                        console.log(nbCategories);
                                     })
                                 </script>";
                             ?>
