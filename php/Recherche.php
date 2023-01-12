@@ -250,8 +250,9 @@
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         var catSelected = document.getElementById(\"cat\").value;
-                                        ".$res3.".forEach(element => if( element[\"cat\"] == catSelected)
-                                         document.getElementById(\"sousCat\").options[1].innerHTML = element[\"nom\"];
+                                        ".$res3.".forEach(element => if( element[\"cat\"] == catSelected){
+                                            document.getElementById(\"sousCat\").options[1].innerHTML = element[\"nom\"];
+                                        });
                                     })
                                 </script>";
                             ?>
