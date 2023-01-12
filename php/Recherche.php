@@ -250,7 +250,7 @@
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         var txt = document.getElementById(\"cat\").selectedIndex;
-                            
+                                        document.getElementById(\"sousCat\").options[1].innerHTML = txt;
                                         console.log(txt);
                                     })
                                 </script>";
