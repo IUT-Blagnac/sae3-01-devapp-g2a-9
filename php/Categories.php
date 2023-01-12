@@ -3,7 +3,7 @@ error_reporting(E_ERROR | E_PARSE);
 include("include/connect_inc.php");
 
 //categories
-$query = "SELECT NOMCAT FROM CATEGORIE";
+$query = "SELECT NOMCAT, IDCAT FROM CATEGORIE";
 $stid = oci_parse($connect, $query);
 oci_execute($stid);
 
