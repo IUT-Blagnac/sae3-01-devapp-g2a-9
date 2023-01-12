@@ -54,7 +54,7 @@
             $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
             //Construction de la requete SQL
             if ($recherche == ''){
-                $titreRecherche = "Tout les produits :";
+                $titreRecherche = "Tous les produits :";
             } else {
                 $query .= " WHERE NOMPRODUIT ='".$recherche."'";
                 $titreRecherche = "Résultats de la recherche :";
