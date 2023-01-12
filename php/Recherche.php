@@ -112,7 +112,7 @@
             }
 
             //categories
-            $query2 = "SELECT nomcat FROM categorie";
+            $query2 = "SELECT DISTINCT nomcat FROM categorie";
             $stid2 = oci_parse($conn, $query2);
             oci_execute($stid2);
 
