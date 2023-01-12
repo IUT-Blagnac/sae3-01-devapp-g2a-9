@@ -67,9 +67,8 @@
                 </div>
                 <div class="main-card">
                     <h2>Nouveautés</h2>
-                    <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
-                        <a href="produit.php">
+                        
                             <?php
                                 foreach($res2 as $produit) { 
                                     echo" <div class=\"produit\">
@@ -80,14 +79,13 @@
                                     </div>";
                                 }
                             ?>
-                        </a>
+                        
                     </div>
                 </div>
                 <div class="main-card">
                     <h2>Soldes</h2>
-                    <!-- SELECT FROM Produit WHERE reduc > 0 -->
                     <div class="main-card-content">
-                        <a href="produit.php">
+                        
                             <?php
                                 foreach($res3 as $produit) { 
                                     echo" <div class=\"produit\">
@@ -95,11 +93,10 @@
                                     <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
                                     <div><a class=\"reduc\">".$produit['prix']." €</a></div>
                                     <div><a>".$produit['reduc']." €</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                                    <div><a href=\"produit.php?id=$produit['idproduit']'\"><button>Acheter</button></a></div>
                                     </div>";
                                 }
                             ?>
-                        </a>
                     </div>
                 </div>
             </main>
