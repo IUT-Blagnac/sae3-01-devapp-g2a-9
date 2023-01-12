@@ -14,7 +14,7 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
 
 // Produits par catégorie
 if (isset($_REQUEST["cat"])) {
-    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT AS IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
+    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
     $categorie = $_REQUEST["cat"];
     $stid = oci_parse($connect, $query);
 
@@ -56,7 +56,7 @@ if (isset($_REQUEST["cat"])) {
                 <?php
                 if (isset($_REQUEST["cat"])) {
                     echo "<div class=\"main-card\">
-                        <h2>" . ucwords($_REQUEST["cat"]) . "</h2>
+                        <h2>" . ucwords($categories[$_REQUEST["cat"]]) . "</h2>
                         <div class=\"main-card-content\">";
                         foreach ($produits as $produit) {
                             echo "<div class=\"produit\">
