@@ -7,17 +7,13 @@
     </head>
     <body>
         <?php
-            $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
+            error_reporting(0);
+            $query = "SELECT DISTINCT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, P.DATEPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC FROM produit P, categorie C, SOUSCATEGORIE S";
 
             if (isset($_GET['recherche'])){
                 $recherche =  htmlspecialchars($_GET['recherche']);
             } else {
                 $recherche = '';
-            }
-            if (isset($_GET['categorieRecherchee'])){
-                $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
-            } else {
-                $categorieRecherchee = '';
             }
             if (isset($_GET['categorieRecherchee'])){
                 $categorieRecherchee = htmlspecialchars($_GET['categorieRecherchee']);
@@ -39,7 +35,11 @@
             } else {
                 $prixMax = '';
             }
-
+            if (isset($_GET['tri'])){
+                $optionTri = htmlspecialchars($_GET['tri']);
+            } else {
+                $optionTri = '';
+            }
 
              
 
@@ -66,14 +66,72 @@
                 $query .= " WHERE C.IDCAT = '000".$categorieRecherchee."' AND P.IDSOUSCAT = S.IDSOUSCAT AND S.IDCAT = C.IDCAT";
                 $titreRecherche = "Résultats de la recherche :";
             }
-            
+            if ($sousCategorieRecherchee != ''){
+                if ($recherche != "" or $categorieRecherchee != ""){
+                    $query .= " AND";
+                } else {
+                    $query .= " WHERE";
+                }
+                $query .= " P.IDSOUSCAT ='".$categorieRecherchee.$sousCategorieRecherchee."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
+            if ($prixMin != ""){
+                if ($recherche != "" or $categorieRecherchee != ""){
+                    $query .= " AND";
+                } else {
+                    $query .= " WHERE";
+                }
+                $query .= " (P.PRIXPRODUIT - P.REDUCTION) >'".$prixMin."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
+            if ($prixMax != ''){
+                if ($recherche != "" or $categorieRecherchee != "" or $prixMin !=""){
+                    $query .= " AND";
+                } else {
+                    $query .= " WHERE";
+                }
+                $query .= " (P.PRIXPRODUIT - P.REDUCTION) <'".$prixMax."'";
+                $titreRecherche = "Résultats de la recherche :";
+            }
+            if ($optionTri == 0){
+                $query .= " ORDER BY (P.PRIXPRODUIT - P.REDUCTION) ASC";
+            } elseif ($optionTri == 1){
+                $query .= " ORDER BY (P.PRIXPRODUIT - P.REDUCTION) DESC";
+            } elseif($optionTri == 2){
+                $query .= " ORDER BY P.NOMPRODUIT ASC";
+            } elseif($optionTri == 3){
+                $query .= " ORDER BY P.NOMPRODUIT DESC";
+            } elseif($optionTri == 4){
+                $query .= " ORDER BY P.DATEPRODUIT DESC";
+            }
 
             $stid = oci_parse($conn, $query);
             oci_execute($stid);
             while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
                 $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
             }
+
+            //categories
+            $query2 = "SELECT nomcat FROM categorie";
+            $stid2 = oci_parse($conn, $query2);
+            oci_execute($stid2);
+
+            while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
+                $res2[] = $row2['NOMCAT'];
+            }
+
+            // Sous catégories
+            $query3 = "SELECT DISTINCT IDSOUSCAT, NOMSOUSCAT FROM SOUSCATEGORIE";
+            $stid3 = oci_parse($conn, $query3);
+            oci_execute($stid3);
+
+            while ($row3 = oci_fetch_array($stid3, OCI_ASSOC)){
+                $res3[] = ['id' => $row3['IDSOUSCAT'], 'nom' => $row3['NOMSOUSCAT']];
+            }
+
             oci_free_statement($stid);
+            oci_free_statement($stid2);
+            oci_free_statement($stid3);
             oci_close($conn);
         ?>
         <div class="content">
@@ -82,30 +140,127 @@
                 <div class="barre-de-recherche">
                     <div class="barre-de-recheche">
                         <label for="barre-de-recherche">Rechercher</label>
-                        <form action="Recherche.php" method="get">
-                            <input type="text" name="recherche" placeholder="Nom du produit">
-                            <select name="categorieRecherchee">
-                                <option value=""selected>Catégorie</option>
-                                <option value="01">Processeurs</option>
-                                <option value="02">Stockage mémoire</option>
-                                <option value="03">Cartes graphiques</option>
-                                <option value="04">Cartes meres</option>
-                                <option value="05">Ventilateurs</option>
-                            </select>
-                            <select name="sousCategorieRecherchee">
-                                <option value=""selected>Sous Catégorie</option>
-                                <option value="00A">SousCat1</option>
-                                <option value="00B">SousCat2</option>
-                            </select>
-                            <input type="number" name="prixMin" placeholder="Prix minimum">
-                            <input type="number" name="prixMax" placeholder="Prix maximum">
+                        <form action="Recherche.php" method="get" name="Recherche">
+                            <?php
+                                if($recherche==''){
+                                    echo"<input type=\"text\" name=\"recherche\" placeholder=\"Nom du produit\">";
+                                } else {
+                                    echo"<input type=\"text\" name=\"recherche\" value=\"".$recherche."\" placeholder=\"Nom du produit\">";
+                                }
+                                echo"<select name=\"categorieRecherchee\" class=\"select-style\" id=\"cat\">";
+                                    if($categorieRecherchee == ''){
+                                        echo"<option value=\"\"selected>Catégorie</option>";
+                                    } else {
+                                        echo"<option value=\"\">Catégorie</option>";
+                                    }
+                                    $i = 1;
+                                    foreach ($res2 as $categorie) {
+                                        if($categorieRecherchee == $i){
+                                            echo"<option value=\"0000".strval($i)."\"selected>".$categorie."</option>";
+                                        }
+                                        echo"<option value=\"0000".strval($i)."\">".$categorie."</option>";
+                                        $i += 1;
+                                    }
+                                echo"</select>";
+                                if($sousCategorieRecherchee == ''){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
+                                    <option value=\"\"selected>Sous Catégorie</option>
+                                    <option value=\"00A\">SousCat1</option>
+                                    <option value=\"00B\">SousCat2</option>
+                                    </select>";
+                                } elseif($sousCategorieRecherchee == '00A'){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
+                                    <option value=\"\">Sous Catégorie</option>
+                                    <option value=\"00A\"selected>SousCat1</option>
+                                    <option value=\"00B\">SousCat2</option>
+                                    </select>";
+                                } elseif($sousCategorieRecherchee == '00B'){
+                                    echo"<select name=\"sousCategorieRecherchee\" class=\"select-style\" id=\"sousCat\">
+                                    <option value=\"\">Sous Catégorie</option>
+                                    <option value=\"00A\">SousCat1</option>
+                                    <option value=\"00B\"selected>SousCat2</option>
+                                    </select>";
+                                }
+
+                                if($prixMin == ''){
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\">";
+                                } else {
+                                    echo"<input type=\"number\" name=\"prixMin\" placeholder=\"Prix minimum\" value=".$prixMin.">";
+                                }
+                                if($prixMax == ''){
+                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix maximum\">";
+                                } else {
+                                    echo"<input type=\"number\" name=\"prixMax\" placeholder=\"Prix minimum\" value=".$prixMax.">";
+                                }
+                                if($optionTri ==''){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\"selected>Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif ($optionTri == 0){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\"selected>Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($optionTri== 1){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\" selected>Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($optionTri == 2){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\"selected>Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($optionTri == 3){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\"selected>Nom Z-A</option>     
+                                    <option value=\"4\">Nouveautées</option>     
+                                </select>";
+                                } elseif($optionTri == 4){
+                                    echo"<select name=\"tri\" class=\"select-style\">
+                                    <option value=\"\">Options de tri</option>
+                                    <option value=\"0\">Prix 🥐</option>     
+                                    <option value=\"1\">Prix dé🥐</option>     
+                                    <option value=\"2\">Nom A-Z</option>     
+                                    <option value=\"3\">Nom Z-A</option>     
+                                    <option value=\"4\"selected>Nouveautées</option>     
+                                </select>";
+                                }
+                                echo"<script>
+                                    document.getElementById(\"cat\").addEventListener(\"change\", function(){
+                                        var catSelected = document.getElementById(\"cat\").value;
+                                        document.getElementById(\"sousCat\").options[1].innerHTML = catSelected;
+                                    })
+                                </script>";
+                            ?>
                             <input type="submit" value="Rechercher 🔎">
                         </form>
                     </div>
                 </div>
                 <?php
                         // permet de desactiver les messages d'erreurs. Enlever des commentaires quand dev fini
-                        // error_reporting(0);
+                        error_reporting(0);
                         if (!is_null($res) or isset($res)) {
                             echo"<div class=\"main-card\">
                             <h2>".$titreRecherche."</h2>

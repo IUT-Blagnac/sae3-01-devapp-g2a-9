@@ -330,6 +330,27 @@ input, select {
     padding: 0 10px;
     font-size: 18px;
     font-weight: 300;
+    margin-bottom: 2%;
+}
+.select-style option{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #1c2130;
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.select-style option:checked{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #640e0e;
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 300;
 }
 .custom-select option{
     background-color: rgba(28, 33, 48, .5);
