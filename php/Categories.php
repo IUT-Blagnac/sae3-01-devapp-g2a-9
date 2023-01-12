@@ -14,7 +14,7 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
 
 // Produits par catégorie
 if (isset($_REQUEST["cat"])) {
-    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT AS IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
+    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
     $categorie = $_REQUEST["cat"];
     $stid = oci_parse($connect, $query);
 
@@ -60,7 +60,7 @@ if (isset($_REQUEST["cat"])) {
                         <div class=\"main-card-content\">";
                         foreach ($produits as $produit) {
                             echo "<div class=\"produit\">
-                            <div><a><strong>".$produit['nom']."</strong></a></div>
+                            <div><a><strong>".$produit['NOMPRODUIT']."</strong></a></div>
                             <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
                             <div><a>".$produit['prix']." €</a></div>
                             <div><a href=\"produit.php\"><button>Acheter</button></a></div>
