@@ -249,9 +249,8 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        var catSelected = document.getElementById(\"cat\").value;
-                                        document.getElementById(\"sousCat\").options[1].innerHTML = txt;
-                                        console.log(txt);
+                                        var catSelected = document.getElementById(\"cat\").selectedIndex;
+                                        document.getElementById(\"sousCat\").options[1].innerHTML = catSelected;
                                     })
                                 </script>";
                             ?>
