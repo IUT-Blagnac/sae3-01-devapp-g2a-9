@@ -156,9 +156,9 @@
                                     $i = 1;
                                     foreach ($res2 as $categorie) {
                                         if($categorieRecherchee == $i){
-                                            echo"<option value=\"0".strval($i)."\"selected>".$categorie."</option>";
+                                            echo"<option value=\"0000".strval($i)."\"selected>".$categorie."</option>";
                                         }
-                                        echo"<option value=\"0".strval($i)."\">".$categorie."</option>";
+                                        echo"<option value=\"0000".strval($i)."\">".$categorie."</option>";
                                         $i += 1;
                                     }
                                 echo"</select>";
@@ -249,7 +249,7 @@
                                 }
                                 echo"<script>
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
-                                        var txt = document.getElementById(\"cat\").selectedIndex;
+                                        var catSelected = document.getElementById(\"cat\").selectedIndex.value;
                                         document.getElementById(\"sousCat\").options[1].innerHTML = txt;
                                         console.log(txt);
                                     })
