@@ -251,7 +251,6 @@
                                     document.getElementById(\"cat\").addEventListener(\"change\", function(){
                                         console.log(".$res3.");
                                         
-                                        });
                                     })
                                 </script>";
                             ?>
