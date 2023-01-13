@@ -217,7 +217,7 @@ $res = oci_execute($listeadresses);
                                 </form>
                             </div>
                         </div>
-                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bullepluscb" onclick="document.getElementById('bullepluscb').style.display='none';document.getElementById('ajouterbullecb').style.display='flex';setTimeout( function () {document.getElementById('ajouterbullecb').style.opacity=1;document.getElementById('ajouterbullecb').style.transform='scale(1)'}, 20);">
+                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bullepluscb" onclick="document.getElementById('bullepluscb').style.display='none';document.getElementById('ajouterbullecb').style.display='flex';setTimeout( function () {document.getElementById('ajouterbullecb').style.opacity=1;document.getElementById('ajouterbullecb').style.transform='scale(1)'}, 20);init();">
                             <p style="font-size: 10em;color: lightgrey;">+</p>
                         </div>
                     </div>
@@ -289,8 +289,10 @@ $res = oci_execute($listeadresses);
 </html>
 
 <script>
-    var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
-    var element = document.getElementById('numero-carte-bancaire');
+    function init(){
+        var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
+        var element = document.getElementById('numero-carte-bancaire');
+    }
 
     element.addEventListener('input', function () {
         if (isAndroid) {
