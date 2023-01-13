@@ -292,9 +292,8 @@ $res = oci_execute($listeadresses);
     function init(){
         var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
         var element = document.getElementById('numero-carte-bancaire');
-    }
 
-    element.addEventListener('input', function () {
+        element.addEventListener('input', function () {
         if (isAndroid) {
             // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
             setTimeout(reformatInputField);
@@ -327,4 +326,7 @@ $res = oci_execute($listeadresses);
             element.selectionEnd = position + (countCurrent - countPrevious);
         }
     }
+    }
+
+    
 </script>
