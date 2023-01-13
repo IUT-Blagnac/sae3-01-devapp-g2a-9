@@ -1,3 +1,33 @@
+<?php
+session_start();
+    $db = "(DESCRIPTION =
+                (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
+                (CONNECT_DATA =
+                  (SERVER = DEDICATED)
+                  (SID = db11g)
+                )
+              )";
+    $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+
+    //prix
+    $query = "SELECT PRIXPRODUIT FROM produit WHERE idproduit = ".$produit['id'];
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
+
+    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $res[] = $row['PRIX'];
+    }
+
+    //produits similaires
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE idcat = ".$produit['IDCAT'];
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
+
+    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $res2[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
+    }
+?>
+
 <html lang="fr">
     <head>
         <meta charset="utf-8"/>
@@ -16,7 +46,7 @@
                         <div class="gallerie">
                             <a class="doigt">👈</a>
                             <img src="./img/pécé.jpg" alt="le Produit" class="img_produit">
-                            <a class="doigt">👉</a>
+                            <a class="doigt">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <p>Informations technique: La saucisse fraîche devrait être composée d'environ 70% de viande maigre comparativement à 30% de gras (proportions idéales). Le pourcentage de gras peut varier de 25 à 30%. Moins de 15%, la saucisse sera trop dure, trop élevée en protéine, pas assez juteuse. Par opposition, si le pourcentage de gras est au-dessus de 30%, la perte de gras à la cuisson sera excessive et le produit de moindre qualité. Pour moins de 15%, un liant approprié doit être utilisé. La bajoue est une qualité de viande plus difficile à utiliser pour la saucisse fraîche, dû à la présence possible de bactéries nuisibles ou d'abcès (il est préférable d'utiliser la bajoue pour les produits cuits. Ex: creton)</p>
@@ -26,32 +56,18 @@
                 </div>
                 <div class="main-card">
                     <h2>Produits similaires :</h2>
-                    <!-- SELECT FROM Produit WHERE date jsp-->
                     <div class="main-card-content">
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
-                        <div class="produit">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href="produit.php"><button>Acheter</button></a></div>
-                        </div>
+                        <?php
+                            foreach($res2 as $produit) { 
+                                echo" <div class=\"produit\">
+                                <div><a><strong>".$produit['nom']."</strong></a></div>
+                                <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                <div><a class=\"reduc\">".$produit['prix']." €</a></div>
+                                <div><a>".$produit['reduc']." €</a></div>
+                                <div><a href=\"produit.php?id=".$produit['id']."\"><button>Acheter</button></a></div>
+                                </div>";
+                            }
+                        ?>
                     </div>
                 </div>
             </main>
