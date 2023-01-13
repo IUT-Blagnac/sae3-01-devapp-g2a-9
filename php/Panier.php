@@ -17,7 +17,7 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 oci_execute($stid);
 
 $res = [];
-$bonjour = oci_fetch_all($stid, $res);
+$bonjour = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW|OCI_ASSOC);
 
 $e = oci_error($stid);
 
