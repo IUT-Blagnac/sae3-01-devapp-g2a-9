@@ -25,7 +25,7 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/.{1,64}/",$nomcb)) $erreur = "Nom invalide.";
-    else if (!preg_match("/[0-9]{0,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
+    else if (!preg_match("/[0-9]{3,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
@@ -205,7 +205,7 @@ $res = oci_execute($listeadresses);
                                     <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}[ ]{3}" name="numcb" placeholder="1234 1234 1234 1234">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
-                                    <input placeholder="123" type="text" pattern="[0-9]{0,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
+                                    <input placeholder="123" type="text" pattern="[0-9]{3,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
 
                                     <label for="date-carte-bancaire">Date d'expiration</label>
                                     <input type="date" id="start" name="datecb" value="2023-02-27" min="2000-01-01">
@@ -267,7 +267,7 @@ $res = oci_execute($listeadresses);
                                     <input id="adresse-adresse-livraison" type="text" name="adresse" pattern=".{1,128}" placeholder="28 Allée des potirons">
                                     
                                     <label for="complement-adresse-livraison">Complément</label>
-                                    <input id="complement-adresse-livraison type="text"" name="complement" pattern=".{0,64}" placeholder="">
+                                    <input id="complement-adresse-livraison" type="text" name="complement" pattern=".{0,64}" placeholder="">
 
                                     <label for="submit"></label>
                                     <input type="submit" name="addAdresse" value="➕ Ajouter l'adresse" style="background-color: rgba(42, 153, 14, 0.5);cursor: pointer;">
@@ -287,11 +287,39 @@ $res = oci_execute($listeadresses);
 </html>
 
 <script>
-    document.getElementById('numero-carte-bancaire').addEventListener('input', function (e) {
-        console.log("works!");
-        var target = e.target, position = target.selectionEnd, length = target.value.length;
+    var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
+    var element = document.getElementById('numero-carte-bancaire');
 
-        target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
-        target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+    element.addEventListener('input', function () {
+        if (isAndroid) {
+            // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
+            setTimeout(reformatInputField);
+            return;
+        }
+        reformatInputField();
     });
+
+    function reformatInputField() {
+        function format(value) {
+            return value.replace(/[^\dA-Z]/gi, '')
+                .toUpperCase()
+                .replace(/(.{4})/g, '$1 ')
+                .trim();
+        }
+        function countSpaces(text) {
+            var spaces = text.match(/(\s+)/g);
+            return spaces ? spaces.length : 0;
+        }
+
+        var position = element.selectionEnd;
+        var previousValue = element.value;
+        element.value = format(element.value);
+
+        if (position !== element.value.length) {
+            var beforeCaret = previousValue.substr(0, position);
+            var countPrevious = countSpaces(beforeCaret);
+            var countCurrent = countSpaces(format(beforeCaret));
+            element.selectionEnd = position + (countCurrent - countPrevious);
+        }
+    }
 </script>
