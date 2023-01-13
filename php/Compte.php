@@ -23,8 +23,6 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 
 //Ajout CB
 if(isset($addCB)){
-    $numcb = str_replace(' ', '', $numcb);
-
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/.{1,64}/",$nomcb)) $erreur = "Nom invalide.";
     else if (!preg_match("/[0-9]{3,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
@@ -204,7 +202,7 @@ $res = oci_execute($listeadresses);
                                     <input placeholder="Demeyere" type="text" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[ ]*?" name="numcb" placeholder="1234 1234 1234 1234">
+                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}" name="numcb" placeholder="1234 1234 1234 1234">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="123" type="text" pattern="[0-9]{3,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
@@ -287,48 +285,3 @@ $res = oci_execute($listeadresses);
         <?php include("include/background.html"); ?>
     </body>
 </html>
-
-<script>
-    function init(){
-        console.log("start");
-        var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
-        var element = document.getElementById('numero-carte-bancaire');
-
-        element.addEventListener('input', element, function () {
-            if (isAndroid) {
-                // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
-                setTimeout(reformatInputField);
-                return;
-            }
-            console.log("event");
-            reformatInputField();
-        });
-
-    function reformatInputField() {
-        console.log("reformat");
-        function format(value) {
-            return value.replace(/[^\dA-Z]/gi, '')
-                .toUpperCase()
-                .replace(/(.{4})/g, '$1 ')
-                .trim();
-        }
-        function countSpaces(text) {
-            var spaces = text.match(/(\s+)/g);
-            return spaces ? spaces.length : 0;
-        }
-
-        var position = element.selectionEnd;
-        var previousValue = element.value;
-        element.value = format(element.value);
-
-        if (position !== element.value.length) {
-            var beforeCaret = previousValue.substr(0, position);
-            var countPrevious = countSpaces(beforeCaret);
-            var countCurrent = countSpaces(format(beforeCaret));
-            element.selectionEnd = position + (countCurrent - countPrevious);
-        }
-    }
-    }
-
-    
-</script>
