@@ -47,7 +47,7 @@ echo "</pre>";
                     <div class="main-card-panier">
                         <?php foreach($res as $produit): ?>
                             <div class="produit">
-                                <img src="<?= "./img/produits/".$produit['id']."_1.jpg" ?>" alt="image">
+                                <img src="<?= "./img/produits/".$produit['idProduit']."_1.jpg" ?>" alt="image">
                                 <div class="produit-info">
                                     <div><?= $produit['nomProduit'] ?></div>
                                     <div><?= $produit['quantite'] ?></div>
