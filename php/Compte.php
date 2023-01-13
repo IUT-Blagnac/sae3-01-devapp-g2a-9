@@ -294,7 +294,7 @@ $res = oci_execute($listeadresses);
         var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
         var element = document.getElementById('numero-carte-bancaire');
 
-        element.addEventListener('input', function () {
+        element.addEventListener('input', element, function () {
             if (isAndroid) {
                 // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
                 setTimeout(reformatInputField);
