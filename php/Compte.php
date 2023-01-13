@@ -286,11 +286,12 @@ $res = oci_execute($listeadresses);
     </body>
 </html>
 
-<!-- <script>
+<script>
     document.getElementById('numero-carte-bancaire').addEventListener('input', function (e) {
+        console.log("works!");
         var target = e.target, position = target.selectionEnd, length = target.value.length;
 
         target.value = target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
         target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
     });
-</script> -->
+</script>
