@@ -56,7 +56,7 @@ echo "</pre>";
                         <div class="produit">
                             <img src="img/test-gpu.png" alt="image">
                             <div class="produit-info">
-                                <div>Nom produit</div>
+                                <div>Nom produitee</div>
                                 <div>6</div>
                                 <div>Prix</div>
                             </div>
