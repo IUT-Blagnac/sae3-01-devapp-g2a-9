@@ -10,7 +10,7 @@ session_start();
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
     //prix + description
-    $query = "SELECT PRIXPRODUIT, DESCPRODUIT FROM produit WHERE idproduit = ".$produit['id'];
+    $query = "SELECT PRIXPRODUIT, DESCPRODUIT FROM produit WHERE idproduit = ".$_GET['identifiantP'];
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
