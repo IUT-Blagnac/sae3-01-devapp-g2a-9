@@ -15,6 +15,7 @@ $stid = oci_parse($conn, $query);
 oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
 oci_execute($stid);
+$res = [];
 oci_fetch_all($stid, $res);
 
 $e = oci_error();
