@@ -47,11 +47,11 @@ echo "</pre>";
                     <div class="main-card-panier">
                         <?php foreach($res as $produit): ?>
                             <div class="produit">
-                                <img src="<?= "./img/produits/".$produit['idProduit']."_1.jpg" ?>" alt="image">
+                                <img src="<?php echo "./img/produits/".$produit['idProduit']."_1.jpg" ?>" alt="image">
                                 <div class="produit-info">
-                                    <div><?= $produit['nomProduit'] ?></div>
-                                    <div><?= $produit['quantite'] ?></div>
-                                    <div><?= $produit['prixProduit'] ?></div>
+                                    <div><?php echo $produit['nomProduit'] ?></div>
+                                    <div><?php echo $produit['quantite'] ?></div>
+                                    <div><?php echo $produit['prixProduit'] ?></div>
                                 </div>
                                 <div><button>Supprimer</button></div>
                             </div>
