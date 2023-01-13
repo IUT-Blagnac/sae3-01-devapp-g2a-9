@@ -18,11 +18,9 @@
                 </div>
                 <div class="main-card">
                     <h2>Actualité</h2>
-                    <p>
-                        <div class="produit">Nous avons décidé de mettre en service un site web pour nous ouvrir à plus de monde. Le site est toujours en version d'essai et peut demander des retouches. Si vous rencontrez un problème merci de nous informer par mail (service-client@cdlr.fr);</div>
-                        <div class="produit"><span style="color: #d11d1d;text-decoration:underline">BONNE NOUVELLE !!!</span> Nous sommes fiers de vous annoncer l'ouverture de notre soixante-neuvième boutique située à Tourcoing ! Ouverte de 10h à 19h du lundi au samedi et de 10h à 10h10 le dimanche, retrouvez tous les produits phares nécessaires pour votre PC (Personal Computer).</div>
-                        <div class="produit">La foire au poissons arrive chez <i>Commerce de la Rue</i> ! Du 13/01 au 12/05 retrouvez des réductions sur une sélection de produits et à partir de 118,12 € nous vous offrons un bob exclusif au design raffiné et élégant de poisson.</div>
-                    </p>
+                    <div class="produit">Nous avons décidé de mettre en service un site web pour nous ouvrir à plus de monde. Le site est toujours en version d'essai et peut demander des retouches. Si vous rencontrez un problème merci de nous informer par mail (service-client@cdlr.fr);</div>
+                    <div class="produit"><span style="color: #d11d1d;text-decoration:underline">BONNE NOUVELLE !!!</span> Nous sommes fiers de vous annoncer l'ouverture de notre soixante-neuvième boutique située à Tourcoing ! Ouverte de 10h à 19h du lundi au samedi et de 10h à 10h10 le dimanche, retrouvez tous les produits phares nécessaires pour votre PC (Personal Computer).</div>
+                    <div class="produit">La foire au poissons arrive chez <i>Commerce de la Rue</i> ! Du 13/01 au 12/05 retrouvez des réductions sur une sélection de produits et à partir de 118,12 € nous vous offrons un bob exclusif au design raffiné et élégant de poisson.</div>
                 </div>
             </main>
             <?php include("include/footer.html"); ?>
