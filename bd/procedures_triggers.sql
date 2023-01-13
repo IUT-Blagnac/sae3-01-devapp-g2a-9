@@ -1,8 +1,8 @@
 CREATE OR REPLACE PROCEDURE AjouterPanier
 (
+	p_user		 Panier.emailuser%TYPE,
 	p_idProd  	 Produit.idproduit%TYPE,
-	p_quant      Panier.quantite%TYPE,
-	p_user		 Panier.emailuser%TYPE
+	p_quant      Panier.quantite%TYPE
 )
 IS
 BEGIN
