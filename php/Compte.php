@@ -22,6 +22,8 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 
 
 //Ajout CB
+$numcb = str_replace(' ', '', $numcb);
+
 if(isset($addCB)){
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/.{1,64}/",$nomcb)) $erreur = "Nom invalide.";
@@ -202,7 +204,7 @@ $res = oci_execute($listeadresses);
                                     <input placeholder="Demeyere" type="text" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}" name="numcb" placeholder="1234 1234 1234 1234">
+                                    <input id="numero-carte-bancaire"  type="text" pattern=" *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *[0-9]{1} *" name="numcb" placeholder="1234 1234 1234 1234">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="123" type="text" pattern="[0-9]{3,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
