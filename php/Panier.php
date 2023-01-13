@@ -7,7 +7,7 @@ extract($_POST);
 
 $query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduc, quantite
           FROM Produit Pr, Panier Pa
-          WHERE Pr.idProduit = Pa.idProduit
+          WHERE Pr.idProduit = Pa.idProduite
           AND Pa.emailUser = :email";
 
 $stid = oci_parse($conn, $query);
