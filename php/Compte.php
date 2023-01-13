@@ -23,6 +23,8 @@ while($row = oci_fetch_array($stid, OCI_ASSOC)){
 
 //Ajout CB
 if(isset($addCB)){
+    $numcb = str_replace(' ', '', $numcb);
+
     if (!preg_match("/[0-9]{16}/", $numcb)) $erreur = "Numéro de carte bancaire invalide.";
     else if (!preg_match("/.{1,64}/",$nomcb)) $erreur = "Nom invalide.";
     else if (!preg_match("/[0-9]{3,4}/", $cryptocb)) $erreur = "Cryptogramme invalide.";
@@ -31,7 +33,7 @@ if(isset($addCB)){
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
         $stid = oci_parse($connect, $query);
 
-        oci_bind_by_name($stid, ":numeroCb", str_replace(' ','', $numcb));
+        oci_bind_by_name($stid, ":numeroCb", $numcb);
         oci_bind_by_name($stid, ":nomCb", $nomcb);
         oci_bind_by_name($stid, ":dateCb", $datecb);
         oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
@@ -202,7 +204,7 @@ $res = oci_execute($listeadresses);
                                     <input placeholder="Demeyere" type="text" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}[ ]{3}" name="numcb" placeholder="1234 1234 1234 1234">
+                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[0-9]{4}[ ]{1}[ ]*?" name="numcb" placeholder="1234 1234 1234 1234">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="123" type="text" pattern="[0-9]{3,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
@@ -289,6 +291,7 @@ $res = oci_execute($listeadresses);
 <script>
     var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
     var element = document.getElementById('numero-carte-bancaire');
+    console.log(element);
 
     element.addEventListener('input', function () {
         if (isAndroid) {
