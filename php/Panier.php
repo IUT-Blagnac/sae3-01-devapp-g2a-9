@@ -5,7 +5,7 @@ include("include/connect_inc.php");
 if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 extract($_POST);
 
-$query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduc, quantite
+$query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduction, quantite
           FROM Produit Pr, Panier Pa
           WHERE Pr.idProduit = Pa.idProduit
           AND Pa.emailUser = :email";
