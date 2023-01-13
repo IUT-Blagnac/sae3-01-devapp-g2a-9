@@ -7,7 +7,7 @@ extract($_POST);
 
 $query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduc, quantite
           FROM Produit Pr, Panier Pa
-          WHERE Pr.idProduit = Pa.idProduite
+          WHERE Pr.idProduit = Pa.idProduit
           AND Pa.emailUser = :email";
 
 $stid = oci_parse($conn, $query);
@@ -25,7 +25,7 @@ oci_free_statement($stid);
 echo "<pre>";
 echo "bonjour : $bonjour";
 print_r($res);
-echo $e;
+echo htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);
 echo "</pre>";
 ?>
 
