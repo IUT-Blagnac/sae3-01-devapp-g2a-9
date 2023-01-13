@@ -274,7 +274,7 @@ $res = oci_execute($listeadresses);
                                 </form>
                             </div>
                         </div>
-                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bulleplusadresse" onclick="document.getElementById('bulleplusadresse').style.display='none';document.getElementById('ajouterbulleadresse').style.display='flex';document.getElementById('ajouterbulleadresse').style.opacity=1;document.getElementById('ajouterbulleadresse').style.transform='scale(1)'">
+                        <div style="cursor: pointer; background-color: rgba(42, 153, 14, 0.5); height: 10em; width: 10em; display: flex; justify-content: center;" class="bulle" id="bulleplusadresse" onclick="document.getElementById('bulleplusadresse').style.display='none';document.getElementById('ajouterbulleadresse').style.display='flex';setTimeout( function () {document.getElementById('ajouterbulleadresse').style.opacity=1;document.getElementById('ajouterbulleadresse').style.transform='scale(1)'}, 20);">
                             <p style="font-size: 10em;color: lightgrey;">+</p>
                         </div>
                     </div>
