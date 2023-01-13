@@ -1,8 +1,24 @@
 <?php
 error_reporting(E_ERROR | E_PARSE); 
 session_start();
+include("include/connect_inc.php");
 if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 extract($_POST);
+
+$query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduc, quantite
+          FROM Produit Pr, Panier Pa
+          WHERE Pr.idProduit = Pa.idProduit
+          AND Pa.emailUser = :email";
+
+$stid = oci_parse($conn, $query);
+
+oci_bind_by_name($stid, ":email", $_SESSION['email']);
+
+oci_execute($stid);
+oci_fetch_all($stid, $res);
+
+oci_free_statement($stid);
+
 ?>
 
 
@@ -20,8 +36,18 @@ extract($_POST);
             <main>
                 <div class="main-card">
                     <h2>Panier</h2>
-                    <!-- SELECT FROM Panier WHERE jsp-->
                     <div class="main-card-panier">
+                        <?php foreach($res as $produit): ?>
+                            <div class="produit">
+                                <img src="<?= "./img/produits/".$produit['id']."_1.jpg" ?>" alt="image">
+                                <div class="produit-info">
+                                    <div><?= $produit['nomProduit'] ?></div>
+                                    <div><?= $produit['quantite'] ?></div>
+                                    <div><?= $produit['prixProduit'] ?></div>
+                                </div>
+                                <div><button>Supprimer</button></div>
+                            </div>
+                        <?php endforeach; ?>
                         <div class="produit">
                             <img src="img/test-gpu.png" alt="image">
                             <div class="produit-info">
