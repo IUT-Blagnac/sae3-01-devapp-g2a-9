@@ -9,8 +9,8 @@ session_start();
               )";
     $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 
-    //prix
-    $query = "SELECT PRIXPRODUIT FROM produit WHERE idproduit = ".$produit['id'];
+    //prix + description
+    $query = "SELECT PRIXPRODUIT, DESCPRODUIT FROM produit WHERE idproduit = ".$produit['id'];
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
@@ -49,8 +49,14 @@ session_start();
                             <a class="doigt">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
-                        <p>Informations technique: La saucisse fraîche devrait être composée d'environ 70% de viande maigre comparativement à 30% de gras (proportions idéales). Le pourcentage de gras peut varier de 25 à 30%. Moins de 15%, la saucisse sera trop dure, trop élevée en protéine, pas assez juteuse. Par opposition, si le pourcentage de gras est au-dessus de 30%, la perte de gras à la cuisson sera excessive et le produit de moindre qualité. Pour moins de 15%, un liant approprié doit être utilisé. La bajoue est une qualité de viande plus difficile à utiliser pour la saucisse fraîche, dû à la présence possible de bactéries nuisibles ou d'abcès (il est préférable d'utiliser la bajoue pour les produits cuits. Ex: creton)</p>
-                        <h2>*Prix du produit*</h2>
+                        <?php
+                            echo "<p><div><a><strong>".$produit['DESCPRODUIT']."</strong></a></div></p>";
+                        ?>
+                        <h2>                       
+                            <?php
+                                echo "<p><div><a><strong>".$produit['PRIXPRODUIT']."</strong></a></div></p>";
+                            ?>
+                        </h2>
                         <div class="bouton_acheter"><button>Acheter</button></div>
                     </div>
                 </div>
