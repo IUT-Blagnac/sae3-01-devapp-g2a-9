@@ -15,13 +15,15 @@ $stid = oci_parse($conn, $query);
 oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
 oci_execute($stid);
+
 $res = [];
-oci_fetch_all($stid, $res);
+$bonjour = oci_fetch_all($stid, $res);
 
 $e = oci_error();
 
 oci_free_statement($stid);
 echo "<pre>";
+echo "bonjour : $bonjour";
 print_r($res);
 echo $e;
 echo "</pre>";
