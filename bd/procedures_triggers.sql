@@ -70,16 +70,27 @@ BEGIN
 END;
 /
 
--- CACA PIPI
+-- Procedure de passage de commande avec le panier d'un utilisateur
 
-
-CREATE OR REPLACE PROCEDURE PasserCommande(emailUser VARCHAR, idCB VARCHAR, idAdr VARCHAR, troisFois NUMBER) IS
-
+CREATE OR REPLACE PROCEDURE PasserCommande(p_emailUser VARCHAR, p_idCB VARCHAR, p_idAdr VARCHAR, p_troisFois NUMBER) IS
+	email_exists NUMBER;
 BEGIN
-	INSERT INTO COMMANDE(IDCOMMANDE, EMAILUSER, IDCB, IDADRESSE, TROISFOIS, TAUXTVA)
-	VALUES (COMMANDE_SEQ.NEXTVAL, emailUser, idCB, idAdr, troisFOIS, 15);
+	SELECT COUNT(*) INTO email_exists
+	FROM Utilisateur
+	WHERE emailUser = p_emailUser;
 
-    FOR produit IN (SELECT * FROM Panier WHERE Panier.EMAILUSER = emailUser) LOOP
+	IF email_exists != 1 THEN
+		raise_application_error(-20001,'p_emailUser ('||p_emailUser||') ne correspond à aucun email dans la base');
+	END IF;
+
+	IF p_troisFois NOT BETWEEN 0 AND 1 THEN
+		raise_application_error(-20002,'p_troisFois ('||p_troisFois||') doit être compris entre 0 et 1');
+	END IF;
+
+	INSERT INTO COMMANDE(IDCOMMANDE, EMAILUSER, IDCB, IDADRESSE, TROISFOIS, TAUXTVA)
+	VALUES (COMMANDE_SEQ.NEXTVAL, p_emailUser, p_idCB, p_idAdr, p_troisFois, 15);
+
+    FOR produit IN (SELECT * FROM Panier WHERE Panier.EMAILUSER = p_emailUser) LOOP
 		
 		INSERT INTO DETAILCOMMANDE (
 			IDCOMMANDE,
@@ -97,5 +108,37 @@ BEGIN
 	
 	DELETE FROM Panier
 	WHERE Panier.EMAILUSER = emailUser;
+END;
+/
+
+-- TRIGGER CHECK COMMANDE
+
+CREATE OR REPLACE TRIGGER t_i_commande_check
+BEFORE INSERT
+ON Commande
+FOR EACH ROW
+DECLARE
+	cb_appartient NUMBER;
+	adr_appartient NUMBER;
+BEGIN
+	SELECT COUNT(*)
+	INTO cb_appartient
+	FROM CarteBancaire CB
+	WHERE CB.idCB = :NEW.IDCB
+	AND CB.emailUser = :NEW.emailUser;
+
+	IF cb_appartient != 1 THEN
+		raise_application_error(-20003,'La carte '||:NEW.idCB||' n''existe pas ou n''appartient pas à l''utilisateur');
+	END IF;
+
+    SELECT COUNT(*)
+	INTO adr_appartient
+	FROM Adresse ADR
+	WHERE ADR.idAdresse = :NEW.idAdresse
+	AND ADR.emailUser = :NEW.emailUser;
+
+	IF ADR_appartient != 1 THEN
+		raise_application_error(-20004,'L''adresse '||:NEW.idAdresse||' n''existe pas ou n''appartient pas à l''utilisateur');
+	END IF;
 END;
 /
