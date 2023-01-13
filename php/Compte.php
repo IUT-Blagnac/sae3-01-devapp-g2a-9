@@ -31,7 +31,7 @@ if(isset($addCB)){
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
         $stid = oci_parse($connect, $query);
 
-        oci_bind_by_name($stid, ":numeroCb", $numcb);
+        oci_bind_by_name($stid, ":numeroCb", str_replace(' ','', $numcb));
         oci_bind_by_name($stid, ":nomCb", $nomcb);
         oci_bind_by_name($stid, ":dateCb", $datecb);
         oci_bind_by_name($stid, ":cryptoCb", $cryptocb);
@@ -202,7 +202,7 @@ $res = oci_execute($listeadresses);
                                     <input placeholder="Demeyere" type="text" id="nom-carte-bancaire" pattern=".{1,64}" name="nomcb"/>
                                     
                                     <label for="numero-carte-bancaire">Numéro de Carte Bancaire</label>
-                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}" name="numcb" placeholder="1234567812345678">
+                                    <input id="numero-carte-bancaire"  type="text" pattern="[0-9]{16}[ ]{3}" name="numcb" placeholder="1234 1234 1234 1234">
 
                                     <label for="cryptogramme-carte-bancaire">Cryptogramme visuel</label>
                                     <input placeholder="123" type="text" pattern="[0-9]{0,4}" id="cryptogramme-carte-bancaire" name="cryptocb"/>
