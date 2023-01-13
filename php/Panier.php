@@ -19,7 +19,7 @@ oci_execute($stid);
 $res = [];
 $bonjour = oci_fetch_all($stid, $res);
 
-$e = oci_error();
+$e = oci_error($stid);
 
 oci_free_statement($stid);
 echo "<pre>";
