@@ -290,20 +290,22 @@ $res = oci_execute($listeadresses);
 
 <script>
     function init(){
+        console.log("start");
         var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
         var element = document.getElementById('numero-carte-bancaire');
 
         element.addEventListener('input', function () {
-        if (isAndroid) {
-            // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
-            setTimeout(reformatInputField);
-            return;
-        }
-        console.log("uwu");
-        reformatInputField();
-    });
+            if (isAndroid) {
+                // For android 7+ the update of the cursor location is a little bit behind, hence the little delay.
+                setTimeout(reformatInputField);
+                return;
+            }
+            console.log("event");
+            reformatInputField();
+        });
 
     function reformatInputField() {
+        console.log("reformat");
         function format(value) {
             return value.replace(/[^\dA-Z]/gi, '')
                 .toUpperCase()
