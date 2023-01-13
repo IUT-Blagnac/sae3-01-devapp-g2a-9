@@ -291,7 +291,6 @@ $res = oci_execute($listeadresses);
 <script>
     var isAndroid = navigator.userAgent.indexOf("ndroid") > -1;
     var element = document.getElementById('numero-carte-bancaire');
-    console.log(element);
 
     element.addEventListener('input', function () {
         if (isAndroid) {
@@ -299,6 +298,7 @@ $res = oci_execute($listeadresses);
             setTimeout(reformatInputField);
             return;
         }
+        console.log("uwu");
         reformatInputField();
     });
 
