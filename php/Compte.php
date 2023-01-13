@@ -7,7 +7,7 @@ include("include/connect_inc.php");
 
 //Utilisateur
 $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
-$stid = oci_parse($connect, $query);
+$stid = oci_parse($conn, $query);
 
 oci_bind_by_name($stid, ":email", $_SESSION['email']);
 
@@ -31,7 +31,7 @@ if(isset($addCB)){
     else{
         $query = "INSERT INTO CARTEBANCAIRE (idCb, numeroCb, nomCb, dateCb, cryptoCb, emailuser)
         VALUES(CB_SEQ.NEXTVAL, :numeroCb, :nomCb, TO_DATE(:dateCb,'YYYY-MM-DD'), :cryptoCb, :emailuser)";
-        $stid = oci_parse($connect, $query);
+        $stid = oci_parse($conn, $query);
 
         oci_bind_by_name($stid, ":numeroCb", $numcb);
         oci_bind_by_name($stid, ":nomCb", $nomcb);
@@ -56,7 +56,7 @@ if(isset($addAdresse)){
     else{
         $query = "INSERT INTO ADRESSE (idAdresse, surnomadresse, ville, adresse, codepostal, complement, emailuser)
         VALUES(ADRESSE_SEQ.NEXTVAL, :alias, :ville, :adresse, :code_postal, :complement, :emailuser)";
-        $stid = oci_parse($connect, $query);
+        $stid = oci_parse($conn, $query);
 
         oci_bind_by_name($stid, ":alias", $alias);
         oci_bind_by_name($stid, ":ville", $ville);
@@ -75,7 +75,7 @@ if(isset($addAdresse)){
 //Supprimer CB
 if(isset($delCB)){
     $query = "DELETE FROM CARTEBANCAIRE WHERE IDCB LIKE :idCB AND EMAILUSER LIKE :email";
-    $stid = oci_parse($connect, $query);
+    $stid = oci_parse($conn, $query);
 
     oci_bind_by_name($stid, ":idCB", $idCB);
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
@@ -88,7 +88,7 @@ if(isset($delCB)){
 //Supprimer Adresse
 if(isset($delAdresse)){
     $query = "DELETE FROM ADRESSE WHERE IDADRESSE LIKE :idAdresse AND EMAILUSER LIKE :email";
-    $stid = oci_parse($connect, $query);
+    $stid = oci_parse($conn, $query);
 
     oci_bind_by_name($stid, ":idAdresse", $idAdresse);
     oci_bind_by_name($stid, ":email", $_SESSION['email']);
@@ -100,7 +100,7 @@ if(isset($delAdresse)){
 
 //Affichage CB
 $query = "SELECT * FROM CARTEBANCAIRE WHERE EMAILUSER LIKE :email";
-$listecb = oci_parse($connect, $query);
+$listecb = oci_parse($conn, $query);
 
 oci_bind_by_name($listecb, ":email", $_SESSION['email']);
 
@@ -108,7 +108,7 @@ $res = oci_execute($listecb);
 
 //Affichage Adresse
 $query = "SELECT * FROM ADRESSE WHERE EMAILUSER LIKE :email";
-$listeadresses = oci_parse($connect, $query);
+$listeadresses = oci_parse($conn, $query);
 
 oci_bind_by_name($listeadresses, ":email", $_SESSION['email']);
 

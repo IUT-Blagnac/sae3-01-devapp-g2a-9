@@ -3,14 +3,7 @@
 session_start();
 extract($_POST);
 if (isset($valider)) {
-    $db = "(DESCRIPTION =
-            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
-            (CONNECT_DATA =
-              (SERVER = DEDICATED)
-              (SID = db11g)
-            )
-          )";
-    $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+    include("include/connect_inc.php");
 
     //EMAIL
     $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";

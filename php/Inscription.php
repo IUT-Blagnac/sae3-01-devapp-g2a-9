@@ -6,7 +6,7 @@ include("include/connect_inc.php");
 if (isset($valider)) {
     //EMAIL
     $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
-    $stid = oci_parse($connect, $query);
+    $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
     //Pour vérifier le mot de passe plus bas
@@ -35,7 +35,7 @@ if (isset($valider)) {
         else{
             $query = "INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
             VALUES (:email, :password, 0, :nom, :prenom, :numtel, :entreprise)";
-            $stid = oci_parse($connect, $query);
+            $stid = oci_parse($conn, $query);
 
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $isset_entreprise = isset($entreprise) ? 1 : 0; 

@@ -4,7 +4,7 @@ include("include/connect_inc.php");
 
 //categories
 $query = "SELECT NOMCAT, IDCAT FROM CATEGORIE";
-$stid = oci_parse($connect, $query);
+$stid = oci_parse($conn, $query);
 oci_execute($stid);
 
 while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
@@ -16,7 +16,7 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
 if (isset($_REQUEST["cat"])) {
     $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
     $categorie = $_REQUEST["cat"];
-    $stid = oci_parse($connect, $query);
+    $stid = oci_parse($conn, $query);
 
     oci_bind_by_name($stid, ":categorie", $categorie);
 
@@ -31,7 +31,7 @@ if (isset($_REQUEST["cat"])) {
 else{
     foreach ($categories as $categorie_produit) {
         $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie AND ROWNUM < 3";
-        $stid = oci_parse($connect, $query);
+        $stid = oci_parse($conn, $query);
 
         oci_bind_by_name($stid, ":categorie", $categorie_produit);
 

@@ -1,13 +1,6 @@
 <?php
     session_start();
-    $db = "(DESCRIPTION =
-                (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
-                (CONNECT_DATA =
-                  (SERVER = DEDICATED)
-                  (SID = db11g)
-                )
-              )";
-    $conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+    include('include/connect_inc.php');
 
     //categories
     $query = "SELECT nomcat FROM categorie";
