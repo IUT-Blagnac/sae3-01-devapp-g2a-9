@@ -17,8 +17,13 @@ oci_bind_by_name($stid, ":email", $_SESSION['email']);
 oci_execute($stid);
 oci_fetch_all($stid, $res);
 
-oci_free_statement($stid);
+$e = oci_error();
 
+oci_free_statement($stid);
+echo "<pre>";
+print_r($res);
+echo $e;
+echo "</pre>";
 ?>
 
 
