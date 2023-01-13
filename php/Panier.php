@@ -47,37 +47,15 @@ echo "</pre>";
                     <div class="main-card-panier">
                         <?php foreach($res as $produit): ?>
                             <div class="produit">
-                                <?= 'allo'; ?>
-                                <?php echo 'allo'; ?>
-                                <?php echo $produit; ?>
-                                <?php var_dump($produit); ?>
-                                <img src="<?php echo "./img/produits/".$produit['idProduit']."_1.jpg"; ?>" alt="image">
+                                <img src="<?= "./img/produits/".$produit['IDPRODUIT']."_1.jpg"; ?>" alt="image">
                                 <div class="produit-info">
-                                    <div><?php echo $produit['nomProduit']; ?></div>
-                                    <div><?php echo $produit['quantite']; ?></div>
-                                    <div><?php echo $produit['prixProduit']; ?></div>
+                                    <div><?= $produit['NOMPRODUIT']; ?></div>
+                                    <div><?= $produit['QUANTITE']; ?></div>
+                                    <div><?= $produit['PRIXPRODUIT']; ?></div>
                                 </div>
                                 <div><button>Supprimer</button></div>
                             </div>
                         <?php endforeach; ?>
-                        <div class="produit">
-                            <img src="img/test-gpu.png" alt="image">
-                            <div class="produit-info">
-                                <div>Nom produitee</div>
-                                <div>6</div>
-                                <div>Prix</div>
-                            </div>
-                            <div><button>Supprimer</button></div>
-                        </div>
-                        <div class="produit">
-                            <img src="img/test-gpu.png" alt="image">
-                            <div class="produit-info">
-                                <div>Nom produit</div>
-                                <div>2</div>
-                                <div>150,99 €</div>
-                            </div>
-                            <div><button>Supprimer</button></div>
-                        </div>
                     </div>
                 </div>
                 <div class="main-card acheter">
