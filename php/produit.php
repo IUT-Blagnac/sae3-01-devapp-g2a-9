@@ -50,7 +50,7 @@ include('include/connect_inc.php');
                             <?php
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">";
                             ?>
-                            <a class="doigt">👉</a></div>
+                            <a class="autredoigt">👉</a></div>
                             <?php
                                 echo"<script> 
                                     var nbImg = 0;
@@ -63,7 +63,7 @@ include('include/connect_inc.php');
                                             nbImg = 0;
                                         }
                                     };
-                                    document.querySelector(\".doigt2\").onclick = function(){
+                                    document.querySelector(\".autredoigt\").onclick = function(){
                                         if(nbImg== 0){
                                             document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
