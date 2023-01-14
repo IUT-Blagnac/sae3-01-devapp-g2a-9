@@ -46,12 +46,21 @@ include('include/connect_inc.php');
                     ?>
                     <div class="main-card-produit">
                         <div class="gallerie">
-                            <a class="doigt">👈</a>
+                            <a class="doigt" id="bou">👈</a>
                             <?php
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
                                 <script> 
                                     var nbImg = 0;
-                                    document.querySelectorAll(\".doigt\").onclick = function(){
+                                    document.querySelector(\"#be\").onclick = function(){
+                                        if(nbImg== 0){
+                                            document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
+                                            nbImg = 1;
+                                        } else {
+                                            document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_1.jpg\";
+                                            nbImg = 0;
+                                        }
+                                    };
+                                    document.querySelector(\"#bou\").onclick = function(){
                                         if(nbImg== 0){
                                             document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
@@ -63,7 +72,7 @@ include('include/connect_inc.php');
                                 </script>
                                     ";
                             ?>
-                            <a class="doigt">👉</a></div>
+                            <a class="doigt" id="be">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <?php
