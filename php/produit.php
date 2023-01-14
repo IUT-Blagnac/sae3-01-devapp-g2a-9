@@ -52,7 +52,7 @@ include('include/connect_inc.php');
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <?php
-                            echo "<p><div><a><strong>".$produit['DESCPRODUIT']."</strong></a></div></p>";
+                            echo "<p><div><a><strong>".$res[0]['desc']."</strong></a></div></p>";
                         ?>
                         <h2>                       
                             <?php
@@ -64,7 +64,7 @@ include('include/connect_inc.php');
                 </div>
                 <div class="main-card">
                     <h2>Produits similaires :</h2>
-                    <div class="main-card-content">
+                    <div class="main-card-content" style="visibility: hidden;">
                         <?php
                             foreach($res2 as $produit) { 
                                 echo" <div class=\"produit\">
