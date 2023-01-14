@@ -16,7 +16,7 @@ include('include/connect_inc.php');
     oci_free_statement($stid);
 
     //produits similaires
-    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT = ".$res[0]['souscat'];
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT = '".$res[0]['souscat']."'";
     $stid2 = oci_parse($conn, $query);
     oci_execute($stid2);
 
