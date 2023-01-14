@@ -2,22 +2,15 @@
 session_start();
 include('include/connect_inc.php');
 
-    //nom produit
-    $query = "SELECT NOMPRODUIT FROM produit WHERE idproduit = ".$_GET['identifiantP'];
-    $stid = oci_parse($conn, $query);
-    oci_execute($stid);
-
-    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res3 = $row['NOMPRODUIT'];
-    }
+    $id = htmlspecialchars($_GET['identifiantP']);
 
     //prix + description
-    $query = "SELECT PRIXPRODUIT, DESCPRODUIT FROM produit WHERE idproduit = ".$_GET['identifiantP'];
+    $query = "SELECT NOMPRODUIT, PRIXPRODUIT, DESCPRODUIT FROM produit WHERE idproduit = ".$id;
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res[] = $row['PRIXPRODUIT'];
+        $res[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
 
     //produits similaires
@@ -44,7 +37,7 @@ include('include/connect_inc.php');
             <main>
                 <div class="main-card">
                     <?php
-                    echo "<h2>".$res3."</h2>"; //nom produit
+                    echo "<h2>".$res[0]['nom']."</h2>"; //nom produit
                     ?>
                     <div class="main-card-produit">
                         <div class="gallerie">
