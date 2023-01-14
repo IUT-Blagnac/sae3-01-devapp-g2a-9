@@ -48,7 +48,20 @@ include('include/connect_inc.php');
                         <div class="gallerie">
                             <a class="doigt">👈</a>
                             <?php
-                                echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">";
+                                echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
+                                <script> 
+                                    var nbImg = 0;
+                                    document.querySelector(\".doigt\").onclick = function(){
+                                        if(nbImg== 0){
+                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_2.jpg\";
+                                            nbImg = 1;
+                                        } else {
+                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_1.jpg\";
+                                            nbImg = 0;
+                                        }
+
+                                    };
+                                ";
                             ?>
                             <a class="doigt">👉</a></div>
                         </div>
