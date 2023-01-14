@@ -284,8 +284,9 @@
                             } else{
                                 echo"<div><a>".$produit['prix']." €</a></div>";
                             }
-                            echo"<div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>";
+                            echo"<form name= \"aie\" action=\"produit.php\" method= \"get\">
+                            <div><button name = \"identifiantP\"type= \"submit\" value= ".$produit['id'].">Acheter</button></div>
+                            </form>";
                             }
                             echo"</div>";
                         } else {
