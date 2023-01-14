@@ -46,12 +46,12 @@ include('include/connect_inc.php');
                     ?>
                     <div class="main-card-produit">
                         <div class="gallerie">
-                            <a class="doigt" id="bou">👈</a>
+                            <a class="doigt">👈</a>
                             <?php
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
                                 <script> 
                                     var nbImg = 0;
-                                    document.querySelector(\"#be\").onclick = function(){
+                                    document.querySelector(\".doigt\").onclick = function(){
                                         if(nbImg== 0){
                                             document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
@@ -60,7 +60,7 @@ include('include/connect_inc.php');
                                             nbImg = 0;
                                         }
                                     };
-                                    document.querySelector(\"#bou\").onclick = function(){
+                                    document.querySelector(\".doigt2\").onclick = function(){
                                         if(nbImg== 0){
                                             document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
@@ -72,7 +72,7 @@ include('include/connect_inc.php');
                                 </script>
                                     ";
                             ?>
-                            <a class="doigt" id="be">👉</a></div>
+                            <a class="doigt2">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <?php
