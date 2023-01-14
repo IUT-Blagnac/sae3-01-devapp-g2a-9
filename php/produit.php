@@ -51,7 +51,7 @@ include('include/connect_inc.php');
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
                                 <script> 
                                     var nbImg = 0;
-                                    document.getElementsByClassName(\"doigt\").onclick = function(){
+                                    document.querySelector(\".doigt\").onclick = function(){
                                         if(nbImg== 0){
                                             document.querySelector(\".img_produit\").src = \"./img/produits/".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
