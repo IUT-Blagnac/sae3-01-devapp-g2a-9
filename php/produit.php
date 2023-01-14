@@ -47,7 +47,9 @@ include('include/connect_inc.php');
                     <div class="main-card-produit">
                         <div class="gallerie">
                             <a class="doigt">👈</a>
-                            <img src="./img/pécé.jpg" alt="le Produit" class="img_produit">
+                            <?php
+                                echo"<img src=\"./img/".$res2[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">";
+                            ?>
                             <a class="doigt">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
