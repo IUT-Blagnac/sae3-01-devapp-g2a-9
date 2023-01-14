@@ -44,7 +44,7 @@ include('include/connect_inc.php');
             <main>
                 <div class="main-card">
                     <?php
-                    echo "<h2>".$res3."</h2>" //nom produit
+                    echo "<h2>".$res3."</h2>"; //nom produit
                     ?>
                     <div class="main-card-produit">
                         <div class="gallerie">
