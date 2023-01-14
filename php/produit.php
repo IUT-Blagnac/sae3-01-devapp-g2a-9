@@ -10,7 +10,7 @@ include('include/connect_inc.php');
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
+        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT']];
     }
 
     //produits similaires
@@ -18,7 +18,7 @@ include('include/connect_inc.php');
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
-    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+    while ($row2 = oci_fetch_array($stid, OCI_ASSOC)) {
         $res2[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
 ?>
