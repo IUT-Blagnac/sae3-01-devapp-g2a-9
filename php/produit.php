@@ -5,16 +5,16 @@ include('include/connect_inc.php');
     $id = htmlspecialchars($_GET['identifiantP']);
 
     //prix + description
-    $query = "SELECT NOMPRODUIT, PRIXPRODUIT, DESCPRODUIT, IDPRODUIT FROM produit WHERE idproduit = ".$id;
+    $query = "SELECT NOMPRODUIT, PRIXPRODUIT, DESCPRODUIT, IDPRODUIT, IDSOUSCAT FROM produit WHERE idproduit = ".$id;
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'desc' => $row['IDPRODUIT']];
+        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'desc' => $row['IDPRODUIT'], 'souscat' => $row['IDSOUSCAT']];
     }
 
     //produits similaires
-    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE idcat = ".$produit['IDCAT'];
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE idcat = ".$res[0]['souscat'];
     $stid = oci_parse($conn, $query);
     oci_execute($stid);
 
