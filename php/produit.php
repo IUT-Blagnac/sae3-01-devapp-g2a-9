@@ -8,7 +8,7 @@ include('include/connect_inc.php');
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res3[] = $row['NOMPRODUIT'];
+        $res3 = $row['NOMPRODUIT'];
     }
 
     //prix + description
