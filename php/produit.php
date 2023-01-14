@@ -62,22 +62,7 @@ include('include/connect_inc.php');
                         <div class="bouton_acheter"><button>Acheter</button></div>
                     </div>
                 </div>
-                <div class="main-card">
-                    <h2>Produits similaires :</h2>
-                    <div class="main-card-content" style="visibility: hidden;">
-                        <?php
-                            foreach($res2 as $produit) { 
-                                echo" <div class=\"produit\">
-                                <div><a><strong>".$produit['nom']."</strong></a></div>
-                                <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
-                                <div><a class=\"reduc\">".$produit['prix']." €</a></div>
-                                <div><a>".$produit['reduc']." €</a></div>
-                                <div><a href=\"produit.php?id=".$produit['id']."\"><button>Acheter</button></a></div>
-                                </div>";
-                            }
-                        ?>
-                    </div>
-                </div>
+
             </main>
             <?php include("include/footer.html"); ?>
         </div>
