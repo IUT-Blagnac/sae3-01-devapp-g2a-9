@@ -49,6 +49,7 @@ include('include/connect_inc.php');
                             <a class="doigt">👈</a>
                             <?php
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
+                                <a class=\"doigt2\">👉</a></div>
                                 <script> 
                                     var nbImg = 0;
                                     document.querySelector(\".doigt\").onclick = function(){
@@ -72,7 +73,6 @@ include('include/connect_inc.php');
                                 </script>
                                     ";
                             ?>
-                            <a class="doigt2">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <?php
