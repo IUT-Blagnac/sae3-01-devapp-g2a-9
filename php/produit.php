@@ -47,22 +47,7 @@ include('include/connect_inc.php');
                     <div class="main-card-produit">
                         <div class="gallerie">
                             <a class="doigt">👈</a>
-                            <?php
-                                echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
-                                <script> 
-                                    var nbImg = 0;
-                                    document.querySelector(\".doigt\").onclick = function(){
-                                        if(nbImg== 0){
-                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_2.jpg\";
-                                            nbImg = 1;
-                                        } else {
-                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_1.jpg\";
-                                            nbImg = 0;
-                                        }
-
-                                    };
-                                ";
-                            ?>
+                            <img src="./img/pécé.jpg" alt="le Produit" class="img_produit">
                             <a class="doigt">👉</a></div>
                         </div>
                         <h3 class="description_produit">Description :</h3>
@@ -77,7 +62,22 @@ include('include/connect_inc.php');
                         <div class="bouton_acheter"><button>Acheter</button></div>
                     </div>
                 </div>
-
+                <?php
+                    echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">
+                    <script> 
+                        var nbImg = 0;
+                        document.querySelector(\".doigt\").onclick = function(){
+                            if(nbImg== 0){
+                                document.querySelector(\".img_produit\").src = ".$res[0]['id']."_2.jpg\";
+                                nbImg = 1;
+                            } else {
+                                document.querySelector(\".img_produit\").src = ".$res[0]['id']."_1.jpg\";
+                                nbImg = 0;
+                            }
+                        };
+                    </script>
+                        ";
+                ?>
             </main>
             <?php include("include/footer.html"); ?>
         </div>
