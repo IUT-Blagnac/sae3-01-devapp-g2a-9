@@ -13,14 +13,19 @@ include('include/connect_inc.php');
         $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'desc' => $row['IDPRODUIT'], 'souscat' => $row['IDSOUSCAT']];
     }
 
+    oci_free_statement($stid);
+
     //produits similaires
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT FROM produit WHERE idcat = ".$res[0]['souscat'];
-    $stid = oci_parse($conn, $query);
-    oci_execute($stid);
+    $stid2 = oci_parse($conn, $query);
+    oci_execute($stid2);
 
-    while ($row2 = oci_fetch_array($stid, OCI_ASSOC)) {
+    while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
         $res2[] = ['nom' => $row2['NOMPRODUIT'], 'id'=> $row2['IDPRODUIT'], 'prix' => $row2['PRIXPRODUIT']];
     }
+
+    oci_free_statement($stid2);
+    oci_close($conn);
 ?>
 
 <html lang="fr">
