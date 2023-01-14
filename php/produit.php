@@ -52,11 +52,11 @@ include('include/connect_inc.php');
                         </div>
                         <h3 class="description_produit">Description :</h3>
                         <?php
-                            echo "<p><div><a><strong>".$res[2]['desc']."</strong></a></div></p>";
+                            echo "<p><div><a><strong>".$res[0]['desc']."</strong></a></div></p>";
                         ?>
                         <h2>                       
                             <?php
-                                echo "<p><div><a><strong>".$produit['PRIXPRODUIT']."</strong></a></div></p>";
+                                echo "<p><div><a><strong>".$res[0]['prix']."</strong></a></div></p>";
                             ?>
                         </h2>
                         <div class="bouton_acheter"><button>Acheter</button></div>
