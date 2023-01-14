@@ -10,7 +10,7 @@ include('include/connect_inc.php');
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'desc' => $row['IDPRODUIT'], 'souscat' => $row['IDSOUSCAT']];
+        $res[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'desc' => $row['DESCPRODUIT'], 'souscat' => $row['IDSOUSCAT']];
     }
 
     oci_free_statement($stid);
