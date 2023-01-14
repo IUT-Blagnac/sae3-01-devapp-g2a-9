@@ -53,10 +53,10 @@ include('include/connect_inc.php');
                                     var nbImg = 0;
                                     document.querySelector(\".doigt\").onclick = function(){
                                         if(nbImg== 0){
-                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_2.jpg\";
+                                            document.querySelector(\".img_produit\").src = \"".$res[0]['id']."_2.jpg\";
                                             nbImg = 1;
                                         } else {
-                                            document.querySelector(\".img_produit\").src = ".$res[0]['id']."_1.jpg\";
+                                            document.querySelector(\".img_produit\").src = \"".$res[0]['id']."_1.jpg\";
                                             nbImg = 0;
                                         }
                                     };
