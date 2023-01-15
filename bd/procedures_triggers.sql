@@ -87,8 +87,8 @@ BEGIN
 		raise_application_error(-20002,'p_troisFois ('||p_troisFois||') doit être compris entre 0 et 1');
 	END IF;
 
-	INSERT INTO COMMANDE(IDCOMMANDE, EMAILUSER, IDCB, IDADRESSE, TROISFOIS, TAUXTVA)
-	VALUES (COMMANDE_SEQ.NEXTVAL, p_emailUser, p_idCB, p_idAdr, p_troisFois, 15);
+	INSERT INTO COMMANDE(IDCOMMANDE, EMAILUSER, IDCB, IDADRESSE, TROISFOIS, TAUXTVA, MONTANT)
+	VALUES (COMMANDE_SEQ.NEXTVAL, p_emailUser, p_idCB, p_idAdr, p_troisFois, 15, 0);
 
     FOR produit IN (SELECT * FROM Panier WHERE Panier.EMAILUSER = p_emailUser) LOOP
 		
