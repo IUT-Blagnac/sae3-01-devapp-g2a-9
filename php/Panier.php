@@ -41,15 +41,20 @@ oci_free_statement($stid);
                     <div class="main-card-panier">
                         <?php if(!empty($res)): ?>
                             <?php foreach($res as $produit): ?>
-                                <?php $sum += $produit['PRIXPRODUIT']; ?>
+                                <?php $sum += $produit['PRIXPRODUIT']*$produit['QUANTITE']; ?>
                                 <div class="produit">
                                     <img src="<?= "./img/produits/".$produit['IDPRODUIT']."_1.jpg"; ?>" alt="image">
                                     <div class="produit-info">
                                         <div><?= $produit['NOMPRODUIT']; ?></div>
-                                        <div><?= $produit['QUANTITE']; ?></div>
-                                        <div><?= $produit['PRIXPRODUIT']."€"; ?></div>
+                                        <div><?= "Quantité : ".$produit['QUANTITE']; ?></div>
+                                        <div><?= $produit['PRIXPRODUIT']*$produit['QUANTITE']."€"; ?></div>
                                     </div>
-                                    <div><button>Supprimer</button></div>
+                                    <div>
+                                        <form method="post" style="all: initial;">
+                                            <input type="hidden" name="idproduit" value="<?= $produit['IDPRODUIT']; ?>">
+                                            <button type="submit" value="del">Supprimer</button>
+                                        </form>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
