@@ -6,11 +6,12 @@
 			  (SID = db11g)
 			)
 		  )" ;
-	$connect = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+	$conn = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
 	
 	// si la connexion a échoué, on affiche le message d'erreur
-	if (!$connect) {
+	if (!$conn) {
 		$e = oci_error();
 		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		echo $e;
 	}
 ?>

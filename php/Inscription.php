@@ -2,22 +2,62 @@
 <?php 
 session_start();
 extract($_POST);
+include("include/connect_inc.php");
 if (isset($valider)) {
-    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
-    // bind $email
-    // $res = stat->exec
-    // if (empty($res)) erreur = email non connu
-    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
-    // else :
-    if ($email == "user@a.com" && $password == "123") {
-        if (isset($souvenir)) {
-            setcookie('email', $email, time() + 60*60*24*30); // un mois
+    //EMAIL
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE '$email'";
+    $stid = oci_parse($conn, $query);
+    oci_execute($stid);
+
+    //Pour vérifier le mot de passe plus bas
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number    = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    if ($row = oci_fetch_array($stid, OCI_ASSOC)) $erreur = "Email déjà utilisé, connectez-vous ou réinitialisez votre mot de passe.";
+    if($row === false){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $erreur = "Le format de l'email est incorrect.";
         }
-        $_SESSION["autoriser"] = "oui";
-        header("Location: index.php");
-    } else {
-        $erreur = "Email incorrect ou déjà assignée";
+        else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+            $erreur = "Le mot de passe doit contenir huit caractères dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
+        }
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$nom)) {
+            $erreur = "Le prénom peut seuleument contenir des lettres, des tirets et des espaces.";
+        }
+        else if (!preg_match("/^[a-zA-Z-' ]*$/",$prenom)) {
+            $erreur = "Le nom peut seuleument contenir des lettres, des tirets et des espaces.";
+        }
+        else if(preg_match('/^[0-9]{8, 10}+$/', $numtel)) {
+            $erreur = "Le numéro de téléphone doit être entre 8 et 10 chiffres.";
+        }
+        else{
+            $query = "INSERT INTO utilisateur (emailUser,mdpUser,adminUser,nomUser,prenomUser,telUser,compteEntreprise)
+            VALUES (:email, :password, 0, :nom, :prenom, :numtel, :entreprise)";
+            $stid = oci_parse($conn, $query);
+
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $isset_entreprise = isset($entreprise) ? 1 : 0; 
+
+            oci_bind_by_name($stid, ":email", $email);
+            oci_bind_by_name($stid, ":password", $password_hash);
+            oci_bind_by_name($stid, ":nom", $nom);
+            oci_bind_by_name($stid, ":prenom", $prenom);
+            oci_bind_by_name($stid, ":numtel", $numtel);
+            oci_bind_by_name($stid, ":entreprise", $isset_entreprise);
+
+            $res = oci_execute($stid);
+            if (!$res) {
+                $e = oci_error($stid);  // on récupère l'exception liée au pb d'execution de la requete
+                $error_res = htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+            }
+
+            header("Location: Connexion.php");
+        }
     }
+    oci_free_statement($stid);
+    oci_close($conn);
 }
 ?>
 
@@ -41,7 +81,7 @@ if (isset($valider)) {
                     <input type="email" name="email" placeholder="sushi18@pouet.com" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" id="email"/>
                    
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
+                    <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" placeholder="∗∗∗∗∗∗∗∗∗∗∗∗∗∗∗" id="password"/>
 
                     <label for="prenom">Prenom</label>
                     <input type="text" name="prenom" placeholder="Clint" id="prenom"/>
@@ -58,7 +98,10 @@ if (isset($valider)) {
                     
                     <button type="submit" name="valider">Inscription</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Adresse email déjà utilisée</p>" : '';?>
+                    <?php
+                    echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                    echo isset($erreur_res) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';
+                    ?>
 
                     <a class="alternate social" href="Connexion.php">Connexion</a>
                         

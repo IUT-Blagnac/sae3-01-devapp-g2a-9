@@ -1,3 +1,52 @@
+<?php 
+error_reporting(E_ERROR | E_PARSE);
+include("include/connect_inc.php");
+
+//categories
+$query = "SELECT NOMCAT, IDCAT FROM CATEGORIE";
+$stid = oci_parse($conn, $query);
+oci_execute($stid);
+
+while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+    $categories[] = [ 'NOMCAT' => $row['NOMCAT'], 'IDCAT' => $row['IDCAT'] ];
+}
+
+
+// Produits par catégorie
+if (isset($_REQUEST["cat"])) {
+    $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie";
+    $categorie = $_REQUEST["cat"];
+    $stid = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":categorie", $categorie);
+
+    $res = oci_execute($stid);
+
+    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $produits[] = ['nom' => $row['NOMPRODUIT'], 'id'=> $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
+    }
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+else{
+    foreach ($categories as $categorie_produit) {
+        $query = "SELECT P.NOMPRODUIT, P.IDPRODUIT, P.PRIXPRODUIT, (P.PRIXPRODUIT - P.REDUCTION) as REDUC, C.IDCAT FROM produit P, categorie C, SOUSCATEGORIE S WHERE P.IDSOUSCAT = S.IDSOUSCAT AND C.IDCAT = S.IDCAT AND C.IDCAT = :categorie AND ROWNUM < 3";
+        $stid = oci_parse($conn, $query);
+
+        oci_bind_by_name($stid, ":categorie", $categorie_produit);
+
+        $res = oci_execute($stid);
+
+        while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+            $produits[$categorie_produit] = ['nom' => $row['NOMPRODUIT'], 'id' => $row['IDPRODUIT'], 'prix' => $row['PRIXPRODUIT'], 'reduc' => $row['REDUC']];
+        }
+        oci_free_statement($stid);
+        oci_close($conn);
+    }
+}
+
+?>
+
 <html lang="fr">
     <head>
         <title>Commerce de la rue</title>
@@ -13,374 +62,51 @@
                 <div class="main-card">
                     <h2>Catégories</h2>
                     <div class="main-card-content">
-                        <a href="Categories.php?cat=cpu" class="categorie"><button>Processeurs</button></a>
-                        <a href="Categories.php?cat=hdd" class="categorie"><button>Disques durs</button></a>
-                        <a href="Categories.php?cat=gpu" class="categorie"><button>Cartes graphiques</button></a>
-                        <a href="Categories.php?cat=mb" class="categorie"><button>Cartes mères</button></a>
-                        <a href="Categories.php?cat=ventirad" class="categorie"><button>Ventilateurs</button></a>
+                        <?php
+                            foreach ($categories as $i){
+                                echo " <a href=\"Categories.php?cat=" . $i['IDCAT'] . "\" class=\"categorie\"><button>".ucwords($i['NOMCAT'])."</button></a>";
+                            }
+                        ?>
                     </div>
                 </div>
                 <?php
+                //Obtenir le nom de la categorie selectionnée
+                foreach ($categories as $categorie) {
+                    if ($categorie['IDCAT'] == $_REQUEST["cat"]) {
+                        $nomcat = $categorie['NOMCAT'];
+                    }
+                }
+
                 if (isset($_REQUEST["cat"])) {
-                    $categorie = $_REQUEST["cat"];
-                    switch ($categorie) {
-                        case "cpu":
-                            echo "<div class=\"main-card\">
-                                <h2>Processeurs</h2>
-                                <div class=\"main-card-content\">
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                </div>
+                    echo "<div class=\"main-card\">
+                        <h2>" . ucwords($nomcat) . "</h2>
+                        <div class=\"main-card-content\">";
+                        foreach ($produits as $produit) {
+                            echo "<div class=\"produit\">
+                            <div><a><strong>".$produit['nom']."</strong></a></div>
+                            <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                            <div><a>".$produit['prix']." €</a></div>
+                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                             </div>";
-                            break;
-                        case "hdd":
-                            echo "<div class=\"main-card\">
-                            <h2>Disques durs</h2>
+                        }
+                        echo "</div></div>";
+                }
+                else{
+                    foreach ($categories as $categorie) {
+                        $nomcat = $categorie['NOMCAT'];
+                        echo "
+                        <div class=\"main-card\">
+                            <h2>" . ucwords($nomcat) . "</h2>
                             <div class=\"main-card-content\">
                                 <div class=\"produit\">
-                                    <div><a>Nom produit</a></div>
-                                    <div><a>Image</a></div>
-                                    <div><a>Prix</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                </div>
-                                <div class=\"produit\">
-                                    <div><a>Nom produit</a></div>
-                                    <div><a>Image</a></div>
-                                    <div><a>Prix</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                </div>
-                                <div class=\"produit\">
-                                    <div><a>Nom produit</a></div>
-                                    <div><a>Image</a></div>
-                                    <div><a>Prix</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                </div>
-                                <div class=\"produit\">
-                                    <div><a>Nom produit</a></div>
-                                    <div><a>Image</a></div>
-                                    <div><a>Prix</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                </div>
-                                <div class=\"produit\">
-                                    <div><a>Nom produit</a></div>
-                                    <div><a>Image</a></div>
-                                    <div><a>Prix</a></div>
+                                    <div><a><strong>".$produit[$categorie]['nom']."</strong></a></div>
+                                    <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit[$categorie]['id']."_1.jpg\" alt=\"Image du produit\"></div>
+                                    <div><a>".$produit[$categorie]['prix']." €</a></div>
                                     <div><a href=\"produit.php\"><button>Acheter</button></a></div>
                                 </div>
                             </div>
                         </div>";
-                            break;
-                        case "gpu":
-                            echo "<div class=\"main-card\">
-                                <h2>Cartes graphiques</h2>
-                                <div class=\"main-card-content\">
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                </div>
-                            </div>";
-                            break;
-                        case "mb":
-                            echo "<div class=\"main-card\">
-                                <h2>Cartes mères</h2>
-                                <div class=\"main-card-content\">
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                    <div class=\"produit\">
-                                        <div><a>Nom produit</a></div>
-                                        <div><a>Image</a></div>
-                                        <div><a>Prix</a></div>
-                                        <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                    </div>
-                                </div>
-                            </div>";
-                            break;
-                        case "ventirad":
-                            echo "<div class=\"main-card\">
-                                    <h2>Ventilateurs</h2>
-                                    <div class=\"main-card-content\">
-                                        <div class=\"produit\">
-                                            <div><a>Nom produit</a></div>
-                                            <div><a>Image</a></div>
-                                            <div><a>Prix</a></div>
-                                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                        </div>
-                                        <div class=\"produit\">
-                                            <div><a>Nom produit</a></div>
-                                            <div><a>Image</a></div>
-                                            <div><a>Prix</a></div>
-                                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                        </div>
-                                        <div class=\"produit\">
-                                            <div><a>Nom produit</a></div>
-                                            <div><a>Image</a></div>
-                                            <div><a>Prix</a></div>
-                                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                        </div>
-                                        <div class=\"produit\">
-                                            <div><a>Nom produit</a></div>
-                                            <div><a>Image</a></div>
-                                            <div><a>Prix</a></div>
-                                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                        </div>
-                                        <div class=\"produit\">
-                                            <div><a>Nom produit</a></div>
-                                            <div><a>Image</a></div>
-                                            <div><a>Prix</a></div>
-                                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                                        </div>
-                                    </div>
-                                </div>";
-                            break;
                     }
-                }
-                else{
-                    echo "<div class=\"main-card\">
-                    <h2>Ventilateurs</h2>
-                    <div class=\"main-card-content\">
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>                            
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>                            
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>                            
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>                            
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"main-card\">
-                    <h2>Processeurs</h2>
-                    <div class=\"main-card-content\">
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"main-card\">
-                    <h2>Disque dur</h2>
-                    <div class=\"main-card-content\">
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"main-card\">
-                    <h2>Cartes graphiques</h2>
-                    <div class=\"main-card-content\">
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                        <div class=\"produit\">
-                            <div><a>Nom produit</a></div>
-                            <div><a>Image</a></div>
-                            <div><a>Prix</a></div>
-                            <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"main-card\">
-                        <h2>Cartes mères</h2>
-                        <div class=\"main-card-content\">
-                            <div class=\"produit\">
-                                <div><a>Nom produit</a></div>
-                                <div><a>Image</a></div>
-                                <div><a>Prix</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>
-                            <div class=\"produit\">
-                                <div><a>Nom produit</a></div>
-                                <div><a>Image</a></div>
-                                <div><a>Prix</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>
-                            <div class=\"produit\">
-                                <div><a>Nom produit</a></div>
-                                <div><a>Image</a></div>
-                                <div><a>Prix</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>
-                            <div class=\"produit\">
-                                <div><a>Nom produit</a></div>
-                                <div><a>Image</a></div>
-                                <div><a>Prix</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>
-                            <div class=\"produit\">
-                                <div><a>Nom produit</a></div>
-                                <div><a>Image</a></div>
-                                <div><a>Prix</a></div>
-                                <div><a href=\"produit.php\"><button>Acheter</button></a></div>
-                            </div>
-                        </div>
-                    </div>";
                 }
                 ?>
                 

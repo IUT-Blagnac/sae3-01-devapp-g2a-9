@@ -3,37 +3,38 @@
 session_start();
 extract($_POST);
 if (isset($valider)) {
-    $db = "(DESCRIPTION =
-            (ADDRESS = (PROTOCOL = TCP)(HOST = oracle.iut-blagnac.fr)(PORT = 1521))
-            (CONNECT_DATA =
-              (SERVER = DEDICATED)
-              (SID = db11g)
-            )
-          )" ;
-    $connect = oci_connect("SAEBD09", "M0ntBlanc1UT", $db);
+    include("include/connect_inc.php");
 
-    // Affichage d'erreur si la connexion échoue
-    if (!$connect) {
-        $e = oci_error();
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    //EMAIL
+    $query = "SELECT * FROM UTILISATEUR WHERE EMAILUSER LIKE :email";
+    $stid = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":email", $email);
+
+    oci_execute($stid);
+
+    if ($row = oci_fetch_array($stid, OCI_ASSOC)){
+        $_SESSION["email"] = $row['EMAILUSER'];
+        $res["emailUser"] = true;
+        $res["mdpUser"] = $row['MDPUSER'];
     }
+    else $res["emailUser"] = false;
 
-    // SELECT emailUser, mdpUser FROM User WHERE emailUser = ? 
-    // bind $email
-    // $res = stat->exec
-    // if (empty($res)) erreur = email non connu
-    // if (!verify_password($password, $res['mdpUser'])) erreur = mdp non connu
-    // else :
-    if (empty($res["emailUser"])) {
+    //print(password_hash("aB12345", PASSWORD_DEFAULT)); // Pour hasher un mdp
+
+    oci_free_statement($stid);
+    oci_close($conn);
+
+    if (!$res["emailUser"]) {
         $erreur = "Adresse Email inconnue";
     } else {
         if (password_verify($password, $res['mdpUser'])){
             if (isset($souvenir)) setcookie('email', $email, time() + 60*60*24*30); // Retenir l'email pendant un mois
 
-            $_SESSION["autoriser"] = "oui"; // Valider la session
+            $_SESSION["connected"] = true; // Valider la session
 
             // Rediriger vers la page d'origine ou l'index
-            if (isset($_GET["origine"])) header("Location: $_GET{\"origine\"}.php");
+            if (isset($_GET["origine"])) header("Location:".$_GET["origine"]);
             else header("Location: index.php");
         }
         else{
@@ -72,7 +73,7 @@ if (isset($valider)) {
 
                     <button type="submit" name="valider">Connexion</button>
 
-                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">Le mot de passe ou l'email est incorrect</p>" : '';?>
+                    <?php echo isset($erreur) ? "<p id=\"erreur_connexion\">$erreur</p>" : '';?>
 
                     <a class="alternate social" href="Inscription.php">Inscription</a>
                 </form>
