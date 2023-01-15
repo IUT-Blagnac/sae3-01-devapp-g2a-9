@@ -5,6 +5,21 @@ include("include/connect_inc.php");
 if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 extract($_POST);
 
+if (isset($delproduit)) {
+    $query = "DELETE FROM Panier
+              WHERE Panier.emailUser = :email
+              AND idProduit = :idProduit";
+
+    $stid = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":email", $_SESSION['email']);
+    oci_bind_by_name($stid, ":idProduit", $delproduit);
+
+    oci_execute($stid);
+
+    oci_free_statement($stid);
+}
+
 $query = "SELECT Pr.idProduit, nomProduit, prixProduit, reduction, quantite
           FROM Produit Pr, Panier Pa
           WHERE Pr.idProduit = Pa.idProduit
@@ -22,7 +37,6 @@ $bonjour = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW|OCI_
 
 oci_free_statement($stid);
 ?>
-
 
 <html lang="fr">
     <head>
@@ -51,8 +65,7 @@ oci_free_statement($stid);
                                     </div>
                                     <div>
                                         <form method="post" style="all: initial;">
-                                            <input type="hidden" name="idproduit" value="<?= $produit['IDPRODUIT']; ?>">
-                                            <button type="submit" value="del">Supprimer</button>
+                                            <button type="submit" name="delproduit" value="<?= $produit['IDPRODUIT']; ?>">Supprimer</button>
                                         </form>
                                     </div>
                                 </div>
