@@ -64,8 +64,8 @@ FOR EACH ROW
 BEGIN
     IF INSERTING THEN
         UPDATE Produit
-        SET stockproduit = stockproduit - :OLD.quantite
-        WHERE Produit.idproduit = :OLD.idproduit;
+        SET stockproduit = stockproduit - :NEW.quantite
+        WHERE Produit.idproduit = :NEW.idproduit;
     END IF;
 END;
 /
