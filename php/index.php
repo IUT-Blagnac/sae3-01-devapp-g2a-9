@@ -58,7 +58,9 @@
                                     <div><a><strong>".$produit['nom']."</strong></a></div>
                                     <div class=\"image-produit-content\"><img class=\"image-produit\"src=\"./img/produits/".$produit['id']."_1.jpg\" alt=\"Image du produit\"></div>
                                     <div><a>".$produit['prix']." €</a></div>
-                                    <div><a href=\"produit.php\"><button>Acheter</button></a></div>
+                                    <form name= \"aie\" action=\"produit.php\" method= \"get\">
+                                    <div><button name = \"identifiantP\"type= \"submit\" value= ".$produit['id'].">Acheter</button></div>
+                                    </form>
                                     </div>";
                                 }
                             ?>
