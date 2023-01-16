@@ -12,7 +12,7 @@ if (isset($_POST['commander'])) {
     oci_bind_by_name($stid, ":user", $_SESSION['email']);
     oci_bind_by_name($stid, ":idcb", $_POST['cartebancaire']);
     oci_bind_by_name($stid, ":idadr", $_POST['adresse']);
-    oci_bind_by_name($stid, ":trois", $_POST['troisfois']);
+    oci_bind_by_name($stid, ":trois", isset($_POST['troisfois']) ? 1 : 0);
 
     oci_execute($stid);
     oci_free_statement($stid);
