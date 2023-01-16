@@ -35,8 +35,7 @@
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT LIKE :souscat";
     $stid2 = oci_parse($conn, $query);
 
-    oci_bind_by_name($stid, ":souscat", $res[0]['souscat']);
-    echo $res[0]['souscat'];
+    oci_bind_by_name($stid2, ":souscat", $res[0]['souscat']);
     oci_execute($stid2);
 
     while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
