@@ -3,10 +3,23 @@ session_start();
 include('include/connect_inc.php');
 
     $id = htmlspecialchars($_GET['identifiantP']);
+    
+    if (isset($_POST['ajout'])) {
+        $query = "AjouterPanier(:user, :idproduit, 1);";
+        $stid = oci_parse($conn, $query);
+
+        oci_bind_by_name($stid, ":user", $_SESSION['email']);
+        oci_bind_by_name($stid, ":idproduit", $_POST['ajout']);
+
+        oci_execute($stid);
+    }
 
     //prix + description
-    $query = "SELECT NOMPRODUIT, PRIXPRODUIT, DESCPRODUIT, IDPRODUIT, IDSOUSCAT FROM produit WHERE idproduit = ".$id;
+    $query = "SELECT NOMPRODUIT, PRIXPRODUIT, DESCPRODUIT, IDPRODUIT, IDSOUSCAT FROM produit WHERE idproduit = :id";
     $stid = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":id", $id);
+
     oci_execute($stid);
 
     while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
@@ -16,8 +29,11 @@ include('include/connect_inc.php');
     oci_free_statement($stid);
 
     //produits similaires
-    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT = '".$res[0]['souscat']."'";
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT = :souscat";
     $stid2 = oci_parse($conn, $query);
+
+    oci_bind_by_name($stid, ":souscat", $res[0]['souscat']);
+
     oci_execute($stid2);
 
     while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
@@ -50,7 +66,7 @@ include('include/connect_inc.php');
                             <?php
                                 echo"<img src=\"./img/produits/".$res[0]['id']."_1.jpg\" alt=\le Produit\" class=\"img_produit\">";
                             ?>
-                            <a class="autredoigt">👉</a></div>
+                            <a class="autredoigt">👉</a>
                             <?php
                                 echo"<script> 
                                     var nbImg = 0;
@@ -72,8 +88,7 @@ include('include/connect_inc.php');
                                             nbImg = 0;
                                         }
                                     };
-                                </script>
-                                    ";
+                                </script>";
                             ?>
                         </div>
                         <h3 class="description_produit">Description :</h3>
@@ -85,7 +100,11 @@ include('include/connect_inc.php');
                                 echo "<p><div><a><strong>".$res[0]['prix']."</strong></a></div></p>";
                             ?>
                         </h2>
-                        <div class="bouton_acheter"><button>Acheter</button></div>
+                        <div class="bouton_acheter">
+                            <form>
+                                <button type="submit" name="ajout" value="<?= $id; ?>">Ajout panier</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </main>

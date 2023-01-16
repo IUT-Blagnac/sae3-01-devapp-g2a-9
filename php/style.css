@@ -292,7 +292,6 @@ footer div a:hover{
 form {
     display: flex;
     flex-direction: column;
-    width: 95vmin;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
     /* backdrop-filter: blur(10px); */
