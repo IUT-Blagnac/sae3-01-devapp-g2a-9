@@ -101,7 +101,10 @@ oci_free_statement($stid);
                     </select>
                     <a class="bouton-adresse" href="Compte.php">Ajouter une carte</a>
 
-                    <input type="checkbox" name="troisfois" id="troisfois"> Paiement en 3 fois
+                    <label class="checkbox-label" for="troisfois">
+                        <input type="checkbox" name="troisfois" id="troisfois">
+                        Paiement en 3 fois
+                    </label>
                     
                     <label for="prenom">Prenom</label>
                     <input type="text" name="prenom" value="<?= ucwords($prenom); ?>" id="prenom" readonly/>
