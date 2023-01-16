@@ -120,6 +120,6 @@ Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test
+- Tests unitaires et plans de test : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/blob/master/Documentation/cahier_recette.adoc
 - Indicateurs de qualité du code (dette technique)
 - ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
