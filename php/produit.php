@@ -3,10 +3,11 @@
     include('include/connect_inc.php');
     if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 
+    if (!isset($_GET['identifiantP'])) {
+        header("Location: index.php");
+    }
     $id = htmlspecialchars($_GET['identifiantP']);
     
-    
-
     if (isset($_POST['ajout'])) {
         $query = "begin AjouterPanier(:user, :idproduit, 1); end;";
         $stid = oci_parse($conn, $query);
