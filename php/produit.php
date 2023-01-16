@@ -1,8 +1,11 @@
 <?php
-session_start();
-include('include/connect_inc.php');
+    session_start();
+    include('include/connect_inc.php');
+    if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 
     $id = htmlspecialchars($_GET['identifiantP']);
+    
+    
 
     if (isset($_POST['ajout'])) {
         $query = "begin AjouterPanier(:user, :idproduit, 1); end;";
