@@ -92,7 +92,7 @@ oci_free_statement($stid);
                     </select>
                     <a class="bouton-adresse" href="Compte.php">Ajouter une adresse</a>
 
-                    <label for="CB">Où nous livrons-vous ?</label>
+                    <label for="CB">Avec quelle carte ?</label>
                     <select name="cartebancaire" class="custom-select">
                         <option value="">Faites un choix !</option>
                         <?php foreach($cbs as $cb): ?>
