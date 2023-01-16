@@ -16,6 +16,8 @@
         oci_bind_by_name($stid, ":idproduit", $_POST['ajout']);
 
         oci_execute($stid);
+        oci_free_statement($stid);
+        echo "<script>alert('Article ajouté au panier');</script>";
     }
 
     //prix + description
