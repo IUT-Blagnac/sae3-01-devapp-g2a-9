@@ -3,9 +3,7 @@
     include('include/connect_inc.php');
     if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(__FILE__, '.php').".php");
 
-    if (!isset($_GET['identifiantP'])) {
-        header("Location: index.php");
-    }
+    
     $id = htmlspecialchars($_GET['identifiantP']);
     
     if (isset($_POST['ajout'])) {
@@ -33,6 +31,12 @@
     }
 
     oci_free_statement($stid);
+
+    // si produit non existant
+    if (empty($res)) {
+        header("Location: index.php");
+    }
+
 
     //produits similaires
     $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT LIKE :souscat";
