@@ -292,7 +292,6 @@ footer div a:hover{
 form {
     display: flex;
     flex-direction: column;
-    width: 95vmin;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
     /* backdrop-filter: blur(10px); */
@@ -354,11 +353,6 @@ input, select {
 }
 .custom-select option{
     background-color: rgba(28, 33, 48, .5);
-}
-.carte-bancaire{
-    border: 2px solid grey;
-    padding: 1vmin;
-    border-radius: 10px;
 }
 #mdp_oublie{
     text-decoration: underline;

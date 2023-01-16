@@ -33,7 +33,7 @@ oci_execute($stid);
 
 $res = [];
 $sum = 0;
-$bonjour = oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW|OCI_ASSOC);
+oci_fetch_all($stid, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW|OCI_ASSOC);
 
 oci_free_statement($stid);
 ?>
