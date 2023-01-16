@@ -5,7 +5,7 @@ include('include/connect_inc.php');
     $id = htmlspecialchars($_GET['identifiantP']);
 
     if (isset($_POST['ajout'])) {
-        $query = "AjouterPanier(:user, :idproduit, 1);";
+        $query = "begin AjouterPanier(:user, :idproduit, 1); end;";
         $stid = oci_parse($conn, $query);
 
         oci_bind_by_name($stid, ":user", $_SESSION['email']);
