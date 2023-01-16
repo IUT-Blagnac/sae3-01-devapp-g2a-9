@@ -1,4 +1,9 @@
 {
     "filename": "data.json",
-    "data": ["co2", "temperature", "humidity"]
+    "data": {
+        "co2": null,
+        "temperature": 30,
+        "humidity": 50
+    },
+    "devices": ["24e124128c010091", "24e124128c011586", "24e124128c014516", "24e124128c017412", "24e124128c017943", "24e124128c017760"]
 }

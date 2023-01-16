@@ -28,14 +28,14 @@ class Commande{
     tauxTVA
     montant
 }
-class User{
-    idUser
-    emailUser
-    mdpUser
-    adminUser
-    nomUser
-    prenomUser
-    telUser
+class Utilisateur {
+    emailUtilisateur
+    mdpUtilisateur
+    adminUtilisateur
+    nomUtilisateur
+    prenomUtilisateur
+    telUtilisateur
+    compteentreprise
 }
 class Adresse{
     idAdresse
@@ -61,15 +61,15 @@ SousCategorie "0..*" - "1" Categorie : Faire partie de
 Produit "1..*" -- "0..*" Commande
 (Commande, Produit) .. DetailCommande
 
-User "1" - "0..*" Commande : Passer
+Utilisateur "1" - "0..*" Commande : Passer
 Adresse "1" - "0..*" Commande : Livrer
 CarteBancaire "1" -- "0..*" Commande : Payer
 
-User "1" -- "0..*" Adresse : Posséder
-User "1" - "0..*" CarteBancaire  : Enregistrer
+Utilisateur "1" -- "0..*" Adresse : Posséder
+Utilisateur "1" - "0..*" CarteBancaire  : Enregistrer
 
-Produit "0..*" -- "0..*" User
-(User, Produit) .. Panier
+Produit "0..*" -- "0..*" Utilisateur
+(Utilisateur, Produit) .. Panier
 
 
 
