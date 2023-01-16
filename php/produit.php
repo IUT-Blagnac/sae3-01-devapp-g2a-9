@@ -3,7 +3,7 @@ session_start();
 include('include/connect_inc.php');
 
     $id = htmlspecialchars($_GET['identifiantP']);
-    
+
     if (isset($_POST['ajout'])) {
         $query = "AjouterPanier(:user, :idproduit, 1);";
         $stid = oci_parse($conn, $query);
@@ -29,7 +29,7 @@ include('include/connect_inc.php');
     oci_free_statement($stid);
 
     //produits similaires
-    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT = :souscat";
+    $query = "SELECT NOMPRODUIT, IDPRODUIT, PRIXPRODUIT, IDSOUSCAT FROM produit WHERE IDSOUSCAT LIKE :souscat";
     $stid2 = oci_parse($conn, $query);
 
     oci_bind_by_name($stid, ":souscat", $res[0]['souscat']);
@@ -101,7 +101,7 @@ include('include/connect_inc.php');
                             ?>
                         </h2>
                         <div class="bouton_acheter">
-                            <form>
+                            <form method="post">
                                 <button type="submit" name="ajout" value="<?= $id; ?>">Ajout panier</button>
                             </form>
                         </div>
