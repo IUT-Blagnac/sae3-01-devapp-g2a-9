@@ -354,11 +354,6 @@ input, select {
 .custom-select option{
     background-color: rgba(28, 33, 48, .5);
 }
-.carte-bancaire{
-    border: 2px solid grey;
-    padding: 1vmin;
-    border-radius: 10px;
-}
 #mdp_oublie{
     text-decoration: underline;
 }
