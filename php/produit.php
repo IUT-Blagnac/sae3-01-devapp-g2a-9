@@ -36,7 +36,7 @@
     $stid2 = oci_parse($conn, $query);
 
     oci_bind_by_name($stid, ":souscat", $res[0]['souscat']);
-
+    echo $res[0]['souscat'];
     oci_execute($stid2);
 
     while ($row2 = oci_fetch_array($stid2, OCI_ASSOC)) {
@@ -95,12 +95,13 @@
                             ?>
                         </div>
                         <h3 class="description_produit">Description :</h3>
+                        
                         <?php
-                            echo "<p><div><a><strong>".$res[0]['desc']."</strong></a></div></p>";
+                            echo "<div><p><a><strong>".$res[0]['desc']."</strong></a></p></div>";
                         ?>
                         <h2>                       
                             <?php
-                                echo "<p><div><a><strong>".$res[0]['prix']."</strong></a></div></p>";
+                                echo "<div><p><a><strong>".$res[0]['prix']."</strong></a></p></div>";
                             ?>
                         </h2>
                         <div class="bouton_acheter">
