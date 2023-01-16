@@ -116,7 +116,7 @@ Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.
 
 Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v4
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v6_bis
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
