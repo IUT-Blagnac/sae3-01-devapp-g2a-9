@@ -72,9 +72,9 @@ def get_data(mqtt, obj, msg):
     else:
         print('pas de fichier de configuration, données ignorées')
 ```
-Cette fonction changera par la même occasion la variable globale data_waiting initialisée plus tôt. Cette modification nous servira à indiquer à la fonction d'écriture qu'il y a effectivement de nouvelles données en attente d'écriture.
+.Cette fonction changera par la même occasion la variable globale data_waiting initialisée plus tôt. Cette modification nous servira à indiquer à la fonction d'écriture qu'il y a effectivement de nouvelles données en attente d'écriture.
 
-Cette dernière fonction d'écriture est celle qui s'occupera d'écrire les données dans un fichier json :
+La dernière fonction est celle qui s'occupera d'écrire les données dans un fichier json :
 ```py
 def ecriture(numero, frame):
     global data_waiting
@@ -90,7 +90,9 @@ def ecriture(numero, frame):
     except Exception as e: # leve une exception si l'écriture du fichier est impossible
         print(e)
 ```
-Dans les première lignes on indique que la fonction se rappelera elle-même toutes les 30 secondes. On effectue un test sur la variable data_waiting afin de savoir si il y a des données en attente d'écriture. Si c'est le cas, on ouvre un fichier avec `os.open` et on les écrit dedans avec `os.write`. La variable data_waiting est remise à False.
+Dans les première lignes on indique que la fonction se rappelera elle-même toutes les 30 secondes. +
+On effectue un test sur la variable data_waiting afin de savoir si il y a des données en attente d'écriture. Si c'est le cas, on ouvre un fichier avec `os.open` et on les écrit dedans avec `os.write`. +
+La variable data_waiting est remise à False.
 
 === Initialisation du script
 
@@ -135,7 +137,7 @@ Dans la ligne de commande exécuter la commande +
 === Fichier `config.json` de configuration du script
 
 Le fichier de configuration est normalement généré par l'application Java associée. +
-Il devrait avoir une structure semblable à celle-ci:
+Il devrait avoir une structure semblable à celle-ci :
 ```json
 {
     "filename": "data.json",
