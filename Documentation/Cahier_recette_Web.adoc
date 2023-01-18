@@ -62,7 +62,7 @@ Groupe G2A09
 | TestConnexionMDPInvalide
 | Connexion d'un client
 | Blocage : "Mot de passe invalide"
-| - L'adresse email fournie est connue
+| - L'adresse email fournie est connue +
   - Le mot de passe associé est invalide
 |===
 
@@ -98,19 +98,19 @@ Groupe G2A09
 | Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
 | TestAjoutCBOK
-| Ajout d'une carte bancaire
+| Ajouter une carte bancaire
 | La carte bancaire est ajoutée au compte
 | Les informations renseignées sont correctes
 
 | TestAjoutCBNOK
-| Ajout d'une carte bancaire
+| Ajouter une carte bancaire
 | Blocage : Il manque une information
 | 
 
 | TestSupprCBOK
-| Suppression d'une carte bancaire
+| Supprimer une carte bancaire
 | La carte bancaire est bien supprimée du compte
-| - L'utilisateur est connecté
+| - L'utilisateur est connecté +
   - Il existe une carte bancaire associée au compte
 |===
 
@@ -120,19 +120,19 @@ Groupe G2A09
 | Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
 | TestAjoutAdrOK
-| Ajout d'une adresse
+| Ajouter une adresse
 | L'adresse est ajoutée au compte
 | Les informations renseignées sont correctes
 
 | TestAjoutAdrNOK
-| Ajout d'une adresse
+| Ajouter une adresse
 | Blocage : Il manque une information
 | 
 
 | TestSupprAdrOK
-| Suppression d'une adresse
+| Supprimer une adresse
 | L'adresse est bien supprimée du compte
-| - L'utilisateur est connecté
+| - L'utilisateur est connecté +
   - Il existe une adresse associée au compte
 |===
 
@@ -140,5 +140,44 @@ Groupe G2A09
 
 ==== Panier
 
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestAjoutPanierOK
+| Ajouter au panier
+| Le produit est ajouté au panier lorsqu'on clique sur "Ajouter panier"
+| L'utilisateur est connecté
+
+| TestAjoutPanierQte
+| Ajouter au panier
+| La quantité du produit est incrémentée
+| - L'utilisateur est connecté +
+  - Le produit est déjà dans le panier
+
+| TestSupprPanierOK
+| Supprimer du panier
+| Le produit est supprimé lorsqu'on clique sur "Supprimer"
+| - L'utilisateur est connecté +
+  - Il y a un produit dans le panier
+|===
+
 ==== Commande
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestCommandeOK
+| Passer une commande
+| Une commande est passée après complétion du formulaire Achat.php
+| - L'utilisateur est connecté +
+  - Il y a au moins un produit dans le panier
+
+| TestCommandeNOK
+| Supprimer du panier
+| La commande ne peut pas être passée lorsqu'il manque des informations
+| - L'utilisateur est connecté +
+  - Il y a un produit dans le panier
+|===
+
+=== Recherche
 
