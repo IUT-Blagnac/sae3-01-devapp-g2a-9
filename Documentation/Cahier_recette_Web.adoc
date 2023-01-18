@@ -195,28 +195,28 @@ Groupe G2A09
 
 | TestRechercheCategorie
 | Rechercher par catégorie
-| - Les produits retournés correspondent à la catégorie selectionnée
+| - Les produits retournés correspondent à la catégorie sélectionnée
 | 
 
 | TestRechercheSousCategorie
 | Rechercher par sous catégorie
-| Les produits retournés correspondent à la sous catégorie de selecionnée
-| - Une catégorie doit etre selectionnée
+| Les produits retournés correspondent à la sous catégorie de sélectionnée
+| - Une catégorie doit être sélectionnée
 
 | TestRecherchePrixMin
 | Recherche par prix minimum
-| Les produits retournés ont un prix superieur a la valeure choisie
+| Les produits retournés ont un prix supérieur à la valeur choisie
 |
 
 | TestRecherchePrixMax
 | Recherche par prix maximum
-| Les produits retournés ont un prix inferieur a la valeure choisie
+| Les produits retournés ont un prix inférieur à la valeur choisie
 |
 
 | TestRechercheFourchettePrix
 | Recherche par fourchette de prix
 | Les produits retournés on un prix compris entre les deux valeurs choisies
-| - Le prix minimum doit etre inferieur au prix maximum
+| - Le prix minimum doit être inférieur au prix maximum
 
 | TestTriPrixCroissant
 | Tri des produits par prix croissant
