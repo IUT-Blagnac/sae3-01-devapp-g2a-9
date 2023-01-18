@@ -180,4 +180,72 @@ Groupe G2A09
 |===
 
 === Recherche
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
 
+| TestRechercheNomOK
+| Rechercher avec un nom
+| Le résultat de la recherche est un produit dont le titre est égal avec le paramètre de la recherche.
+| - Le produit recherché existe dans la base de donnée.
+
+| TestRechercheNomNOK
+| Rechercher avec un nom
+| Un bandeau indique a l'utilisateur que le produit n'est pas en stock
+| - Le produit recherché n'existe dans la base de donnée
+
+| TestRechercheCategorie
+| Rechercher par catégorie
+| - Les produits retournés correspondent à la catégorie selectionnée
+| 
+
+| TestRechercheSousCategorie
+| Rechercher par sous catégorie
+| Les produits retournés correspondent à la sous catégorie de selecionnée
+| - Une catégorie doit etre selectionnée
+
+| TestRecherchePrixMin
+| Recherche par prix minimum
+| Les produits retournés ont un prix superieur a la valeure choisie
+|
+
+| TestRecherchePrixMax
+| Recherche par prix maximum
+| Les produits retournés ont un prix inferieur a la valeure choisie
+|
+
+| TestRechercheFourchettePrix
+| Recherche par fourchette de prix
+| Les produits retournés on un prix compris entre les deux valeurs choisies
+| - Le prix minimum doit etre inferieur au prix maximum
+
+| TestTriPrixCroissant
+| Tri des produits par prix croissant
+| Les produits retournés sont triés par prix croissant
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriPrixDecroissant
+| Tri des produits par prix décroissant
+| Les produits retournés sont triés par prix décroissant
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriABC
+| Tri des produits par ordre alphabétique
+| Les produits retournés sont triés par ordre alphabétique
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriZYX
+| Tri des produits par ordre alphabétique inversé
+| Les produits retournés sont triés par ordre alphabétique inversé
+| - La recherche doit retourner au moins 2 produits
+
+| TestTriNouveaute
+| Tri des produits par nouveauté
+| Les produits retournés sont triés par ordre d'ajout dans la base de données, les produits ajoutés récemment seront affichés en premier.
+| - La recherche doit au moins retourner 2 produits
+
+| TestTousLesProduits
+| Affichage de tous les produits
+| Renvoie tous les produits contenus dans la base de données
+| - Tous les champs hormis l'option de tri doivent être vide
+
+|===
