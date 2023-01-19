@@ -66,11 +66,10 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 
 === Affectation des rôles 
 
-Thomas Demeyere : SCRUM Master
-Oryann Prochaska : Product Owner
-Anton Xu : Développeur 
-Louis Yvelin : Développeur
-
+- Thomas Demeyere : SCRUM Master 
+- Oryann Prochaska : Product Owner 
+- Anton Xu : Développeur 
+- Louis Yvelin : Développeur 
 
 === Dépôt initial
 
@@ -97,7 +96,18 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 
 == Réalisations 
 
-TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
+Nous avons trié les compétences par dossier : 
+
+- Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
+- Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
+- Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
+- Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
+
+== Organisation et mode de fonctionnement
+
+Chaque début de semaine nous allons tous faire un _git clone_ sur nos PC de la branche principale (master). Nous avons une branche pour chacune des compétences et chacun devra push son travail sur la branche avec la compétence il a travaillé tout au long de la semaine.
+A la fin de la semaine au moment des rendus nous regardons les conflits entre la branche _master_ et les autres branches. Suite à ça nous faisons une merge request puis nous assemblons le tout afin de créer la release de la semaine. 
 
 == Rendus hebdomadaire de Gestion de projet & Qualité
 
@@ -106,10 +116,10 @@ Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.
 
 Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v6_bis
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test
+- Tests unitaires et plans de test : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/blob/master/Documentation/cahier_recette.adoc
 - Indicateurs de qualité du code (dette technique)
 - ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
