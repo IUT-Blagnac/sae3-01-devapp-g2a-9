@@ -10,13 +10,15 @@ import javafx.scene.layout.GridPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
- * Ce controller va écrire le fichier de config.json (creation)
+ * Ce controller va écrire le fichier de config.json (creation) qui va servir au python pour savoir quelles données récupérer puis à l'affichage des données en javaFX
  */
 
 
-public class ConfigController implements Initializable {
+public class  ConfigController implements Initializable {
 
     @FXML
     private Label seuilExactTemp;
@@ -94,6 +96,12 @@ public class ConfigController implements Initializable {
         sliderCO2.setMin(0);
         sliderCO2.setMax(5000);
         sliderCO2.setValue(40);
+    }
+
+    public JSONObject ecriture() {
+        JSONObject obj = new JSONObject();
+
+        return last;
     }
 
 
