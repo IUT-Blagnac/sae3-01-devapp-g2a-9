@@ -51,7 +51,7 @@ public class  ConfigController implements Initializable {
     //initialisation du début position
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sliderTemp.disableProperty().bind(palierTemp.selectedProperty());
+        // sliderTemp.disableProperty().bind(palierTemp.selectedProperty());
 
         sliderTemp.setDisable(true);
         sliderCO2.setDisable(true);

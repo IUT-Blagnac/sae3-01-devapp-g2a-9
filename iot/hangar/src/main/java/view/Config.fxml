@@ -80,7 +80,7 @@
                            <children>
                               <CheckBox fx:id="checkBTemp" mnemonicParsing="false" onAction="#actionCheckCapteur" text="Température" />
                               <CheckBox fx:id="palierTemp" mnemonicParsing="false" onAction="#actionCheckSeuilSelect" text="Seuil" />
-                              <Slider fx:id="sliderTemp" onDragDetected="#actionSlide" />
+                              <Slider fx:id="sliderTemp" onDragDetected="#actionSlideTemp" />
                               <Label fx:id="seuilExactTemp" text="0" />
                            </children>
                         </VBox>
