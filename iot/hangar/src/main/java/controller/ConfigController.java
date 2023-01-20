@@ -99,21 +99,27 @@ public class  ConfigController implements Initializable {
 
     public JSONObject ecriture() {
         JSONObject obj = new JSONObject();
-        double palierDefault = null;
+        Double palExactTemp; //un objet qu'on traite comme un type primitif pour pouvoir le mettre en null
+        Double palExactHum;
+        Double palExactCO2;
 
         //if check temperature
         if (checkBTemp.isSelected()) {
 
             // recuperer valeur curseur temperature
             if (palierTemp.isSelected()) {
-                double palExactTemp = sliderTemp.getValue();
+                palExactTemp = sliderTemp.getValue();
+            } else {
+                palExactTemp = null;
             }
         }
         //if check humidite
         if (checkBHum.isSelected()) {
             //recuperer valeur curseur humidite
             if (palierHum.isSelected()) {
-                double palExactHum = sliderHum.getValue();
+                palExactHum = sliderHum.getValue();
+            } else {
+                palExactHum = null;
             }
         }
 
@@ -121,7 +127,9 @@ public class  ConfigController implements Initializable {
         if (checkBCO2.isSelected()) {
             //recuperer valeur curseur C02
             if (palierCO2.isSelected()) {
-                double palExactCO2 = sliderCO2.getValue();
+                palExactCO2 = sliderCO2.getValue();
+            } else {
+                palExactCO2 = null;
             }
         }
 
