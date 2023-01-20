@@ -101,8 +101,30 @@ public class  ConfigController implements Initializable {
 
     public JSONObject ecriture() {
         JSONObject obj = new JSONObject();
+        //if check temperature
+        if (checkBTemp.isSelected()) {
 
-        return last;
+        }
+        //if check humidite
+        if (checkBHum.isSelected()) {
+
+        }
+
+        //if check CO2
+        if (checkBCO2.isSelected()) {
+
+        }
+
+        // recuperer valeur curseur temperature
+
+        //recuperer valeur curseur humidite
+
+        //recuperer valeur curseur C02
+
+        //ecriture en dico dans le json
+        obj.put();
+
+        return obj;
     }
 
 
