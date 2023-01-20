@@ -9,9 +9,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.json.simple.*;
+
 import javafx.fxml.Initializable;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Ce controller va écrire le fichier de config.json (creation) qui va servir au python pour savoir quelles données récupérer puis à l'affichage des données en javaFX
