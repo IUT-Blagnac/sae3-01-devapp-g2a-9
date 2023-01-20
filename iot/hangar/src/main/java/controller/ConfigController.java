@@ -55,9 +55,7 @@ public class  ConfigController implements Initializable {
 
     @FXML
     private void actionSubmit() {
-        submitButton.setOnAction(e-> {
-
-        });
+        submitButton.setOnAction(e -> ecriture());
     }
 
     @FXML
@@ -101,25 +99,31 @@ public class  ConfigController implements Initializable {
 
     public JSONObject ecriture() {
         JSONObject obj = new JSONObject();
+        double palierDefault = null;
+
         //if check temperature
         if (checkBTemp.isSelected()) {
 
+            // recuperer valeur curseur temperature
+            if (palierTemp.isSelected()) {
+                double palExactTemp = sliderTemp.getValue();
+            }
         }
         //if check humidite
         if (checkBHum.isSelected()) {
-
+            //recuperer valeur curseur humidite
+            if (palierHum.isSelected()) {
+                double palExactHum = sliderHum.getValue();
+            }
         }
 
         //if check CO2
         if (checkBCO2.isSelected()) {
-
+            //recuperer valeur curseur C02
+            if (palierCO2.isSelected()) {
+                double palExactCO2 = sliderCO2.getValue();
+            }
         }
-
-        // recuperer valeur curseur temperature
-
-        //recuperer valeur curseur humidite
-
-        //recuperer valeur curseur C02
 
         //ecriture en dico dans le json
         obj.put();
