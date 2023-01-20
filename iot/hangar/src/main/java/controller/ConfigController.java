@@ -48,35 +48,42 @@ public class  ConfigController implements Initializable {
     @FXML
     private CheckBox palierHum;
 
+    //initialisation du début position
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        sliderTemp.disableProperty().bind(palierTemp.selectedProperty());
+
         sliderTemp.setDisable(true);
         sliderCO2.setDisable(true);
         sliderHum.setDisable(true);
     }
 
+    //lorsque le bouton submit est cliqué appeller ecriture
     @FXML
     private void actionSubmit() {
         submitButton.setOnAction(e -> ecriture());
     }
 
+    //lorsque un des capteurs est sélectionné (choix du palier ou choix défaut)
     @FXML
     private void actionCheckCapteur() {
         if (checkBTemp.isSelected()) {
-            checkBTemp.setSelected(e -> sliderTemp.setDisable(false));
+            palierTemp.setDisable(false);
         } else if (checkBHum.isSelected()) {
-            checkBHum.setSelected();
+            checkBHum.setDisable(false);
         } else if (checkBCO2.isSelected()) {
-            checkBCO2.setSelected();
+            checkBCO2.setDisable(false);
         }
 
     }
 
+    //actions lorsque le choix du seuil est sélectionné
     @FXML
     private void actionCheckSeuilSelect() {
 
     }
 
+    //lorsque le slide est déplacé
     @FXML
     private void actionSlideTemp() {
         sliderTemp.setMin(0);
@@ -105,6 +112,7 @@ public class  ConfigController implements Initializable {
         sliderCO2.setValue(40);
     }
 
+    //ecriture du fichier json
     public JSONObject ecriture() {
         JSONObject obj = new JSONObject();
         Double palExactTemp; //un objet qu'on traite comme un type primitif pour pouvoir le mettre en null
@@ -144,10 +152,6 @@ public class  ConfigController implements Initializable {
 
 
         }
-
-        //ecriture en dico dans le json
-        obj.put();
-
         return obj;
     }
 
