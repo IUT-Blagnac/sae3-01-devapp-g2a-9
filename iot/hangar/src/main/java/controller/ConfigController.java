@@ -50,7 +50,9 @@ public class  ConfigController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        sliderTemp.setDisable(true);
+        sliderCO2.setDisable(true);
+        sliderHum.setDisable(true);
     }
 
     @FXML
@@ -60,7 +62,13 @@ public class  ConfigController implements Initializable {
 
     @FXML
     private void actionCheckCapteur() {
-
+        if (checkBTemp.isSelected()) {
+            checkBTemp.setSelected(e -> sliderTemp.setDisable(false));
+        } else if (checkBHum.isSelected()) {
+            checkBHum.setSelected();
+        } else if (checkBCO2.isSelected()) {
+            checkBCO2.setSelected();
+        }
 
     }
 
@@ -112,6 +120,8 @@ public class  ConfigController implements Initializable {
             } else {
                 palExactTemp = null;
             }
+
+
         }
         //if check humidite
         if (checkBHum.isSelected()) {
@@ -131,6 +141,8 @@ public class  ConfigController implements Initializable {
             } else {
                 palExactCO2 = null;
             }
+
+
         }
 
         //ecriture en dico dans le json
