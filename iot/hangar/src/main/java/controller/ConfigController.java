@@ -81,7 +81,7 @@ public class  ConfigController implements Initializable {
             int value = (int) Math.round(new_val.doubleValue());
             sliderTemp.setValue(value);
             System.out.println(value);
-            seuilExactTemp.setText(value); //??????
+            seuilExactTemp.setText(Integer.toString(value));
         });
     }
 
