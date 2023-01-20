@@ -50,19 +50,25 @@ public class  ConfigController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        sliderTemp.setDisable(true);
+        sliderCO2.setDisable(true);
+        sliderHum.setDisable(true);
     }
 
     @FXML
     private void actionSubmit() {
-        submitButton.setOnAction(e-> {
-
-        });
+        submitButton.setOnAction(e -> ecriture());
     }
 
     @FXML
     private void actionCheckCapteur() {
-
+        if (checkBTemp.isSelected()) {
+            checkBTemp.setSelected(e -> sliderTemp.setDisable(false));
+        } else if (checkBHum.isSelected()) {
+            checkBHum.setSelected();
+        } else if (checkBCO2.isSelected()) {
+            checkBCO2.setSelected();
+        }
 
     }
 
@@ -101,8 +107,48 @@ public class  ConfigController implements Initializable {
 
     public JSONObject ecriture() {
         JSONObject obj = new JSONObject();
+        Double palExactTemp; //un objet qu'on traite comme un type primitif pour pouvoir le mettre en null
+        Double palExactHum;
+        Double palExactCO2;
 
-        return last;
+        //if check temperature
+        if (checkBTemp.isSelected()) {
+
+            // recuperer valeur curseur temperature
+            if (palierTemp.isSelected()) {
+                palExactTemp = sliderTemp.getValue();
+            } else {
+                palExactTemp = null;
+            }
+
+
+        }
+        //if check humidite
+        if (checkBHum.isSelected()) {
+            //recuperer valeur curseur humidite
+            if (palierHum.isSelected()) {
+                palExactHum = sliderHum.getValue();
+            } else {
+                palExactHum = null;
+            }
+        }
+
+        //if check CO2
+        if (checkBCO2.isSelected()) {
+            //recuperer valeur curseur C02
+            if (palierCO2.isSelected()) {
+                palExactCO2 = sliderCO2.getValue();
+            } else {
+                palExactCO2 = null;
+            }
+
+
+        }
+
+        //ecriture en dico dans le json
+        obj.put();
+
+        return obj;
     }
 
 
