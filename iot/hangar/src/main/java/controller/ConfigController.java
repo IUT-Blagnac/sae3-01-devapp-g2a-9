@@ -51,13 +51,21 @@ public class  ConfigController implements Initializable {
     //initialisation du début position
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // sliderTemp.disableProperty().bind(palierTemp.selectedProperty());
-
-        sliderTemp.setDisable(true);
-        sliderCO2.setDisable(true);
-        sliderHum.setDisable(true);
+        // bind checkbox palier to checkbox data
+        bindCheckBox(checkBTemp, palierTemp, sliderTemp, seuilExactTemp);
+        bindCheckBox(checkBCO2, palierCO2, sliderCO2, seuilExactCO2);
+        bindCheckBox(checkBHum, palierHum, sliderHum, seuilExactHum);
     }
-
+    
+    private void bindCheckBox(CheckBox checkB, CheckBox palier, Slider slider, Label seuilExact) {
+        palier.disableProperty().bind(checkB.selectedProperty().not());
+        slider.disableProperty().bind(palier.selectedProperty().not());
+        seuilExact.disableProperty().bind(palier.selectedProperty().not());
+        palier.visibleProperty().bind(checkB.selectedProperty());
+        slider.visibleProperty().bind(checkB.selectedProperty());
+        seuilExact.visibleProperty().bind(checkB.selectedProperty());
+    }
+    
     //lorsque le bouton submit est cliqué appeller ecriture
     @FXML
     private void actionSubmit() {
@@ -67,13 +75,13 @@ public class  ConfigController implements Initializable {
     //lorsque un des capteurs est sélectionné (choix du palier ou choix défaut)
     @FXML
     private void actionCheckCapteur() {
-        if (checkBTemp.isSelected()) {
-            palierTemp.setDisable(false);
-        } else if (checkBHum.isSelected()) {
-            checkBHum.setDisable(false);
-        } else if (checkBCO2.isSelected()) {
-            checkBCO2.setDisable(false);
-        }
+        // if (checkBTemp.isSelected()) {
+        //     palierTemp.setDisable(false);
+        // } else if (checkBHum.isSelected()) {
+        //     checkBHum.setDisable(false);
+        // } else if (checkBCO2.isSelected()) {
+        //     checkBCO2.setDisable(false);
+        // }
 
     }
 
