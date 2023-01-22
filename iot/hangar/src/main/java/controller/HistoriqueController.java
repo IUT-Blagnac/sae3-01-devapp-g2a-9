@@ -32,8 +32,8 @@ public class HistoriqueController implements Initializable {
 
 
     /**
-     * Ajoute un GridPane avec les dernières données ajoutées au graphique
-     * @param data Données à écrire dans le GridPane : co2, température, humidité
+     * Ajoute les données données à l'hitorique et au graphique
+     * @param data Données à écrire dans le GridPane : temps, co2, température, humidité
      */
     private void newData(JSONObject data){
         try {
@@ -57,6 +57,9 @@ public class HistoriqueController implements Initializable {
 
 
 
+    /**
+     * Récupère les données et les affiche dans l'historique et dans le graphique
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mainVBox.setSpacing(30);
@@ -81,7 +84,11 @@ public class HistoriqueController implements Initializable {
     }
 
 
-
+    /**
+     * Initialise les controlleurs de la classe
+     * @param cc
+     * @param gc
+     */
     public void init(ConfigController cc, GraphController gc) {
         this.cc = cc;
         this.gc = gc;
