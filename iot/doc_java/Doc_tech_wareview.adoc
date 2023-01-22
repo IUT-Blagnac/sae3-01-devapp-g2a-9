@@ -126,6 +126,7 @@ Fichiers impliqués dans chaque package :
 ==== Appliquer un palier
 
 image::./assets/config.png[]
+
 Nous pouvons choisir de definir un palier à l'aide du slider ou tout simple ne pas en mettre. Nous pouvons également choisir quels capteurs nous souhaitons voir sur le graphique
 
 ==== Enregistrer la configuration
@@ -136,8 +137,7 @@ Pour enregistrer cette configuration et ainsi créer le fichier .json il suffit 
 
 image::./assets/graph.png[]
 
-
-==== Visualiser les données
+Voici un exemple de représentation graphique obtenue dans l'application. Il s'agit de l'évolution des données obtenues des capteurs à travers le temps, à chaque fois que le bouton "enregistrer" est cliqué, un fichier json est envoyé et le graphique ainsi que la section se trouvant à droite de celui-ci, sont mis à jour.
 
 === Historique
 
