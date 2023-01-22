@@ -22,17 +22,13 @@ public class DataFetcher {
     /**
      * @return Les données de concentration en co2, de température et d'humidité stockées dans le fichier
      */
-    public double[] getData() {
-        double[] data = new double[3];
+    public JSONObject getData() {
         try {
             this.jsonData = new JSONObject(new FileReader(filename));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        data[0] = this.jsonData.getDouble("co2");
-        data[1] = this.jsonData.getDouble("temperature");
-        data[2] = this.jsonData.getDouble("humidity");
-        return data;
+        return jsonData;
     }
 
     /**
