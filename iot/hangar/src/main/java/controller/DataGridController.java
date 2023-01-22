@@ -1,5 +1,7 @@
 package controller;
 
+import org.json.JSONObject;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -14,10 +16,25 @@ public class DataGridController {
     @FXML
     Label co2Label;
 
-    public void set(String time, String temp, String hum, String co2) {
-        timeLabel.setText(time);
-        tempLabel.setText(temp);
-        humLabel.setText(hum);
-        co2Label.setText(co2);
+    public void set(JSONObject data) {
+        timeLabel.setText(data.getString("time"));
+        tempLabel.setText(String.valueOf(data.getJSONArray("temperature").getDouble(0)));
+        if (data.getJSONArray("temperature").getBoolean(1)) {
+            tempLabel.setStyle("-fx-background-color: red;");
+        } else {
+            tempLabel.setStyle("");
+        }
+        humLabel.setText(String.valueOf(data.getJSONArray("humidity").getDouble(0)));
+        if (data.getJSONArray("humidity").getBoolean(1)) {
+            tempLabel.setStyle("-fx-background-color: red;");
+        } else {
+            tempLabel.setStyle("");
+        }
+        co2Label.setText(String.valueOf(data.getJSONArray("co2").getDouble(0)));
+        if (data.getJSONArray("co2").getBoolean(1)) {
+            tempLabel.setStyle("-fx-background-color: red;");
+        } else {
+            tempLabel.setStyle("");
+        }
     }
 }

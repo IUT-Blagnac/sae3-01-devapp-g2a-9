@@ -34,14 +34,13 @@ public class HistoriqueController implements Initializable {
      * Ajoute un GridPane avec les dernières données ajoutées au graphique
      * @param data Données à écrire dans le GridPane : co2, température, humidité
      */
-    private void newData(double[] data){
+    private void newData(JSONObject data){
         try {
             FXMLLoader dgLoader = new FXMLLoader(this.getClass().getResource("/view/DataGrid.fxml"));
             GridPane dgPane = dgLoader.load();
             DataGridController gc = dgLoader.getController();
     
-            LocalDateTime now = LocalDateTime.now();
-            gc.set(now.getHour()+":"+now.getMinute()+":"+now.getSecond(), String.valueOf(data[0]), String.valueOf(data[1]), String.valueOf(data[2]));
+            gc.set(data);
     
             mainVBox.getChildren().add(dgPane);
             
@@ -57,11 +56,11 @@ public class HistoriqueController implements Initializable {
         mainVBox.setSpacing(30);
         DataFetcher dataFetcher = new DataFetcher("data.json");
         Random random = new Random();
-        double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
-        newData(data);
-        newData(data);
-        newData(data);
-        newData(data);
+        // double[] datat = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
+        newData(dataFetcher.getData());
+        newData(dataFetcher.getData());
+        newData(dataFetcher.getData());
+        newData(dataFetcher.getData());
         // Thread thread = new Thread(new Runnable() {
         //     @Override
         //     public void run() {
