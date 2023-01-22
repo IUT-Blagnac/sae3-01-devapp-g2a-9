@@ -12,7 +12,8 @@ import java.util.ResourceBundle;
 import org.json.JSONObject;
 
 import main.App;
-import model.DataFetcher;
+import util.DataFetcher;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,8 +42,12 @@ public class HistoriqueController implements Initializable {
             DataGridController gc = dgLoader.getController();
     
             gc.set(data);
-    
-            mainVBox.getChildren().add(dgPane);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    mainVBox.getChildren().add(0, dgPane);
+                }
+            });
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,31 +60,24 @@ public class HistoriqueController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         mainVBox.setSpacing(30);
         DataFetcher dataFetcher = new DataFetcher("data.json");
-        Random random = new Random();
-        // double[] datat = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
         newData(dataFetcher.getData());
-        newData(dataFetcher.getData());
-        newData(dataFetcher.getData());
-        newData(dataFetcher.getData());
-        // Thread thread = new Thread(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         while (true) {
-        //             System.out.println("Récupération des données !");
-        //             // double[] data = new double[3];
-        //             // data = dataFetcher.getData();
-        //             double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    System.out.println("Récupération des données !");
+                    JSONObject data = dataFetcher.getData();
 
-        //             newData(data);
-        //             try {
-        //                 Thread.sleep(30000);
-        //             } catch (InterruptedException e) {
-        //                 e.printStackTrace();
-        //             }
-        //         }
-        //     }
-        // });
-        // thread.start();
+                    newData(data);
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
 

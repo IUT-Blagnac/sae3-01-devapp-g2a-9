@@ -26,15 +26,15 @@ public class DataGridController {
         }
         humLabel.setText(String.valueOf(data.getJSONArray("humidity").getDouble(0)));
         if (data.getJSONArray("humidity").getBoolean(1)) {
-            tempLabel.setStyle("-fx-background-color: red;");
+            humLabel.setStyle("-fx-background-color: red;");
         } else {
-            tempLabel.setStyle("");
+            humLabel.setStyle("");
         }
         co2Label.setText(String.valueOf(data.getJSONArray("co2").getDouble(0)));
         if (data.getJSONArray("co2").getBoolean(1)) {
-            tempLabel.setStyle("-fx-background-color: red;");
+            co2Label.setStyle("-fx-background-color: red;");
         } else {
-            tempLabel.setStyle("");
+            co2Label.setStyle("");
         }
     }
 }
