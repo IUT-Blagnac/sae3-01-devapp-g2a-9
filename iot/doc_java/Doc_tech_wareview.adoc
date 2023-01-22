@@ -97,6 +97,14 @@ Voici l'architecture des vues de l'application :
 
 image::./assets/archi-vue.png[architecture vue]
 
+L'application charge d'abord la vue `MainFrame.fxml` dont le contrôleur `MainFrameController` charge les 3 sous-vues :
+
+* Config.fxml
+* Graph.fxml
+* Historique.fxml
+
+L'historique ensuite charge ensuite d'autres sous-vues `DataGrid.fxml` qui représentent des entrées de données historisées dans l'application.
+
 <<<
 
 == Fonctionnalités
@@ -145,3 +153,6 @@ Affiche les données précédentes sous forme de tableau, permettant la lecture 
 
 === Utilisateur
 
+* Lancer le script Python `script_mqtt.py`
+** Consulter la documentation utilisateur si besoin 
+* Lancer l'application Java `java -jar WareView.jar`
