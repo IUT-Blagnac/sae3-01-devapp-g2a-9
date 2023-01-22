@@ -35,7 +35,7 @@ public class ValeursController {
         this.interval = interval;
         this.filename = filename;
 
-        // Crée un thread afin de ne pas vérouiller le programme
+        // Crée un thread afin de ne pas verrouiller le programme
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,7 +46,7 @@ public class ValeursController {
                         co2 = jsonData.getDouble("co2");
                         humidity = jsonData.getDouble("humidity");
                         temperature = jsonData.getDouble("temperature");
-                        
+
                         Thread.sleep(interval);
                     } catch (Exception e) {
                         e.printStackTrace();
