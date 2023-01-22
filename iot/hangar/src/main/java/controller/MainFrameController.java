@@ -34,7 +34,7 @@ public class MainFrameController implements Initializable {
             
             // cc.init(gc, hc);
             // gc.init(cc, hc);
-            // hc.init(cc, gc);
+            hc.init(cc, gc);
     
             mainPane.getItems().addAll(configPane, graphPane, histPane);
             
