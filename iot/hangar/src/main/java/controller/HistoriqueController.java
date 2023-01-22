@@ -70,7 +70,7 @@ public class HistoriqueController implements Initializable {
 
                     newData(data);
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(15000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
