@@ -61,7 +61,7 @@ public class GraphController implements Initializable {
         chartCO2.getData().add(co2Series);
     }
     
-    // fonction permettant d'ajouter les donées de l'objet json aux séries de données
+    // fonction permettant d'ajouter les données de l'objet json aux séries de données
     public void addToSeries(JSONObject data){
         if (data.has("temperature")) {
             int temperature = data.getJSONArray("temperature").getInt(0); // Récupération de la température dans le json
