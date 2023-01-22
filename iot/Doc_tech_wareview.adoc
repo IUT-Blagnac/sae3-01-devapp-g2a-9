@@ -53,7 +53,9 @@ Les données sont ensuite lues afin de les historiser ainsi que de les visualise
 
 - controller :
 
-Ce package contient les classes controllers, c'est-à-dire les classes associées aux vues fxml permettant la gestion des flux de données.
+Ce package contient les classes controllers, c'est-à-dire les classes associées aux vues fxml permettant la gestion des flux de données à travers les différentes vues.
+
+Les classes ici sont la partie Controller de l'architecture MVC.
 
 - main :
 
@@ -68,6 +70,8 @@ Ce package contient seulement la classe principale de lancement de l'application
 Ce package contient les ressources `.fxml` qui sont les vues de l'application
 
 Ce package contient les classes qui vont récupérer les différents éléments des fenêtres de l'application, comme les boutons, et va leur donner une action (ex : quand on clique sur un bouton, on va effectuer une certaine action). Ce package contient aussi les fichiers FXML qui seront ensuite récupérés par les classes du package application.control.
+
+Les classes ici sont la partie View de l'architecture MVC.
 
 // old
 
@@ -92,9 +96,6 @@ Ce package contient les classes qui vont récupérer les différents éléments 
 
 Ce package contient les classes principales, comme par exemple Client.java ou CompteCourant.java, qui vont être utilisés afin de créer des objets Client et CompteCourant nécessaires au bon fonctionnement de l'application et à la structuration du code.
 
-- model.orm :
-
-Ce package va contenir les classes qui communiquent avec la base de données. Comme classe importante nous pouvons citer AccesClient.java qui va chercher un client dans la base de donnée en fonction de son identifiant, de son age ou de son nom. Nous pouvons aussi noter LogToDatabase.java qui va permettre aux employés de l'agence de se connecter à la base de données afin de gérer les clients.
 
 - model.orm.exception :
 
@@ -102,12 +103,7 @@ Dans ce package sont présents les différentes exceptions que l'application peu
 
 === Éléments essentiels / spécificités
 
-// Eléments essentiels à connaître, spécificités, … nécessaires à la mise en œuvre du développement. Cette partie peut être illustrée par un diagramme de séquence. Par exemple, une structure récurrente de classes peut être décrite ici (contrôleurs de dialogues, contrôleurs de vue, …), les threads utilisés, ...
-
-LogToDatabase.java
-Client.java
-CompteCourant.java
-AccesClient.java
+L'application 
 
 <<<
 
@@ -245,72 +241,6 @@ Dans la base de donnée, on agit en écriture pour ajouter le nouveau prélèvem
 Voici le diagramme de séquence depuis l'écran de gestion des comptes :
 
 image::../assets/doc_Tec_V2/Creer un prelevement.png[Diagramme de séquence créer un prélèvement]
-
-Les classes impliquée dans les packages application pour créer un prélèvement sont :
-
-    application.control :
-        - ComptesManagement.java
-        - PrelevementEditorPane.java
-        - PrelevementsManagement.java
-
-    application.view :
-        - ComptesManagementController.java
-        - PrelevementEditorPaneController.java
-        - PrelevementsManagementController.java
-
-Les classes impliquée dans les packages model pour créer un prélèvement sont :
-
-    model.data :
-        - Prelevement.java
-
-    model.orm : 
-        - AccessPrelevement.java
-    
-==== Modifier un prélèvement automatique (Matthieu)
-
-La modification d'un prélèvement est similaire à la création d'un prélèvement et mobilise les même classes.
-
-Lors de la modification d'un prélèvement, les informations suivantes peuvent être modifier :
-
-    - Le nom du bénéficiaire
-    - Le jour du prélèvement
-    - Le montant du prélèvement
-
-Dans la base de donnée, on agit en lecture pour récupérer les information du prélèvement et en écriture pour ajouter les nouvelles informations du prélèvement, sur la table PrelevementAutomatique. 
-
-Voici le diagramme de séquence depuis l'écran de gestion des comptes :
-
-image::../assets/doc_Tec_V2/Modifier un prelevement.png[Diagramme de séquence modifier un prélèvement]
-
-Les classes impliquée dans les packages application pour créer un prélèvement sont :
-
-    application.control :
-        - ComptesManagement.java
-        - PrelevementEditorPane.java
-        - PrelevementsManagement.java
-
-    application.view :
-        - ComptesManagementController.java
-        - PrelevementEditorPaneController.java
-        - PrelevementsManagementController.java
-
-Les classes impliquée dans les packages model pour créer un prélèvement sont :
-
-    model.data :
-        - Prelevement.java
-
-    model.orm : 
-        - AccessPrelevement.java
-
-==== Supprimer un prélèvement automatique (Matthieu)
-
-La suppression d'un prélèvement automatique mobilise les mêmes classe que la création et la modification d'un prélèvement.
-
-Dans la base de donnée, on agit en lecture pour récupérer les information du prélèvement à supprimer et en écriture pour supprimer le prélèvement, sur la table PrelevementAutomatique. 
-
-Voici le diagramme de séquence depuis l'écran de gestion des comptes :
-
-image::../assets/doc_Tec_V2/Supprimer un prelevement.png[Diagramme de séquence supprimer un prélèvement]
 
 Les classes impliquée dans les packages application pour créer un prélèvement sont :
 
