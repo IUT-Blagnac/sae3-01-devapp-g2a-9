@@ -78,8 +78,8 @@ public class HistoriqueController implements Initializable {
 
     /**
      * Initialise les controlleurs de la classe
-     * @param cc
-     * @param gc
+     * @param cc ConfigController
+     * @param gc GraphController
      */
     public void init(ConfigController cc, GraphController gc) {
         this.cc = cc;
