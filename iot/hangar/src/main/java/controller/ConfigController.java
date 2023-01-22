@@ -89,7 +89,7 @@ public class  ConfigController implements Initializable {
      */
     @FXML
     private void actionSubmit() {
-        submitButton.setOnAction(e -> ecriture());
+        ecriture();
     }
 
     /**
@@ -214,7 +214,6 @@ public class  ConfigController implements Initializable {
         //ecriture file
         try (FileWriter file = new FileWriter("config.json")) {
             file.write(obj.toString());
-            System.out.println("debug");
         } catch (IOException e) {
             e.printStackTrace();
         }
