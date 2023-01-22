@@ -67,7 +67,14 @@ public class  ConfigController implements Initializable {
         bindCheckBox(checkBHum, palierHum, sliderHum, seuilExactHum);
 
     }
-    
+
+    /**
+     * Allows the checkbox "palier" to appear and binds it to its slider
+     * @param checkB
+     * @param palier
+     * @param slider
+     * @param seuilExact
+     */
     private void bindCheckBox(CheckBox checkB, CheckBox palier, Slider slider, Label seuilExact) {
         palier.disableProperty().bind(checkB.selectedProperty().not());
         slider.disableProperty().bind(palier.selectedProperty().not());
@@ -76,14 +83,18 @@ public class  ConfigController implements Initializable {
         slider.visibleProperty().bind(checkB.selectedProperty());
         seuilExact.visibleProperty().bind(checkB.selectedProperty());
     }
-    
-    //lorsque le bouton submit est cliqué appeller ecriture
+
+    /**
+     * Calls the "ecriture()" function when the button "Enregistrer" is pressed
+     */
     @FXML
     private void actionSubmit() {
         ecriture();
     }
 
-    //lorsque le slide est déplacé
+    /**
+     * Allows you to set the slider when "palierTemp" is selected
+     */
     @FXML
     private void actionSlideTemp() {
         if (checkBTemp.isSelected()) {
@@ -104,6 +115,9 @@ public class  ConfigController implements Initializable {
         }
     }
 
+    /**
+     * Allows you to set the slider when "palierHum" is selected
+     */
     @FXML
     private void actionSlideHum() {
         if (checkBHum.isSelected()) {
@@ -123,6 +137,9 @@ public class  ConfigController implements Initializable {
         }
     }
 
+    /**
+     * Allows you to set the slider when "palierCO2" is selected
+     */
     @FXML
     private void actionSlideCO2() {
         if (checkBCO2.isSelected()) {
@@ -142,7 +159,9 @@ public class  ConfigController implements Initializable {
         }
     }
 
-    //ecriture du fichier json
+    /**
+     * Writes the JSON file with the threshold chosen with the sliders (or with no threshold)
+     */
     public void ecriture() {
         JSONObject obj = new JSONObject();
         JSONObject objIn = new JSONObject();
@@ -195,7 +214,6 @@ public class  ConfigController implements Initializable {
         //ecriture file
         try (FileWriter file = new FileWriter("config.json")) {
             file.write(obj.toString());
-            System.out.println("debug");
         } catch (IOException e) {
             e.printStackTrace();
         }
