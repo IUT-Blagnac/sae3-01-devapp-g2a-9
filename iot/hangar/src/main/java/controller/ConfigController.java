@@ -7,6 +7,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,7 +19,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-import org.json.simple.*;
 import org.json.JSONObject;
 
 import javafx.fxml.Initializable;
@@ -54,6 +57,7 @@ public class  ConfigController implements Initializable {
     @FXML
     private CheckBox palierHum;
 
+
     //initialisation du début position
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,6 +65,7 @@ public class  ConfigController implements Initializable {
         bindCheckBox(checkBTemp, palierTemp, sliderTemp, seuilExactTemp);
         bindCheckBox(checkBCO2, palierCO2, sliderCO2, seuilExactCO2);
         bindCheckBox(checkBHum, palierHum, sliderHum, seuilExactHum);
+
     }
     
     private void bindCheckBox(CheckBox checkB, CheckBox palier, Slider slider, Label seuilExact) {
@@ -78,81 +83,97 @@ public class  ConfigController implements Initializable {
         submitButton.setOnAction(e -> ecriture());
     }
 
-    //lorsque un des capteurs est sélectionné (choix du palier ou choix défaut)
-    @FXML
-    private void actionCheckCapteur() {
-        // if (checkBTemp.isSelected()) {
-        //     palierTemp.setDisable(false);
-        // } else if (checkBHum.isSelected()) {
-        //     checkBHum.setDisable(false);
-        // } else if (checkBCO2.isSelected()) {
-        //     checkBCO2.setDisable(false);
-        // }
-
-    }
-
-    //actions lorsque le choix du seuil est sélectionné
-    @FXML
-    private void actionCheckSeuilSelect() {
-
-    }
-
     //lorsque le slide est déplacé
     @FXML
     private void actionSlideTemp() {
-        sliderTemp.setMin(0);
-        sliderTemp.setMax(100);
-        sliderTemp.setValue(40);
+        if (checkBTemp.isSelected()) {
 
-        sliderTemp.valueProperty().addListener((ov, old_val, new_val) -> {
-            int value = (int) Math.round(new_val.doubleValue());
-            sliderTemp.setValue(value);
-            System.out.println(value);
-            seuilExactTemp.setText(Integer.toString(value));
-        });
+            if (palierTemp.isSelected()) {
+
+                sliderTemp.setMin(0);
+                sliderTemp.setMax(100);
+                sliderTemp.setValue(40);
+
+                sliderTemp.valueProperty().addListener((ov, old_val, new_val) -> {
+                    int value = (int) Math.round(new_val.doubleValue());
+                    sliderTemp.setValue(value);
+                    System.out.println(value);
+                    seuilExactTemp.setText(Integer.toString(value));
+                });
+            }
+        }
     }
 
     @FXML
     private void actionSlideHum() {
-        sliderHum.setMin(-50);
-        sliderHum.setMax(70);
-        sliderHum.setValue(40);
+        if (checkBHum.isSelected()) {
+
+            if (palierHum.isSelected()) {
+                sliderHum.setMin(0);
+                sliderHum.setMax(100);
+                sliderHum.setValue(40);
+
+                sliderHum.valueProperty().addListener((ov, old_val, new_val) -> {
+                    int value = (int) Math.round(new_val.doubleValue());
+                    sliderHum.setValue(value);
+                    System.out.println(value);
+                    seuilExactHum.setText(Integer.toString(value));
+                });
+            }
+        }
     }
 
     @FXML
-    private void actionSlideC02() {
-        sliderCO2.setMin(0);
-        sliderCO2.setMax(5000);
-        sliderCO2.setValue(40);
+    private void actionSlideCO2() {
+        if (checkBCO2.isSelected()) {
+
+            if (palierCO2.isSelected()) {
+                sliderCO2.setMin(0);
+                sliderCO2.setMax(5000);
+                sliderCO2.setValue(40);
+
+                sliderCO2.valueProperty().addListener((ov, old_val, new_val) -> {
+                    int value = (int) Math.round(new_val.doubleValue());
+                    sliderCO2.setValue(value);
+                    System.out.println(value);
+                    seuilExactCO2.setText(Integer.toString(value));
+                });
+            }
+        }
     }
 
     //ecriture du fichier json
-    public JSONObject ecriture() {
+    public void ecriture() {
         JSONObject obj = new JSONObject();
+        JSONObject objIn = new JSONObject();
+
         Double palExactTemp; //un objet qu'on traite comme un type primitif pour pouvoir le mettre en null
         Double palExactHum;
         Double palExactCO2;
 
+
         //if check temperature
         if (checkBTemp.isSelected()) {
-
             // recuperer valeur curseur temperature
             if (palierTemp.isSelected()) {
                 palExactTemp = sliderTemp.getValue();
+                objIn.put("temperature", palExactTemp);
             } else {
-                palExactTemp = null;
+                objIn.put("temperature", JSONObject.NULL);
             }
 
-
         }
+
         //if check humidite
         if (checkBHum.isSelected()) {
             //recuperer valeur curseur humidite
             if (palierHum.isSelected()) {
                 palExactHum = sliderHum.getValue();
+                objIn.put("humidity", palExactHum);
             } else {
-                palExactHum = null;
+                objIn.put("humidity", JSONObject.NULL);
             }
+
         }
 
         //if check CO2
@@ -160,15 +181,24 @@ public class  ConfigController implements Initializable {
             //recuperer valeur curseur C02
             if (palierCO2.isSelected()) {
                 palExactCO2 = sliderCO2.getValue();
+                objIn.put("co2", palExactCO2);
             } else {
-                palExactCO2 = null;
+                objIn.put("co2", JSONObject.NULL);
             }
 
-
         }
-        return obj;
+
+        //syntaxe et structure du document à ecrire
+        obj.put("filename", "config.json");
+        obj.put("data", objIn);
+
+        //ecriture file
+        try (FileWriter file = new FileWriter("config.json")) {
+            file.write(obj.toString());
+            System.out.println("debug");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
 

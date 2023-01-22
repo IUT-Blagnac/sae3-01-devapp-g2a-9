@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfigController">
 <children>
 <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Configuration" textAlignment="CENTER" wrapText="false">
@@ -20,25 +19,25 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <CheckBox fx:id="checkBTemp" mnemonicParsing="false" onAction="#actionCheckCapteur" text="Température" />
-                  <CheckBox fx:id="palierTemp" mnemonicParsing="false" onAction="#actionCheckSeuilSelect" text="Seuil" />
+                  <CheckBox fx:id="checkBTemp" mnemonicParsing="false" text="Température" />
+                  <CheckBox fx:id="palierTemp" mnemonicParsing="false" text="Seuil" />
                   <Slider fx:id="sliderTemp" onDragDetected="#actionSlideTemp" />
                   <Label fx:id="seuilExactTemp" text="0" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <CheckBox fx:id="checkBHum" mnemonicParsing="false" onAction="#actionCheckCapteur" text="Humidité" />
-                  <CheckBox fx:id="palierHum" mnemonicParsing="false" onAction="#actionCheckSeuilSelect" text="Seuil" />
-                  <Slider fx:id="sliderHum" />
+                  <CheckBox fx:id="checkBHum" mnemonicParsing="false" text="Humidité" />
+                  <CheckBox fx:id="palierHum" mnemonicParsing="false" text="Seuil" />
+                  <Slider fx:id="sliderHum" onDragDetected="#actionSlideHum" />
                   <Label fx:id="seuilExactHum" text="0" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="207.0">
                <children>
-                  <CheckBox fx:id="checkBCO2" mnemonicParsing="false" onAction="#actionCheckCapteur" text="Dioxyde de carbone" />
-                  <CheckBox fx:id="palierCO2" mnemonicParsing="false" onAction="#actionCheckSeuilSelect" text="Seuil" />
-                  <Slider fx:id="sliderCO2" />
+                  <CheckBox fx:id="checkBCO2" mnemonicParsing="false" text="Dioxyde de carbone" />
+                  <CheckBox fx:id="palierCO2" mnemonicParsing="false" text="Seuil" />
+                  <Slider fx:id="sliderCO2" onDragDetected="#actionSlideCO2" />
                   <Label fx:id="seuilExactCO2" text="0" />
                </children>
             </VBox>
