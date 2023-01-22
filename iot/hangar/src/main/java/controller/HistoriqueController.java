@@ -54,27 +54,33 @@ public class HistoriqueController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mainVBox.setSpacing(30);
         DataFetcher dataFetcher = new DataFetcher("data.json");
         Random random = new Random();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    System.out.println("Récupération des données !");
-                    // double[] data = new double[3];
-                    // data = dataFetcher.getData();
-                    double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
+        double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
+        newData(data);
+        newData(data);
+        newData(data);
+        newData(data);
+        // Thread thread = new Thread(new Runnable() {
+        //     @Override
+        //     public void run() {
+        //         while (true) {
+        //             System.out.println("Récupération des données !");
+        //             // double[] data = new double[3];
+        //             // data = dataFetcher.getData();
+        //             double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
 
-                    newData(data);
-                    try {
-                        Thread.sleep(30000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
+        //             newData(data);
+        //             try {
+        //                 Thread.sleep(30000);
+        //             } catch (InterruptedException e) {
+        //                 e.printStackTrace();
+        //             }
+        //         }
+        //     }
+        // });
+        // thread.start();
     }
 
 
