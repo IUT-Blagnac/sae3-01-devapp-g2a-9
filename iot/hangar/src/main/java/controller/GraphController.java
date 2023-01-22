@@ -39,7 +39,6 @@ public class GraphController implements Initializable {
     @FXML
     private NumberAxis yAxisCO2;
 
-    Integer it;
     XYChart.Series<String,Integer> tempSeries;
     XYChart.Series<String,Integer> humSeries;
     XYChart.Series<String,Integer> co2Series;
@@ -56,9 +55,6 @@ public class GraphController implements Initializable {
         this.humSeries = new XYChart.Series<String,Integer>();
         this.co2Series = new XYChart.Series<String,Integer>();
         
-        // Ajout des données récupérées depuis le json dans les séries de données
-        this.it = 1; // Variable permettant de définir la position de la données sur l'axe X des graphes
-        
         // Ajout des séries aux graphiques
         chartTemp.getData().add(tempSeries);
         chartHumidite.getData().add(humSeries);
@@ -68,15 +64,13 @@ public class GraphController implements Initializable {
     // fonction permettant d'ajouter les donées de l'objet json aux séries de données
     public void addToSeries(JSONObject data){
         int temperature = data.getJSONArray("temperature").getInt(0); // Récupération de la température dans le json
-        tempSeries.getData().add(new XYChart.Data<String,Integer>(this.it.toString(),temperature)); // Ajout de la température dans la série température
+        tempSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), temperature)); // Ajout de la température dans la série température
         
         int humidite = data.getJSONArray("humidity").getInt(0);
-        humSeries.getData().add(new XYChart.Data<String,Integer>(this.it.toString(),humidite));
+        humSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), humidite));
         
         int dioxyde = data.getJSONArray("co2").getInt(0);
-        co2Series.getData().add(new XYChart.Data<String,Integer>(this.it.toString(),dioxyde));
-        
-        this.it++;
+        co2Series.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), dioxyde));   
     }
     
 }
