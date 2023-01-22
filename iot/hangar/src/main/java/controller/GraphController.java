@@ -58,16 +58,6 @@ public class GraphController implements Initializable {
         
         // Ajout des données récupérées depuis le json dans les séries de données
         this.it = 1; // Variable permettant de définir la position de la données sur l'axe X des graphes
-        JSONObject data = new JSONObject("{\"co2\": [436, false], \"humidity\": [31, true], \"temperature\": [16, false]}"); // La data est convertie d'une string a un objet json
-        addToSeries(data); // ajout des données aux séries de données
-        data = new JSONObject("{\"co2\": [536, false], \"humidity\": [41, true], \"temperature\": [20, false]}");
-        addToSeries(data);
-        data = new JSONObject("{\"co2\": [636, false], \"humidity\": [51, true], \"temperature\": [20, false]}");
-        addToSeries(data);
-        data = new JSONObject("{\"co2\": [536, false], \"humidity\": [61, true], \"temperature\": [22, false]}");
-        addToSeries(data);
-        data = new JSONObject("{\"co2\": [736, false], \"humidity\": [61, true], \"temperature\": [19, false]}");
-        addToSeries(data);
         
         // Ajout des séries aux graphiques
         chartTemp.getData().add(tempSeries);

@@ -61,7 +61,6 @@ public class HistoriqueController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         mainVBox.setSpacing(30);
         DataFetcher dataFetcher = new DataFetcher("data.json");
-        newData(dataFetcher.getData());
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
