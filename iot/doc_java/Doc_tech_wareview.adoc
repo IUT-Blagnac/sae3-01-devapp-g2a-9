@@ -117,13 +117,17 @@ Fichiers impliqués dans chaque package :
 
 ==== Appliquer un palier
 
-Application d'un palier sur une donnée sélectionnée
+image::./assets/config.png[]
+Nous pouvons choisir de definir un palier à l'aide du slider ou tout simple ne pas en mettre. Nous pouvons également choisir quels capteurs nous souhaitons voir sur le graphique
 
 ==== Enregistrer la configuration
 
-Enregistrement de la configuration
+Pour enregistrer cette configuration et ainsi créer le fichier .json il suffit de valider les paramètres avec le bouton "Enregistrer". 
 
 === Visualisation
+
+image::./assets/graph.png[]
+
 
 ==== Visualiser les données
 
