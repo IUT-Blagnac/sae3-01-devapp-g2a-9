@@ -12,19 +12,20 @@ Groupe G2A09
 
 == Présentation
 
-WareView est une application de visualisation de l' des comptes clients pour la banque DailyBank. Cette application est à destination des employés de la banque, les guichetiers et les chef d'agences. 
+WareView est une application de visualisation de l'entrepot de l'entreprise de Commerce de la Rue. Cette application est à destination des employés de Commerce de la Rue afin de surveiller l'état de leur entrepôt.
 
-L'application est un client lourd programmé en JavaFX, relié à une base de données Oracle.
+L'application est un client lourd programmé en JavaFX, relié à un script Python de récupération de données.
 
 
 === Use Case global
 
-image::../assets/ucv1.png[uc V1, 500]
-image::../assets/ucv2.png[uc V2, 500]
+image::./uc.png[uc, 500]
 
-Les guichetiers de la banque gèrent et consultent les profils des clients, créent et gèrent des comptes et également créditent, débitent et effectuent des virements de compte à compte. 
+L'application relativement simple ne comporte qu'un seul acteur, l'utilisateur.
 
-Le chef d'agence possède les mêmes fonctionnalités que le guichetier avec quelques possibilité en plus comme rendre inactif un client ou gérer les différents employés et guichetiers de l'agence.
+Il y a trois parties à l'application, la configuration, la visualisation, et l'historique.
+
+L'utilisateur peut sélectionner dans la configuration les données qu'il souhaite visualiser et dont il souhaite obtenir l'historique.
 
 === Diagramme de classe de la base de donnée
 
@@ -52,17 +53,43 @@ Nous avons la table PrelevementAutomatique qui représente les différents prél
 
 Voici l'architecture générale de l'application :
 
-image::../assets/doc_Tec_V1/architecture_application.png[architecture application]
+image::./architecture.png[architecture application]
 
-Dans cette application nous avons une architecture où nous avons une base de donnée sur laquelle se connectent les différents utilisateurs de l'application, qui sont les guichetier et les chef d'agences. Les guichetiers et les chef d'agences ont accès en écriture et en lecture à la base de donnée afin de pouvoir ajouter de nouveaux et modifier des clients, ajouter, modifier et interagir avec les comptes des clients. Le chef d'agence a également accès à la table contenant les employés de l'agence, afin de pouvoir en ajouter ou en supprimer ; il possède donc des privilèges plus élevés que les guichetiers.
+L'application est liée à un script Python et lui communique par l'intermédiaire de fichiers `.json`.
+
+L'application Java produit un fichier de configuration lu par le script Python lui indiquant quelles sont les données à récupérer des capteurs ainsi que leur seuil.
+
+Les données sont ensuite lues afin de les historiser ainsi que de les visualiser grâce à JavaFX.
 
 === Ressources externes utilisées
 
-- Le fichier .jar de l'application, voir la documentation utilisateur pour plus de détails.
-- JavaFX inclus dans la JRE 1.8
+- Maven, outil de gestion de production de projet Java
+- Dépendances :
+
+* JavaFX
+* json-simple
 
 === Structuration des packages
 
+- controller :
+
+Ce package contient les classes controllers, c'est-à-dire les classes associées aux vues fxml permettant la gestion des flux de données.
+
+- main :
+
+Ce package contient seulement la classe principale de lancement de l'application `App.java`.
+
+- model :
+
+- util :
+
+- view :
+
+Ce package contient les ressources `.fxml` qui sont les vues de l'application
+
+Ce package contient les classes qui vont récupérer les différents éléments des fenêtres de l'application, comme les boutons, et va leur donner une action (ex : quand on clique sur un bouton, on va effectuer une certaine action). Ce package contient aussi les fichiers FXML qui seront ensuite récupérés par les classes du package application.control.
+
+// old
 
 - application :
 
@@ -148,7 +175,23 @@ Dans sa colonne il doit remplir la ligne correspondant à chaque partie qu'il a 
 *	*F* pour fonctionnel ou
 *	*D* pour encore en Développement
 
+=== Configuration
 
+==== Sélection des données
+
+Sélection des données 
+
+==== Appliquer un palier
+
+Application d'un palier sur une donnée sélectionnée
+
+==== Enregistrer la configuration
+
+Enregistrement de la configuration
+
+=== Visualisation
+
+=== Historique
 
 === V0
 
