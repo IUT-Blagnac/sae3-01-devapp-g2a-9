@@ -39,13 +39,14 @@ public class HistoriqueController implements Initializable {
         try {
             FXMLLoader dgLoader = new FXMLLoader(this.getClass().getResource("/view/DataGrid.fxml"));
             GridPane dgPane = dgLoader.load();
-            DataGridController gc = dgLoader.getController();
+            DataGridController dgc = dgLoader.getController();
+            dgc.set(data);
     
-            gc.set(data);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     mainVBox.getChildren().add(0, dgPane);
+                    gc.addToSeries(data);
                 }
             });
             
