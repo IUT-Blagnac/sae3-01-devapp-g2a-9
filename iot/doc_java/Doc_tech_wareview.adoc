@@ -141,7 +141,11 @@ Voici un exemple de représentation graphique obtenue dans l'application. Il s'a
 
 === Historique
 
-Affiche les données précédentes sous forme de tableau, permettant la lecture précise des valeurs. 
+image::./assets/historique.png[]
+
+Affiche les données précédentes sous forme de tableau, permettant la lecture précise des valeurs. +
+Met le fond en [red]#rouge# si les valeurs ont dépassé le seuil prédéfini. +
+À chaque réception de données, un nouvel élément est ajouté, il alors possible de défiler pour voir les précédentes.
 
 == Installation
 
