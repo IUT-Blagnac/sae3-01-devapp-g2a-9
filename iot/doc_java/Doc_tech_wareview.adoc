@@ -129,6 +129,8 @@ Enregistrement de la configuration
 
 === Historique
 
+Affiche les données précédentes sous forme de tableau, permettant la lecture précise des valeurs. 
+
 == Installation
 
 === Développement
