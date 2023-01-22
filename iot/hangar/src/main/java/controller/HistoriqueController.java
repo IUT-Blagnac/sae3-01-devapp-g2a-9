@@ -6,6 +6,7 @@ import java.io.IOException;
  */
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import org.json.JSONObject;
@@ -54,13 +55,15 @@ public class HistoriqueController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DataFetcher dataFetcher = new DataFetcher("data.json");
+        Random random = new Random();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     System.out.println("Récupération des données !");
-                    double[] data = new double[3];
-                    data = dataFetcher.getData();
+                    // double[] data = new double[3];
+                    // data = dataFetcher.getData();
+                    double[] data = {random.nextDouble(100), random.nextDouble(100), random.nextDouble(100)};
 
                     newData(data);
                     try {
