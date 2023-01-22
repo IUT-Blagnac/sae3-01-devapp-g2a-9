@@ -124,9 +124,10 @@ Nous pouvons choisir de definir un palier à l'aide du slider ou tout simple ne 
 
 Pour enregistrer cette configuration et ainsi créer le fichier .json il suffit de valider les paramètres avec le bouton "Enregistrer". 
 
-Enregistrement de la configuration
-
 === Visualisation
+
+image::./assets/graph.png[]
+
 
 ==== Visualiser les données
 
