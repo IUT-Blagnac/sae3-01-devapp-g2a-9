@@ -1,69 +1,38 @@
 package model;
 
 import org.json.JSONObject;
+
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
  * Objet récuperant les données d'un fichier donné, de manière périodique à intervalle donnée.
  */
 public class DataFetcher {
-    private double co2;
-    private double humidity;
-    private double temperature;
-
-    private double interval;
+    private JSONObject jsonData;
     private String filename;
-
     
     /**
-     * @param interval Durée d'attente entre la récuperation des données
      * @param filename Nom et/ou chemin du fichier dont on souhaite extraire les données
      */
-    public DataFetcher(long interval, String filename) {
-        this.interval = interval;
+    public DataFetcher(String filename) {
         this.filename = filename;
-
-        // Crée un thread afin de ne pas verrouiller le programme
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        // Récupère et stocke les valeurs
-                        JSONObject jsonData = new JSONObject(new FileReader(filename));
-                        co2 = jsonData.getDouble("co2");
-                        humidity = jsonData.getDouble("humidity");
-                        temperature = jsonData.getDouble("temperature");
-
-                        Thread.sleep(interval);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
     }
 
     /**
-     * @return La donnée de concentration en Co2 stockée dans le fichier
+     * @return Les données de concentration en co2, de température et d'humidité stockées dans le fichier
      */
-    public double getCo2() {
-        return co2;
-    }
-
-    /**
-     * @return La donnée de pourcentage d'humidité stockée dans le fichier
-     */
-    public double getHumidity() {
-        return humidity;
-    }
-
-    /**
-     * @return La donnée de température stockée dans le fichier
-     */
-    public double getTemperature() {
-        return temperature;
+    public double[] getData() {
+        double[] data = new double[3];
+        try {
+            this.jsonData = new JSONObject(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        data[0] = this.jsonData.getDouble("co2");
+        data[0] = this.jsonData.getDouble("temperature");
+        data[1] = this.jsonData.getDouble("humidity");
+        return data;
     }
 
     /**
@@ -78,19 +47,5 @@ public class DataFetcher {
      */
     public String getFilename() {
         return filename;
-    }
-
-    /**
-     * @param interval Durée d'attente entre la récuperation des données
-     */
-    public void setInterval(double interval) {
-        this.interval = interval;
-    }
-
-    /**
-     * @return Durée d'attente entre la récuperation des données
-     */
-    public double getInterval() {
-        return interval;
     }
 }
