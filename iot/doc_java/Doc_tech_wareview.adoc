@@ -19,7 +19,7 @@ L'application est un client lourd programmé en JavaFX, relié à un script Pyth
 
 === Use Case global
 
-image::./uc.png[uc, 500]
+image::./assets/uc.png[uc, 500]
 
 L'application relativement simple ne comporte qu'un seul acteur, l'utilisateur.
 
@@ -33,7 +33,7 @@ L'utilisateur peut sélectionner dans la configuration les données qu'il souhai
 
 Voici l'architecture générale de l'application :
 
-image::./architecture.png[architecture application]
+image::./assets/architecture.png[architecture application]
 
 L'application est liée à un script Python et lui communique par l'intermédiaire de fichiers `.json`.
 
