@@ -17,6 +17,10 @@ public class DataGridController {
     Label co2Label;
 
 
+    /**
+     * Paramètre les textes affichés dans l'historique des données, met en avant les données qui ont dépassé le seuil.
+     * @param data Données à afficher
+     */
     public void set(JSONObject data) {
 
         timeLabel.setText(data.getString("time"));
