@@ -1,24 +1,16 @@
 package controller;
 
-import java.io.IOException;
-/**
- * affichage des données lues des données lues des capteurs
- */
+
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import org.json.JSONObject;
 
-import main.App;
 import util.DataFetcher;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
