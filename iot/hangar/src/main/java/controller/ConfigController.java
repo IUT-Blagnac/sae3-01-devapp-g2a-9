@@ -80,7 +80,7 @@ public class  ConfigController implements Initializable {
     //lorsque le bouton submit est cliqué appeller ecriture
     @FXML
     private void actionSubmit() {
-        submitButton.setOnAction(e -> ecriture());
+        ecriture();
     }
 
     //lorsque le slide est déplacé
