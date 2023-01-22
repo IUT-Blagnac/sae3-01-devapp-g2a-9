@@ -30,8 +30,8 @@ public class DataFetcher {
             e.printStackTrace();
         }
         data[0] = this.jsonData.getDouble("co2");
-        data[0] = this.jsonData.getDouble("temperature");
-        data[1] = this.jsonData.getDouble("humidity");
+        data[1] = this.jsonData.getDouble("temperature");
+        data[2] = this.jsonData.getDouble("humidity");
         return data;
     }
 
