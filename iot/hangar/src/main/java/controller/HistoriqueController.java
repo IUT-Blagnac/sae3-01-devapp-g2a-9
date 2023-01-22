@@ -63,7 +63,7 @@ public class HistoriqueController implements Initializable {
                     System.out.println("Récupération des données !");
                     // double[] data = new double[3];
                     // data = dataFetcher.getData();
-                    double[] data = {random.nextDouble(100), random.nextDouble(100), random.nextDouble(100)};
+                    double[] data = {random.nextInt(100), random.nextInt(100), random.nextInt(100)};
 
                     newData(data);
                     try {
