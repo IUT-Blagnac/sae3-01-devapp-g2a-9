@@ -16,25 +16,36 @@ public class DataGridController {
     @FXML
     Label co2Label;
 
+
     public void set(JSONObject data) {
+
         timeLabel.setText(data.getString("time"));
-        tempLabel.setText(String.valueOf(data.getJSONArray("temperature").getDouble(0)));
-        if (data.getJSONArray("temperature").getBoolean(1)) {
-            tempLabel.setStyle("-fx-background-color: red;");
+
+        if (data.has("co2")) {
+            tempLabel.setText(String.valueOf(data.getJSONArray("temperature").getDouble(0)));
+            if (data.getJSONArray("temperature").getBoolean(1)) {
+                tempLabel.setStyle("-fx-background-color: red;");
+            }
         } else {
-            tempLabel.setStyle("");
+            tempLabel.setText("x");
         }
-        humLabel.setText(String.valueOf(data.getJSONArray("humidity").getDouble(0)));
-        if (data.getJSONArray("humidity").getBoolean(1)) {
-            humLabel.setStyle("-fx-background-color: red;");
+
+        if (data.has("humidity")) {
+            humLabel.setText(String.valueOf(data.getJSONArray("humidity").getDouble(0)));
+            if (data.getJSONArray("humidity").getBoolean(1)) {
+                humLabel.setStyle("-fx-background-color: red;");
+            }
         } else {
-            humLabel.setStyle("");
+            humLabel.setText("x");
         }
-        co2Label.setText(String.valueOf(data.getJSONArray("co2").getDouble(0)));
-        if (data.getJSONArray("co2").getBoolean(1)) {
-            co2Label.setStyle("-fx-background-color: red;");
+
+        if (data.has("co2")) {
+            co2Label.setText(String.valueOf(data.getJSONArray("co2").getDouble(0)));
+            if (data.getJSONArray("co2").getBoolean(1)) {
+                co2Label.setStyle("-fx-background-color: red;");
+            }
         } else {
-            co2Label.setStyle("");
+            co2Label.setText("x");
         }
     }
 }

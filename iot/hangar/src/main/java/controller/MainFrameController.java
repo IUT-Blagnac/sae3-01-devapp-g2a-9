@@ -10,12 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class MainFrameController implements Initializable {
 
     @FXML
-    SplitPane mainPane;
+    BorderPane mainPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,7 +27,7 @@ public class MainFrameController implements Initializable {
             ConfigController cc = configLoader.getController();
             
             FXMLLoader graphLoader = new FXMLLoader(this.getClass().getResource("/view/Graph.fxml"));
-            ScrollPane graphPane = graphLoader.load();
+            BorderPane graphPane = graphLoader.load();
             GraphController gc = graphLoader.getController();
             
             FXMLLoader histLoader = new FXMLLoader(this.getClass().getResource("/view/Historique.fxml"));
@@ -36,7 +38,9 @@ public class MainFrameController implements Initializable {
             // gc.init(cc, hc);
             hc.init(cc, gc);
     
-            mainPane.getItems().addAll(configPane, graphPane, histPane);
+            mainPane.setLeft(configPane);
+            mainPane.setCenter(graphPane);
+            mainPane.setRight(histPane);
             
         } catch (Exception e) {
             System.out.println(e);

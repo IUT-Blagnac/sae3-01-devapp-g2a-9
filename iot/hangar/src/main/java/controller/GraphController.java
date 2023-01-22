@@ -63,14 +63,21 @@ public class GraphController implements Initializable {
     
     // fonction permettant d'ajouter les donées de l'objet json aux séries de données
     public void addToSeries(JSONObject data){
-        int temperature = data.getJSONArray("temperature").getInt(0); // Récupération de la température dans le json
-        tempSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), temperature)); // Ajout de la température dans la série température
+        if (data.has("temperature")) {
+            int temperature = data.getJSONArray("temperature").getInt(0); // Récupération de la température dans le json
+            tempSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), temperature)); // Ajout de la température dans la série température
+        }
         
-        int humidite = data.getJSONArray("humidity").getInt(0);
-        humSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), humidite));
+        if (data.has("humidity")) {
+            int humidite = data.getJSONArray("humidity").getInt(0);
+            humSeries.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), humidite));
+        }
         
-        int dioxyde = data.getJSONArray("co2").getInt(0);
-        co2Series.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), dioxyde));   
+        if (data.has("co2")) {
+            int dioxyde = data.getJSONArray("co2").getInt(0);
+            co2Series.getData().add(new XYChart.Data<String,Integer>(data.getString("time"), dioxyde));  
+        }
+        
     }
     
 }
