@@ -5,12 +5,13 @@ import java.io.IOException;
  * affichage des données lues des données lues des capteurs
  */
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import org.json.JSONObject;
 
 import main.App;
-
+import model.DataFetcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,14 +29,18 @@ public class HistoriqueController implements Initializable {
     VBox mainVBox;
 
 
-
-    private void newData(JSONObject data){
+    /**
+     * Ajoute un GridPane avec les dernières données ajoutées au graphique
+     * @param data Données à écrire dans le GridPane : co2, température, humidité
+     */
+    private void newData(double[] data){
         try {
             FXMLLoader dgLoader = new FXMLLoader(this.getClass().getResource("/view/DataGrid.fxml"));
             GridPane dgPane = dgLoader.load();
             DataGridController gc = dgLoader.getController();
     
-            gc.set(null, null, null, null);
+            LocalDateTime now = LocalDateTime.now();
+            gc.set(now.getHour()+":"+now.getMinute()+":"+now.getSecond(), String.valueOf(data[0]), String.valueOf(data[1]), String.valueOf(data[2]));
     
             mainVBox.getChildren().add(dgPane);
             
@@ -48,8 +53,24 @@ public class HistoriqueController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        newData(null);
-        
+        DataFetcher dataFetcher = new DataFetcher("data.json");
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    System.out.println("Récupération des données !");
+                    double[] data = new double[3];
+                    data = dataFetcher.getData();
+
+                    newData(data);
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
 

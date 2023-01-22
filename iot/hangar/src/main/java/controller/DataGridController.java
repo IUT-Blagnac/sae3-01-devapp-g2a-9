@@ -14,7 +14,7 @@ public class DataGridController {
     @FXML
     Label co2Label;
 
-    public void set(String time, String temp, String hum, String co2) {
+    public void set(String time, String co2, String temp, String hum) {
         timeLabel.setText(time);
     }
 }
