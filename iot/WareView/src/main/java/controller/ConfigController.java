@@ -104,7 +104,6 @@ public class  ConfigController implements Initializable {
                 sliderTemp.valueProperty().addListener((ov, old_val, new_val) -> {
                     int value = (int) Math.round(new_val.doubleValue());
                     sliderTemp.setValue(value);
-                    System.out.println(value);
                     seuilExactTemp.setText(Integer.toString(value));
                 });
             }
@@ -126,7 +125,6 @@ public class  ConfigController implements Initializable {
                 sliderHum.valueProperty().addListener((ov, old_val, new_val) -> {
                     int value = (int) Math.round(new_val.doubleValue());
                     sliderHum.setValue(value);
-                    System.out.println(value);
                     seuilExactHum.setText(Integer.toString(value));
                 });
             }
@@ -148,7 +146,6 @@ public class  ConfigController implements Initializable {
                 sliderCO2.valueProperty().addListener((ov, old_val, new_val) -> {
                     int value = (int) Math.round(new_val.doubleValue());
                     sliderCO2.setValue(value);
-                    System.out.println(value);
                     seuilExactCO2.setText(Integer.toString(value));
                 });
             }
