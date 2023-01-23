@@ -9,8 +9,6 @@ G2A09
 Groupe G2A09
 
 
-<<<
-
 == Présentation
 
 WareView est une application de visualisation de l'entrepot de l'entreprise de Commerce de la Rue. Cette application est à destination des employés de Commerce de la Rue afin de surveiller l'état de leur entrepôt.
