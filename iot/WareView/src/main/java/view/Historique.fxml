@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoriqueController">
+<VBox alignment="TOP_CENTER" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoriqueController">
    <children>
 <Label alignment="CENTER" style="&#10;" text="Historique" textAlignment="CENTER" wrapText="false">
          <font>
     <Font size="18.0" fx:id="x1" />
          </font>
       </Label>
-      <ScrollPane maxHeight="1.7976931348623157E308">
+      <ScrollPane>
         <content>
-            <VBox fx:id="mainVBox" alignment="TOP_CENTER" />
+            <VBox fx:id="mainVBox" alignment="TOP_CENTER" prefHeight="300.0" prefWidth="248.0" />
         </content>
       </ScrollPane>
    </children>

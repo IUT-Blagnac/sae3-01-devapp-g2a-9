@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 /**
  * affichage des données lues des données lues des capteurs
  */
@@ -8,8 +7,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.json.JSONObject;
-
-import main.App;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -1,27 +1,18 @@
 package controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.json.JSONObject;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.GridPane;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-
-import org.json.JSONObject;
-
-import javafx.fxml.Initializable;
 
 /**
  * Ce controller va écrire le fichier de config.json (creation) qui va servir au python pour savoir quelles données récupérer puis à l'affichage des données en javaFX
@@ -38,6 +29,8 @@ public class  ConfigController implements Initializable {
     private Label seuilExactCO2;
     @FXML
     private Button submitButton;
+    @FXML
+    private Label submitLabel;
     @FXML
     private CheckBox checkBTemp;
     @FXML
@@ -66,6 +59,8 @@ public class  ConfigController implements Initializable {
         bindCheckBox(checkBCO2, palierCO2, sliderCO2, seuilExactCO2);
         bindCheckBox(checkBHum, palierHum, sliderHum, seuilExactHum);
 
+
+        submitLabel.setText("");
     }
 
     /**
@@ -90,6 +85,7 @@ public class  ConfigController implements Initializable {
     @FXML
     private void actionSubmit() {
         ecriture();
+        submitLabel.setText("Enregistré !");
     }
 
     /**

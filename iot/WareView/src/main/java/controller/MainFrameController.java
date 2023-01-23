@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -19,7 +18,7 @@ public class MainFrameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             FXMLLoader configLoader = new FXMLLoader(this.getClass().getResource("/view/Config.fxml"));
-            AnchorPane configPane = configLoader.load();
+            VBox configPane = configLoader.load();
             ConfigController cc = configLoader.getController();
             
             FXMLLoader graphLoader = new FXMLLoader(this.getClass().getResource("/view/Graph.fxml"));

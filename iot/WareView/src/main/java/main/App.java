@@ -1,15 +1,15 @@
 package main;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-
-import java.io.IOException;
+import javafx.stage.WindowEvent;
 
 
 /**
@@ -26,6 +26,13 @@ public class App extends Application {
         stage.setTitle("WareView");
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
     public static void setRoot(String fxml) throws IOException {
