@@ -118,26 +118,76 @@ L'utilisateur peut sélectionner les données qu'il souhaite en cochant les chec
 
 Fichiers impliqués dans chaque package :
     
-    controller:
+    controller :
         - ConfigController.java
-    view:
+    view :
         - Config.fxml
 
-==== Appliquer un palier
+==== Appliquer un seuil
 
 image::./assets/config.png[]
 
-Nous pouvons choisir de definir un palier à l'aide du slider ou tout simple ne pas en mettre. Nous pouvons également choisir quels capteurs nous souhaitons voir sur le graphique
+Nous pouvons choisir de definir un seuil à l'aide du slider ou tout simple ne pas en mettre. Nous pouvons également choisir quels capteurs nous souhaitons voir sur le graphique
+
+.Fonction de gestion du slider de sélection d'un seuil
+```java
+private void actionSlideCO2() {
+    if (checkBCO2.isSelected()) {
+
+        if (palierCO2.isSelected()) {
+            sliderCO2.setMin(0);
+            sliderCO2.setMax(5000);
+            sliderCO2.setValue(40);
+
+            sliderCO2.valueProperty().addListener((ov, old_val, new_val) -> {
+                int value = (int) Math.round(new_val.doubleValue());
+                sliderCO2.setValue(value);
+                seuilExactCO2.setText(Integer.toString(value));
+            });
+        }
+    }
+}
+```
+
+Fichiers impliqués dans chaque package :
+    
+    controller :
+        - ConfigController.java
+    view :
+        - Config.fxml
 
 ==== Enregistrer la configuration
 
-Pour enregistrer cette configuration et ainsi créer le fichier .json il suffit de valider les paramètres avec le bouton "Enregistrer". 
+Pour enregistrer cette configuration et ainsi créer le fichier .json il suffit de valider les paramètres avec le bouton "Enregistrer".
+
+Ce dernier appelle la fonction `ecriture()` dans `ConfigController.java`. +
+La fonction construit un objet `JSONObject` à partir de la configuration choisie par l'utilisateur puis l'écrit dans le fichier `config.json`.
+
+Fichiers impliqués dans chaque package :
+
+    controller :
+        - ConfigController.java
+    view :
+        - Config.fxml
+
 
 === Visualisation
 
 image::./assets/graph.png[]
 
 Voici un exemple de représentation graphique obtenue dans l'application. Il s'agit de l'évolution des données obtenues des capteurs à travers le temps, à chaque fois que le bouton "enregistrer" est cliqué, un fichier json est envoyé et le graphique ainsi que la section se trouvant à droite de celui-ci, sont mis à jour.
+
+Fichiers impliqués dans chaque package :
+    
+    controller :
+        - GraphController.java
+        - HistoriqueController.java
+    view :
+        - Graph.fxml
+
+Voici le diagramme de séquence montrant les appels de méthodes à travers les différentes classes :
+
+image::./assets/ds-visualisation.png[ds visualisation]
 
 === Historique
 
@@ -146,6 +196,17 @@ image::./assets/historique.png[]
 Affiche les données précédentes sous forme de tableau, permettant la lecture précise des valeurs. +
 Met le fond en [red]#rouge# si les valeurs ont dépassé le seuil prédéfini. +
 À chaque réception de données, un nouvel élément est ajouté, il alors possible de défiler pour voir les précédentes.
+
+Fichiers impliqués dans chaque package :
+    
+    controller :
+        - HistoriqueController.java
+        - DataGridController.java
+    view :
+        - Historique.fxml
+        - DataGrid.fxml
+    util :
+        - DataFetcher.java
 
 == Installation
 
