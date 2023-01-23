@@ -153,7 +153,7 @@ Met le fond en [red]#rouge# si les valeurs ont dépassé le seuil prédéfini. +
 
 - Maven
 * Build et Run le projet avec le plugin javafx : `mvn clean javafx:run`
-* Compilation avec .jar : `mvn clean assembly:single`
+* Compilation avec .jar : `mvn clean compile assembly:single`
 * Détails dans le pom.xml
 
 === Utilisateur
