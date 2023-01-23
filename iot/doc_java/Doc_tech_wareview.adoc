@@ -152,11 +152,14 @@ Met le fond en [red]#rouge# si les valeurs ont dépassé le seuil prédéfini. +
 === Développement
 
 - Maven
-* Build et Run le projet avec le plugin javafx avec la commande `mvn clean javafx:run`
+* Build et Run le projet avec le plugin javafx : `mvn clean javafx:run`
+* Compilation avec .jar : `mvn clean assembly:single`
 * Détails dans le pom.xml
 
 === Utilisateur
 
 * Lancer le script Python `script_mqtt.py`
 ** Consulter la documentation utilisateur si besoin 
-* Lancer l'application Java `java -jar WareView.jar`
+* Java 11+
+* Installer le SDK JavaFX : https://gluonhq.com/products/javafx/
+* Lancer l'application Java avec le SDK : `java --module-path "C:\Program Files\Java\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar WareView.jar`
