@@ -25,7 +25,7 @@ public class DataGridController {
 
         timeLabel.setText(data.getString("time"));
 
-        if (data.has("co2")) {
+        if (data.has("temperature")) {
             tempLabel.setText(String.valueOf(data.getJSONArray("temperature").getDouble(0)));
             if (data.getJSONArray("temperature").getBoolean(1)) {
                 tempLabel.setStyle("-fx-background-color: red;");
