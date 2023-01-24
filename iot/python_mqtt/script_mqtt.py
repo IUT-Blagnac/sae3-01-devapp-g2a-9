@@ -40,7 +40,7 @@ def get_data(mqtt, obj, msg):
 
 def ecriture(numero, frame):
     global data_waiting
-    signal.alarm(30) # la fonction sera rappelée dans 30 secondes
+    signal.alarm(15) # la fonction sera rappelée dans 15 secondes
     try:
         if data_waiting: # si le boolean global data_waiting est True
             msg = json.dumps(output)
