@@ -125,8 +125,8 @@ Nous avons trié les compétences par dossier :
 
 - Le dossier _php_ contient toutes les pages HTML/PHP, la page CSS ainsi que les images incluses.
 - Le dossier _iot_ contient l'application Java ainsi que le script Python de récupération des données des capteurs.
-- Le dossier _Documentation_ contient les diverses documentations du projet.
 - Le dossier _bd_ contient les fichiers en relation avec la base de données avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _Documentation_ contient les diverses documentations du projet.
 - Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
 
 == Organisation et mode de fonctionnement
@@ -134,17 +134,11 @@ Nous avons trié les compétences par dossier :
 Chaque début de semaine nous allons tous faire un _git clone_ sur nos PC de la branche principale (master). Nous avons une branche pour chacune des compétences et chacun devra push son travail sur la branche avec la compétence il a travaillé tout au long de la semaine.
 A la fin de la semaine au moment des rendus nous regardons les conflits entre la branche _master_ et les autres branches. Suite à ça nous faisons une merge request puis nous assemblons le tout afin de créer la release de la semaine. 
 
-== Rendus hebdomadaire de Gestion de projet & Qualité
+== Dernière release
 
 Après chaque sprint (semaine) une nouvelle version de notre application (release) sera disponible.
 Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
 
 Nous mettrons à jour le `README.adoc` avec les informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v6_bis
-- Lien vers la doc technique
-- Lien vers la doc utilisateur
-- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/blob/master/Documentation/cahier_recette.adoc
-- Indicateurs de qualité du code (dette technique)
-- ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v7
