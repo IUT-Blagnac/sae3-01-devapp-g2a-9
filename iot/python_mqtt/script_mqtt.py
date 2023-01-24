@@ -29,6 +29,7 @@ def get_data(mqtt, obj, msg):
     if config_found: # faire seulement si le fichier de configuration a pu être chargé
         global jsonMsg # creation d'une variable globale
         jsonMsg = json.loads(msg.payload) # recuperation de tout ce qui est envoyé par les capteurs en un format lisible par python
+        output = {} # reset de l'output
         for data in jsonMsg['object']:
             if data in config['data']:
                 # tuple (valeur, True/False selon si le seuil configuré a été dépassé ou non)
