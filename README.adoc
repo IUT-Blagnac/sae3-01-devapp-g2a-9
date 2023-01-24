@@ -87,7 +87,7 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 | link:Documentation/PHP_Doc_util.pdf[Doc utilisateur] +
   link:Documentation/PHP_Doc_tech.pdf[Doc technique] +
   link:Documentation/PHP_SEP.pdf[Schéma d'enchaînement des pages] +
-  link:Documentation/PHP_Charte_graphique.adoc[Charte graphique] +
+  link:Documentation/PHP_Charte_graphique.pdf[Charte graphique] +
   link:Documentation/PHP_Cahier_recette.adoc[Cahier de recette]
 
 | Python
