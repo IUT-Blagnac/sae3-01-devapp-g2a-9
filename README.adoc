@@ -77,26 +77,34 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 |===
 
 | Base de données
-| link:Documentation/Doc_tech_BD.pdf[Doc technique] +
-  link:Documentation/Conception_BD.pdf[Conception] +
-script de creation +
-script d'insertion
+| link:Documentation/BD_Doc_tech.pdf[Doc technique] +
+  link:Documentation/BD_Conception.pdf[Conception] +
+  link:bd/script_creation_bd.sql[Script de creation] +
+  link:bd/insertionDesDonnees.sql[Script d'insertion] +
+  link:bd/procedures_triggers.sql[Script de Procédures stockées et Déclencheurs] 
 
 | Web
-| link:Documentation/Doc_util_PHP.pdf[Doc utilisateur] +
-  link:Documentation/Doc_tech_PHP.pdf[Doc technique] +
-  link:Documentation/SEP_PHP.pdf[Schéma d'enchaînement des pages] +
-  link:Documentation/Cahier_recette.adoc[Cahier de recette]
+| link:Documentation/PHP_Doc_util.pdf[Doc utilisateur] +
+  link:Documentation/PHP_Doc_tech.pdf[Doc technique] +
+  link:Documentation/PHP_SEP.pdf[Schéma d'enchaînement des pages] +
+  link:Documentation/PHP_Charte_graphique.adoc[Charte graphique] +
+  link:Documentation/PHP_Cahier_recette.adoc[Cahier de recette]
 
 | Python
-| Doc technique
+| link:Documentation/Python_doc_tech.pdf[Doc technique]
 
 | Java
-| Doc technique
+| link:Documentation/Java_Doc_tech.pdf[Doc technique] +
+  link:Documentation/javadoc/index.html[Javadoc] +
 
-| Gestion
-| [Sprint backlog] +
-  link:Comptes_rendus/Analyse_impact.pdf[Analyse d'impact]
+| Gestion de projet
+| link:Comptes_rendus/CR_speed_dating.pdf[CR Speed Dating] +
+  link:Comptes_rendus/CR_reunion_semaine_49.pdf[CR Semaine 49] +
+  link:Comptes_rendus/CR_reunion_semaine_50.pdf[CR Semaine 50] +
+  link:Comptes_rendus/CR_reunion_semaine_1.pdf[CR Semaine 1] +
+  link:Comptes_rendus/CR_reunion_semaine_2.pdf[CR Semaine 2] +
+  link:Comptes_rendus/CR_reunion_post_mortem.pdf[CR Semaine Post-Mortem] +
+  link:Comptes_rendus/Analyse_impact.pdf[Analyse d'impact] 
 
 |===
 

@@ -92,7 +92,7 @@ def ecriture(numero, frame):
     except Exception as e: # leve une exception si l'écriture du fichier est impossible
         print(e)
 ```
-Dans les première lignes on indique que la fonction se rappelera elle-même toutes les 30 secondes. +
+Dans les première lignes on indique que la fonction se rappelera elle-même toutes les 15 secondes. +
 On effectue un test sur la variable data_waiting afin de savoir si il y a des données en attente d'écriture. Si c'est le cas, on ouvre un fichier avec `os.open` et on les écrit dedans avec `os.write`. +
 La variable data_waiting est remise à False.
 
