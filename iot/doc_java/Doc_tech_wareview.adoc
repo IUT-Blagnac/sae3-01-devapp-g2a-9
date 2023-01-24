@@ -75,7 +75,7 @@ Ce package contient seulement la classe principale de lancement de l'application
 
 - util :
 
-Comme son nom l'indique, ce package contient les classes utilitaires dont l'objectif est de
+Comme son nom l'indique, ce package contient les classes utilitaires dont l'objectif est d'effectuer des tâches utilitaires, comme le chargement de données à partir d'un fichier `data.json`
 
 - view :
 
