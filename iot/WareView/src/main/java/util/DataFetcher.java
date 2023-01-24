@@ -29,7 +29,7 @@ public class DataFetcher {
             Object obj = new JSONParser().parse(new FileReader(this.filename));
             this.jsonData = new JSONObject(obj.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("No data.json found, randomized data");
             Random random = new Random();
             this.jsonData = new JSONObject("{\"co2\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"humidity\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"temperature\": ["+random.nextInt(100)+", "+random.nextBoolean()+"]}");
