@@ -201,7 +201,7 @@ public class  ConfigController implements Initializable {
         }
 
         //syntaxe et structure du document à ecrire
-        obj.put("filename", "config.json");
+        obj.put("filename", "data.json");
         obj.put("data", objIn);
 
         //ecriture file

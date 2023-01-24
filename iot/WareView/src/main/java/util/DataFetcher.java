@@ -1,8 +1,8 @@
 package util;
 
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -26,16 +26,18 @@ public class DataFetcher {
      */
     public JSONObject getData() {
         try {
-            this.jsonData = new JSONObject(new FileReader(filename));
-        } catch (FileNotFoundException e) {
+            Object obj = new JSONParser().parse(new FileReader(this.filename));
+            this.jsonData = new JSONObject(obj.toString());
+        } catch (Exception e) {
             // e.printStackTrace();
-            System.out.println("random data");
-            Random random = new Random();
-            this.jsonData = new JSONObject("{\"co2\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"humidity\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"temperature\": ["+random.nextInt(100)+", "+random.nextBoolean()+"]}");
-
+            // System.out.println("No data.json found, randomized data");
+            // Random random = new Random();
+            // this.jsonData = new JSONObject("{\"co2\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"humidity\": ["+random.nextInt(100)+", "+random.nextBoolean()+"], \"temperature\": ["+random.nextInt(100)+", "+random.nextBoolean()+"]}");
+            this.jsonData = new JSONObject();
         }
         LocalDateTime now = LocalDateTime.now();
         this.jsonData.put("time", now.getHour()+":"+now.getMinute()+":"+now.getSecond());
+        System.out.println(this.jsonData.toString());
         return jsonData;
     }
 

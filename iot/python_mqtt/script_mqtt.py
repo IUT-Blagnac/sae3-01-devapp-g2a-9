@@ -28,6 +28,8 @@ def get_data(mqtt, obj, msg):
     config_found = load_config() # relecture du fichier de configuration
     if config_found: # faire seulement si le fichier de configuration a pu être chargé
         global jsonMsg # creation d'une variable globale
+        global output
+        output = {} # reset de l'output
         jsonMsg = json.loads(msg.payload) # recuperation de tout ce qui est envoyé par les capteurs en un format lisible par python
         for data in jsonMsg['object']:
             if data in config['data']:
@@ -40,7 +42,7 @@ def get_data(mqtt, obj, msg):
 
 def ecriture(numero, frame):
     global data_waiting
-    signal.alarm(30) # la fonction sera rappelée dans 30 secondes
+    signal.alarm(15) # la fonction sera rappelée dans 15 secondes
     try:
         if data_waiting: # si le boolean global data_waiting est True
             msg = json.dumps(output)

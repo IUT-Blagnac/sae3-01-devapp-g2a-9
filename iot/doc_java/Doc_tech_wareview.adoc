@@ -220,5 +220,10 @@ Fichiers impliqués dans chaque package :
 * Lancer le script Python `script_mqtt.py`
 ** Consulter la documentation utilisateur si besoin 
 * Java 11+
-* Installer le SDK JavaFX : https://gluonhq.com/products/javafx/
-* Lancer l'application Java avec le SDK : `java --module-path "C:\Program Files\Java\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar WareView.jar`
+* Installer le SDK JavaFX : 
+** Soit sur le site https://gluonhq.com/products/javafx/
+** Soit par apt : `sudo apt install openjfx`
+
+* Lancer l'application Java avec le SDK :
+** Windows: `java --module-path "C:\Program Files\Java\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar WareView.jar`
+** Linux: `java --module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.fxml -jar WareView.jar`
