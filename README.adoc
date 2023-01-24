@@ -91,7 +91,7 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
   link:Documentation/PHP_Cahier_recette.adoc[Cahier de recette]
 
 | Python
-| link:Documentation/Python_doc_tech.pdf[Doc technique]
+| link:Documentation/Python_Doc_tech.pdf[Doc technique]
 
 | Java
 | link:Documentation/Java_Doc_tech.pdf[Doc technique] +
