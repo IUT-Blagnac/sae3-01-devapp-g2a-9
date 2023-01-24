@@ -71,19 +71,34 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
 - Anton Xu : Développeur 
 - Louis Yvelin : Développeur 
 
-=== Dépôt initial
+=== Livrables
 
-Ce dépôt initial a été créé pour que tous les groupes de 2ème année aient les mêmes informations de départ.
+[cols="1,2"]
+|===
 
-Vous y trouverez des fichiers qui peuvent être supprimés s'ils ne vous sont pas utiles :
+| Base de données
+| link:Documentation/Doc_tech_BD.pdf[Doc technique] +
+  link:Documentation/Conception_BD.pdf[Conception] +
+script de creation +
+script d'insertion
 
-- `.gitignore` => un fichier minimaliste des éléments à ne pas pousser en général sur vos dépôts (utiliser la commande `git add -f` pour forcer l'ajout d'un fichier Jar qui ne bougera plus, pour archive par exemple).
-- `.github` => le répertoire qui contient des éléments de gestion de projet :
-** `workflows` => le repertoire qui contient les actions à lancer à chaque push sur votre repo. 
-*** `blank.yml` => un exemple bidon mais dont vous pourrez vérifier l’exécution correcte (1er tag)
-** `ISSUE_TEMPLATE` => le repertoire qui contient quelques templates pour vos issues.
-*** `us.yml` => Exemple de template pour les User Stories
-*** `bug.yml` => Exemple de template pour les issues de bug report
+| Web
+| link:Documentation/Doc_util_PHP.pdf[Doc utilisateur] +
+  link:Documentation/Doc_tech_PHP.pdf[Doc technique] +
+  link:Documentation/SEP_PHP.pdf[Schéma d'enchaînement des pages] +
+  link:Documentation/Cahier_recette.adoc[Cahier de recette]
+
+| Python
+| Doc technique
+
+| Java
+| Doc technique
+
+| Gestion
+| [Sprint backlog] +
+  link:Comptes_rendus/Analyse_impact.pdf[Analyse d'impact]
+
+|===
 
 TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-vous en pour en ajouter.
 
@@ -98,10 +113,10 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 
 Nous avons trié les compétences par dossier : 
 
-- Le dossier _devweb_ contient toutes les pages HTML (avec le PHP inclu dedans), la page CSS ainsi que les images incluses.
-- Le dossier _iot_ contient le fichier Python pour récuperer les données des capteurs et le fichier config.json dans lequel est inclu les listes utiles au programme.
-- Le dossier _Documentation_ contient le fichier d'installation de l'application IOT.
-- Le dossier _bd_ contient le fichier avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _php_ contient toutes les pages HTML/PHP, la page CSS ainsi que les images incluses.
+- Le dossier _iot_ contient l'application Java ainsi que le script Python de récupération des données des capteurs.
+- Le dossier _Documentation_ contient les diverses documentations du projet.
+- Le dossier _bd_ contient les fichiers en relation avec la base de données avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
 - Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
 
 == Organisation et mode de fonctionnement
