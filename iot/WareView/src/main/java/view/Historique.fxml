@@ -14,7 +14,7 @@
       </Label>
       <ScrollPane>
         <content>
-            <VBox fx:id="mainVBox" alignment="TOP_CENTER" prefHeight="300.0" prefWidth="248.0" />
+            <VBox fx:id="mainVBox" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefWidth="248.0" />
         </content>
       </ScrollPane>
    </children>
