@@ -7,10 +7,10 @@ extract($_POST);
 
 if (isset($_POST['commander'])) {
     $erreur = "";
-    if (empty($_POST['cartebancaire'])) {
-        $erreur = "Il manque une carte bancaire !";
-    } elseif (empty($_POST['adresse'])) {
+    if (empty($_POST['adresse'])) {
         $erreur = "Il manque une adresse !";
+    } elseif (empty($_POST['cartebancaire'])) {
+        $erreur = "Il manque une carte bancaire !";
     }
 
     if (!$erreur) {
