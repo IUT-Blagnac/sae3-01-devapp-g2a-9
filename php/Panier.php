@@ -77,7 +77,9 @@ oci_free_statement($stid);
                 </div>
                 <div class="main-card acheter">
                     <h2>Sous-total: <?= $sum; ?> €</h2>
+                    <?php if(!empty($res)): ?>
                     <a href="Achat.php"><button>Passer la commande</button></a>
+                    <?php endif; ?>
                 </div>
             </main>
             <?php include("include/footer.html"); ?>
