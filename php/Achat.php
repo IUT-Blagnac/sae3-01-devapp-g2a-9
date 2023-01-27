@@ -6,17 +6,28 @@ if(!$_SESSION["connected"]) header("Location: Connexion.php?origine=".basename(_
 extract($_POST);
 
 if (isset($_POST['commander'])) {
-    $query = "begin PasserCommande(:user, :idcb, :idadr, :trois); end;";
-    $stid = oci_parse($conn, $query);
+    $erreur = "";
+    if (empty($_POST['cartebancaire'])) {
+        $erreur = "Il manque une carte bancaire !";
+    } elseif (empty($_POST['adresse'])) {
+        $erreur = "Il manque une adresse !";
+    }
 
-    oci_bind_by_name($stid, ":user", $_SESSION['email']);
-    oci_bind_by_name($stid, ":idcb", $_POST['cartebancaire']);
-    oci_bind_by_name($stid, ":idadr", $_POST['adresse']);
-    oci_bind_by_name($stid, ":trois", $_POST['troisfois']);
+    if (!$erreur) {
+        $query = "begin PasserCommande(:user, :idcb, :idadr, :trois); end;";
+        $stid = oci_parse($conn, $query);
+        oci_bind_by_name($stid, ":user", $_SESSION['email']);
+        oci_bind_by_name($stid, ":idcb", $_POST['cartebancaire']);
+        oci_bind_by_name($stid, ":idadr", $_POST['adresse']);
+        oci_bind_by_name($stid, ":trois", (isset($_POST['troisfois'])) ? 1 : 0);
+        oci_execute($stid);
+        oci_free_statement($stid);
 
-    oci_execute($stid);
-    oci_free_statement($stid);
-    echo "<script>alert('Votre commande a bien été passée !');</script>";
+        echo "<script>alert('Votre commande a bien été passée !');</script>";
+    } else {
+        echo "<script>alert('$erreur');</script>";
+    }
+    
 }
 
 // Utilisateur
