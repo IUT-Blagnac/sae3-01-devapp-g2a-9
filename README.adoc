@@ -84,7 +84,8 @@ Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoir
   link:bd/procedures_triggers.sql[Script de Procédures stockées et Déclencheurs] 
 
 | Web
-| link:Documentation/PHP_Doc_util.pdf[Doc utilisateur] +
+| link:php/[Code source] +
+  link:Documentation/PHP_Doc_util.pdf[Doc utilisateur] +
   link:Documentation/PHP_Doc_tech.pdf[Doc technique] +
   link:Documentation/PHP_SEP.pdf[Schéma d'enchaînement des pages] +
   link:Documentation/PHP_Charte_graphique.pdf[Charte graphique] +
