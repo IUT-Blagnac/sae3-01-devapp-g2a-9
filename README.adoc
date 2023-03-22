@@ -42,38 +42,74 @@ TIP: Pensez à mettre à jour les infos dans ce fichier pour que les badges poin
 
 WARNING: Ce dépôt présente le projet à développer dans le cadre de la SAÉ 3.01 du BUT1 Informatique de l'IUT de Blagnac.
 
-Ce fichier `README.adoc` (dont vous lisez sûrement le rendu HTML automatiquement effectué par GitHUb), fait partie du dépôt initial cloné à partir du lien GitHub classroom qui vous a été donné en cours (https://classroom.github.com/a/OUF7gxEa).
-Vous trouverez le dépôt "template" qui a servi de base ici : https://github.com/IUT-Blagnac/sae3-01-template. En complément du cours Moodle de la SAE 3.01 (cf. <<liensUtiles>>), ce dépôt template vous permet d'accéder à des exemples d'https://github.com/IUT-Blagnac/sae3-01-template/issues[issues], de https://github.com/IUT-Blagnac/sae3-01-template/releases[releases], ou d'autres artefacts à venir.
-
 toc::[]
 
 == Equipe
 
 Projet est réalisé par::
 
-- https://github.com/janeDoe[Jane Doe]
-- https://github.com/johnSmith[John Smith]
-...
+- https://github.com/Anxton[Anton XU]
+- https://github.com/BSCT-Tormod[Thomas Demeyere]
+- https://github.com/OryannMcCloud[Oryann Prochaska]
+- https://github.com/L-Yvelin[Louis Yvelin]
 
-Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:isabelle.clavel@univ-tlse2.fr[IC]
 
 == Contexte général
 
-TIP: Cette partie de votre `README.adoc` peut être supprimée ou mise ailleurs.
+Nous allons produire un site internet pour la société _Commerce de la rue_.
+Cette entreprise est spécialisée dans la vente de composants informatiques.
+Suite à la crise sanitaire son chiffre d'affaires a drastiquement baissé et est actuellement stagnante.
+Afin de relancer son activité, _Commerce de la rue_ doit se moderniser grâce à l'usage d'un site de vente en ligne attractif.
+Elle souhaite se démarquer de ses concurrents, leur site doit pouvoir s'adresser aussi bien aux entreprises qu'aux particuliers.
+Leur site s'adresse néanmoins uniquement aux usagers présents sur le territoire français pour des raisons de facilité.
 
-=== Dépôt initial
+=== Affectation des rôles 
 
-Ce dépôt initial a été créé pour que tous les groupes de 2ème année aient les mêmes informations de départ.
+- Thomas Demeyere : SCRUM Master 
+- Oryann Prochaska : Product Owner 
+- Anton Xu : Développeur 
+- Louis Yvelin : Développeur 
 
-Vous y trouverez des fichiers qui peuvent être supprimés s'ils ne vous sont pas utiles :
+=== Livrables
 
-- `.gitignore` => un fichier minimaliste des éléments à ne pas pousser en général sur vos dépôts (utiliser la commande `git add -f` pour forcer l'ajout d'un fichier Jar qui ne bougera plus, pour archive par exemple).
-- `.github` => le répertoire qui contient des éléments de gestion de projet :
-** `workflows` => le repertoire qui contient les actions à lancer à chaque push sur votre repo. 
-*** `blank.yml` => un exemple bidon mais dont vous pourrez vérifier l’exécution correcte (1er tag)
-** `ISSUE_TEMPLATE` => le repertoire qui contient quelques templates pour vos issues.
-*** `us.yml` => Exemple de template pour les User Stories
-*** `bug.yml` => Exemple de template pour les issues de bug report
+[cols="1,2"]
+|===
+
+| Base de données
+| link:Documentation/BD_Doc_tech.pdf[Doc technique] +
+  link:Documentation/BD_Conception.pdf[Conception] +
+  link:bd/script_creation_bd.sql[Script de creation] +
+  link:bd/insertionDesDonnees.sql[Script d'insertion] +
+  link:bd/procedures_triggers.sql[Script de Procédures stockées et Déclencheurs] 
+
+| Web
+| link:php/[Code source] +
+  link:Documentation/PHP_Doc_util.pdf[Doc utilisateur] +
+  link:Documentation/PHP_Doc_tech.pdf[Doc technique] +
+  link:Documentation/PHP_SEP.pdf[Schéma d'enchaînement des pages] +
+  link:Documentation/PHP_Charte_graphique.pdf[Charte graphique] +
+  link:Documentation/PHP_Cahier_recette.adoc[Cahier de recette]
+
+| Python
+| link:iot/python_mqtt/script_mqtt.py[Script] +
+  link:Documentation/Python_Doc_tech.pdf[Doc technique]
+
+| Java
+| link:iot/WareView/WareView.jar[JAR exécutable de l'application] +
+  link:Documentation/Java_Doc_tech.pdf[Doc technique] +
+  link:Documentation/javadoc/index.html[Javadoc] 
+
+| Gestion de projet
+| link:Comptes_rendus/CR_speed_dating.pdf[CR Speed Dating] +
+  link:Comptes_rendus/CR_reunion_semaine_49.pdf[CR Semaine 49] +
+  link:Comptes_rendus/CR_reunion_semaine_50.pdf[CR Semaine 50] +
+  link:Comptes_rendus/CR_reunion_semaine_1.pdf[CR Semaine 1] +
+  link:Comptes_rendus/CR_reunion_semaine_2.pdf[CR Semaine 2] +
+  link:Comptes_rendus/CR_reunion_post_mortem.pdf[CR Semaine Post-Mortem] +
+  link:Comptes_rendus/Analyse_impact.pdf[Analyse d'impact] 
+
+|===
 
 TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-vous en pour en ajouter.
 
@@ -84,23 +120,26 @@ TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-
 - Le dépôt https://github.com/IUT-Blagnac/sae3-01-template[template] qui sert de base à tous les dépôts étudiants.
 - Le lien https://classroom.github.com/a/OUF7gxEa[classroom] si besoin.
 
-TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
-
 == Réalisations 
 
-TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
+Nous avons trié les compétences par dossier : 
 
-== Gestion de projet & Qualité
+- Le dossier _php_ contient toutes les pages HTML/PHP, la page CSS ainsi que les images incluses.
+- Le dossier _iot_ contient l'application Java ainsi que le script Python de récupération des données des capteurs.
+- Le dossier _bd_ contient les fichiers en relation avec la base de données avec diagramme de classes, dico des données et schéma relationnel ainsi que le script de création de la base de données.
+- Le dossier _Documentation_ contient les diverses documentations du projet.
+- Le dossier _Comptes-rendus_ contient la copie des fichiers ou CR rendus sur moodle (sert de sauvegarde).
 
-Chaque sprint (semaine) vous devrez livrer une nouvelle version de votre application (release).
-Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+== Organisation et mode de fonctionnement
 
-De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
+Chaque début de semaine nous allons tous faire un _git clone_ sur nos PC de la branche principale (master). Nous avons une branche pour chacune des compétences et chacun devra push son travail sur la branche avec la compétence il a travaillé tout au long de la semaine.
+A la fin de la semaine au moment des rendus nous regardons les conflits entre la branche _master_ et les autres branches. Suite à ça nous faisons une merge request puis nous assemblons le tout afin de créer la release de la semaine. 
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
-- Lien vers la doc technique
-- Lien vers la doc utilisateur
-- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test
-- Indicateurs de qualité du code (dette technique)
-- ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
+== Dernière release
+
+Après chaque sprint (semaine) une nouvelle version de notre application (release) sera disponible.
+Nous utiliserons pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+
+Nous mettrons à jour le `README.adoc` avec les informations suivantes :
+
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-9/releases/tag/v7

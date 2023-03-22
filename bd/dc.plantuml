@@ -1,0 +1,79 @@
+@startuml
+class Produit{
+    idProduit
+    nomProduit
+    descProduit
+    prixProduit
+    dateProduit
+    stockProduit
+    reduction
+    imageProduit
+}
+class Categorie{
+    idCat
+    nomCat
+    descCat
+}
+class SousCategorie{
+    idSousCat
+    nomSousCat
+    descSousCat
+}
+class DetailCommande{
+    quantite    
+}
+class Commande{
+    idCommande
+    troisFois
+    tauxTVA
+    montant
+}
+class Utilisateur {
+    emailUtilisateur
+    mdpUtilisateur
+    adminUtilisateur
+    nomUtilisateur
+    prenomUtilisateur
+    telUtilisateur
+    compteentreprise
+}
+class Adresse{
+    idAdresse
+    surnomAdresse
+    adresse
+    complement
+    ville
+    codePostal
+}
+class CarteBancaire{
+    idCB
+    numeroCB
+    nomCB
+    dateCB
+    cryptoCB
+}
+class Panier {
+    quantite
+}
+
+Produit "0..*" - "1" SousCategorie : Appartenir
+SousCategorie "0..*" - "1" Categorie : Faire partie de
+Produit "1..*" -- "0..*" Commande
+(Commande, Produit) .. DetailCommande
+
+Utilisateur "1" - "0..*" Commande : Passer
+Adresse "1" - "0..*" Commande : Livrer
+CarteBancaire "1" -- "0..*" Commande : Payer
+
+Utilisateur "1" -- "0..*" Adresse : Posséder
+Utilisateur "1" - "0..*" CarteBancaire  : Enregistrer
+
+Produit "0..*" -- "0..*" Utilisateur
+(Utilisateur, Produit) .. Panier
+
+
+
+
+hide empty methods
+hide circle
+@enduml

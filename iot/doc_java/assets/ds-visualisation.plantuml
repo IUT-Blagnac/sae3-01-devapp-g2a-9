@@ -1,0 +1,24 @@
+@startuml ds-visualisation
+
+actor System
+
+System -> ":HistoriqueController" : initialize()
+":HistoriqueController" -> ":DataFetcher" : new
+":HistoriqueController" <- ":DataFetcher"
+
+
+loop every 15s
+    ":HistoriqueController" -> ":DataFetcher" : getData()
+    ":HistoriqueController" <- ":DataFetcher" : data
+    ":HistoriqueController" -> ":HistoriqueController" : newData(data)
+
+    ":HistoriqueController" -> ":GridPane" : new
+    ":HistoriqueController" <- ":GridPane" : dgPane
+
+    ":HistoriqueController" -> ":DataGridController" : set(data)
+    ":HistoriqueController" -> ":VBox" : getChildren().add(0, dgPane)
+    ":HistoriqueController" -> ":GraphController" : addToSeries(data)
+
+end
+
+@enduml

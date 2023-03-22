@@ -1,0 +1,251 @@
+= Cahier de recette
+G2A09
+10/01/2023
+:toc: preamble
+:toc-title: Sommaire
+:nofooter:
+
+Groupe G2A09
+
+<<<
+
+== Fiches de tests
+
+=== Authentification client
+
+==== Inscription client
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestInscriptionOK
+| Inscription d'un client
+| Un compte client est créé avec les informations renseignées
+| Toutes les informations du nouveau client sont renseignées correctement
+
+| TestInscriptionNOK
+| Inscription d'un client
+| Blocage : Il manque une information sur le client à renseigner
+|
+
+| TestInscriptionMDP
+| Inscription d'un client
+| Blocage : Le mot de passe n'est pas assez sécurisé
+|
+
+| TestInscriptionExistant
+| Inscription d'un client
+| Blocage : L'email est déjà utilisé pour un compte existant
+|
+|===
+
+==== Connexion client
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestConnexionOK
+| Connexion d'un client
+| Connexion du client à son compte
+| Les informations renseignées du compte client sont correctes
+
+| TestConnexionNOK
+| Connexion d'un client
+| Blocage : Demande de renseigner les champs manquants du formulaire
+| Il manque une information sur le compte client à renseigner
+
+| TestConnexionEmailInconnu
+| Connexion d'un client
+| Blocage avec erreur : "Adresse Email inconnue"
+| L'adresse email fournie est inconnue
+
+| TestConnexionMDPInvalide
+| Connexion d'un client
+| Blocage : "Mot de passe invalide"
+| - L'adresse email fournie est connue +
+  - Le mot de passe associé est invalide
+|===
+
+==== Se souvenir de moi
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestSouvenirOK
+| Se souvenir de l'adresse email du client
+| L'email se remplit automatiquement lors de l'arrivée sur la page Connexion
+| - Le client a réussi à se connecter +
+  - La case "Se souvenir de moi" était cochée
+
+|===
+
+==== Oubli de mot de passe
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestOubliMDP
+| Réinitialiser son mot de passe
+| Recevoir une leçon de Philippe Etchebest
+| Cliquer sur le bouton "Mot de passe oublié" sur la page de connexion
+|===
+
+=== Coordonnées Client
+
+==== CRUD Carte bancaire
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestAjoutCBOK
+| Ajouter une carte bancaire
+| La carte bancaire est ajoutée au compte
+| Les informations renseignées sont correctes
+
+| TestAjoutCBNOK
+| Ajouter une carte bancaire
+| Blocage : Il manque une information
+| 
+
+| TestSupprCBOK
+| Supprimer une carte bancaire
+| La carte bancaire est bien supprimée du compte
+| - L'utilisateur est connecté +
+  - Il existe une carte bancaire associée au compte
+|===
+
+==== CRUD Adresse
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestAjoutAdrOK
+| Ajouter une adresse
+| L'adresse est ajoutée au compte
+| Les informations renseignées sont correctes
+
+| TestAjoutAdrNOK
+| Ajouter une adresse
+| Blocage : Il manque une information
+| 
+
+| TestSupprAdrOK
+| Supprimer une adresse
+| L'adresse est bien supprimée du compte
+| - L'utilisateur est connecté +
+  - Il existe une adresse associée au compte
+|===
+
+=== Achat
+
+==== Panier
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestAjoutPanierOK
+| Ajouter au panier
+| Le produit est ajouté au panier lorsqu'on clique sur "Ajouter panier"
+| L'utilisateur est connecté
+
+| TestAjoutPanierQte
+| Ajouter au panier
+| La quantité du produit est incrémentée
+| - L'utilisateur est connecté +
+  - Le produit est déjà dans le panier
+
+| TestSupprPanierOK
+| Supprimer du panier
+| Le produit est supprimé lorsqu'on clique sur "Supprimer"
+| - L'utilisateur est connecté +
+  - Il y a un produit dans le panier
+|===
+
+==== Commande
+
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestCommandeOK
+| Passer une commande
+| Une commande est passée après complétion du formulaire Achat.php
+| - L'utilisateur est connecté +
+  - Il y a au moins un produit dans le panier
+
+| TestCommandeNOK
+| Supprimer du panier
+| La commande ne peut pas être passée lorsqu'il manque des informations
+| - L'utilisateur est connecté +
+  - Il y a un produit dans le panier
+|===
+
+=== Recherche
+|===
+| Nom Test | Nom cas utilisation | Condition de satisfaction | Pré-condition
+
+| TestRechercheNomOK
+| Rechercher avec un nom
+| Le résultat de la recherche est un produit dont le titre est égal avec le paramètre de la recherche.
+| - Le produit recherché existe dans la base de donnée.
+
+| TestRechercheNomNOK
+| Rechercher avec un nom
+| Un bandeau indique a l'utilisateur que le produit n'est pas en stock
+| - Le produit recherché n'existe dans la base de donnée
+
+| TestRechercheCategorie
+| Rechercher par catégorie
+| - Les produits retournés correspondent à la catégorie sélectionnée
+| 
+
+| TestRechercheSousCategorie
+| Rechercher par sous catégorie
+| Les produits retournés correspondent à la sous catégorie de sélectionnée
+| - Une catégorie doit être sélectionnée
+
+| TestRecherchePrixMin
+| Recherche par prix minimum
+| Les produits retournés ont un prix supérieur à la valeur choisie
+|
+
+| TestRecherchePrixMax
+| Recherche par prix maximum
+| Les produits retournés ont un prix inférieur à la valeur choisie
+|
+
+| TestRechercheFourchettePrix
+| Recherche par fourchette de prix
+| Les produits retournés on un prix compris entre les deux valeurs choisies
+| - Le prix minimum doit être inférieur au prix maximum
+
+| TestTriPrixCroissant
+| Tri des produits par prix croissant
+| Les produits retournés sont triés par prix croissant
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriPrixDecroissant
+| Tri des produits par prix décroissant
+| Les produits retournés sont triés par prix décroissant
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriABC
+| Tri des produits par ordre alphabétique
+| Les produits retournés sont triés par ordre alphabétique
+| - La recherche doit au moins retourner 2 produits
+
+| TestTriZYX
+| Tri des produits par ordre alphabétique inversé
+| Les produits retournés sont triés par ordre alphabétique inversé
+| - La recherche doit retourner au moins 2 produits
+
+| TestTriNouveaute
+| Tri des produits par nouveauté
+| Les produits retournés sont triés par ordre d'ajout dans la base de données, les produits ajoutés récemment seront affichés en premier.
+| - La recherche doit au moins retourner 2 produits
+
+| TestTousLesProduits
+| Affichage de tous les produits
+| Renvoie tous les produits contenus dans la base de données
+| - Tous les champs hormis l'option de tri doivent être vide
+
+|===

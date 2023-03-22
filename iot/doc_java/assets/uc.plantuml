@@ -1,0 +1,24 @@
+@startuml uc
+
+actor Utilisateur as u
+
+rectangle configuration {
+    (Sélectionner des données) as (select)
+    
+    u -> (select)
+    (select) <.. (Appliquer un seuil) : <<extends>>
+
+    u --> (Enregistrer la configuration)
+}
+
+rectangle visualisation {
+
+    u -> (Visualiser les données)
+
+}
+
+rectangle historique {
+    (Consulter l'historique) <-- u
+}
+
+@enduml
